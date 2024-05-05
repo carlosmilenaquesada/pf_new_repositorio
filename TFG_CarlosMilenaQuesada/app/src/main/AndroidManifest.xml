@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TFG_CarlosMilenaQuesada"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".views.activities.CapitalManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.loaders.CustomersLoaderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.customers.CreateNewCustomerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.customers.ShowAndModifyCustomersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.customers.CustomersManagementMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.tickets.TicketDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.tickets.AllTicketsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.SalesManagementMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.tickets.ReservedTicketsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+        <activity
+            android:name=".views.loaders.SalesLoaderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.LoginActiviy"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.MainMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.SaleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.loaders.LoginLoaderActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,35 @@
+COMPROBAR -----------------------------------------------------------------
+-- quitar el sujerencia de contraseña o usuario del miniteclado del teléfono (ese que es como un portapapeles)
+-- acotar todos los input text de dinero de los activities de android  para que admintan 2 decimales máximo y una longitud máxima con respecto a la base de datos. El resto de los input también tiene que estar acotados con respecto a la base de datos
+
+--encapsular todos los campos de las clases (alugnas están public o no puestas, que eso es public)
+HACIENDO ------------------------------------------------------------------
+-- guardar tickets en TABLE_TICKETS de sqlite:
+	- pagados
+	- aparcados
+
+HECHO ---------------------------------------------------------------------
+
+
+PROBAR-------------------------------------------------------------------
+--crear dos clientes desde la aplicación con el mismo nombre legal (la pk es el cif, por eso he puesto que el legal_company_name sea unique, 
+ya que la razón social debe ser única al menos en el ámbito de un país (quizás deba poner legal_company_name + legal_country juntos para
+hacer una unique compuesta por esos dos elementos))
+
+--poner un cliente con nombre null, creo que da fallo (de hecho, cualquier campo null en la tabal sqlite dará excepción cuando se le haga un get)
+
+HACER----------------------------------------------------------------------
+--Cerrar todos los cursores
+
+--Hacer los sharepreferences para la autenticación en todos los activities
+
+--En SaleActivity, cuando se borra una linea de ticket, no se modifica el importe total.
+--implementar un remove item de calidad en todos los recicler view (tal y como he hecho en TicketAdapter)
+
+--COmprobar que los nombres de rutas de los string static final estén correctos
+
+--Avisar y mostrar opción de aceptar/cancelar cuando se vaya a borrar un elemento haciendo swipe en un recicler view. Por otro lado, si se borra con swipe
+
+--Cuando se aplica un cambio en SQLite en una tabla llenada inicialmente de la base de datos MySql, si se cierra el programa, se pierde, ya que se vuelve a cargar la info de MySql y se machaca lo que hubiese en SQLite (por ejemplo, cuando se modifica un cliente)
+
+--he quitado lo de unique en la tabla customer en razón social de sqlite, por que no hace nada, así que a que quitarlo de todos lados o investigarlo, porque en mysql sí está puesto
