@@ -25,16 +25,16 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
     public static final String NODE_SERVER = "http://192.168.0.3:3000/sync/";
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 17;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_BARCODES = "barcodes";
-    public static final String TABLE_CUSTOMERS = "taxable_customers";
+    public static final String TABLE_CAPITAL_OPERATIONS = "capital_operations";
+    public static final String TABLE_TAXABLE_CUSTOMERS = "taxable_customers";
     public static final String TABLE_CUSTOMERS_TYPES = "customers_types";
     public static final String TABLE_TICKETS = "tickets";
     public static final String TABLE_TICKETS_LINES = "tickets_lines";
     public static final String TABLE_USERS = "users";
-
 
 
     private SqliteConnector(@Nullable Context context) {
@@ -66,18 +66,17 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "article_id TEXT NOT NULL " +
                 ")");
 
-        db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS + "(" +
-                "customer_tax_id TEXT PRIMARY KEY NOT NULL," +
-                "legal_company_name TEXT NOT NULL, " +
-                "name TEXT, " +
-                "legal_company_address TEXT NOT NULL, " +
-                "legal_country TEXT NOT NULL, " +
-                "legal_location TEXT NOT NULL, " +
-                "legal_zip_code TEXT NOT NULL " +
-                ")");
 
         db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TYPES + "(" +
                 "customer_type_id TEXT PRIMARY KEY NOT NULL," +
+                "description TEXT NOT NULL " +
+                ")");
+
+        db.execSQL("CREATE TABLE " + TABLE_CAPITAL_OPERATIONS + "(" +
+                "capital_operation_id TEXT PRIMARY KEY NOT NULL," +
+                "operation_date TEXT NOT NULL," +
+                "capital_operation_type TEXT NOT NULL," +
+                "amount REAL NOT NULL," +
                 "description TEXT NOT NULL " +
                 ")");
 
@@ -100,6 +99,15 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "vat_fraction float NOT NULL " +
                 ")");
 
+        db.execSQL("CREATE TABLE " + TABLE_TAXABLE_CUSTOMERS + "(" +
+                "customer_tax_id TEXT PRIMARY KEY NOT NULL," +
+                "legal_company_name TEXT NOT NULL, " +
+                "name TEXT, " +
+                "legal_company_address TEXT NOT NULL, " +
+                "legal_country TEXT NOT NULL, " +
+                "legal_location TEXT NOT NULL, " +
+                "legal_zip_code TEXT NOT NULL " +
+                ")");
         db.execSQL("CREATE TABLE " + TABLE_USERS + "(" +
                 "user_id TEXT PRIMARY KEY NOT NULL," +
                 "password TEXT NOT NULL, " +
@@ -111,8 +119,9 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BARCODES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CAPITAL_OPERATIONS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS_TYPES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAXABLE_CUSTOMERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS_LINES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
@@ -194,7 +203,6 @@ public class SqliteConnector extends SQLiteOpenHelper {
         cursor.close();
         return privileges;
     }
-
 
 
 }

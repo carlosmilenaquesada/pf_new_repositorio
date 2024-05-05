@@ -2178,7 +2178,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -4671,22 +4671,37 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values\\themes.xml",
+                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "2,7",
-                        "startColumns": "4,4",
-                        "startOffsets": "102,345",
-                        "endLines": "5,7",
-                        "endColumns": "12,94",
-                        "endOffsets": "337,435"
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "60",
+                        "endOffsets": "72"
                     },
                     "to": {
-                        "startLines": "2575,6554",
+                        "startLines": "1992",
+                        "startColumns": "4",
+                        "startOffsets": "131726",
+                        "endColumns": "60",
+                        "endOffsets": "131782"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "2,3",
                         "startColumns": "4,4",
-                        "startOffsets": "181371,460489",
-                        "endLines": "2578,6554",
-                        "endColumns": "12,93",
-                        "endOffsets": "181497,460578"
+                        "startOffsets": "57,100",
+                        "endColumns": "41,41",
+                        "endOffsets": "94,137"
+                    },
+                    "to": {
+                        "startLines": "640,958",
+                        "startColumns": "4,4",
+                        "startOffsets": "32798,56432",
+                        "endColumns": "41,41",
+                        "endOffsets": "32835,56469"
                     }
                 },
                 {
@@ -4721,23 +4736,6 @@
                         "startOffsets": "120883,122031",
                         "endColumns": "53,66",
                         "endOffsets": "120932,122093"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "17",
-                        "endColumns": "60",
-                        "endOffsets": "73"
-                    },
-                    "to": {
-                        "startLines": "1992",
-                        "startColumns": "4",
-                        "startOffsets": "131726",
-                        "endColumns": "60",
-                        "endOffsets": "131782"
                     }
                 },
                 {
@@ -4834,23 +4832,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "57,100",
-                        "endColumns": "41,41",
-                        "endOffsets": "94,137"
-                    },
-                    "to": {
-                        "startLines": "640,958",
-                        "startColumns": "4,4",
-                        "startOffsets": "32798,56432",
-                        "endColumns": "41,41",
-                        "endOffsets": "32835,56469"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Administrador\\.gradle\\caches\\transforms-3\\96bb956ea24bd18a6367d83c42b3ecb7\\transformed\\media-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,5,6,7,8,10,11,12,13,14",
@@ -4903,6 +4884,25 @@
                         "endLines": "35,649,650,651,652,1051,1052,1053,2202,5551,5554,5557,10186",
                         "endColumns": "51,60,61,61,63,58,56,53,12,12,12,12,24",
                         "endOffsets": "1687,33537,33599,33661,33725,62648,62705,62759,156975,390547,390673,390801,673197"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "2,7",
+                        "startColumns": "4,4",
+                        "startOffsets": "102,345",
+                        "endLines": "5,7",
+                        "endColumns": "12,94",
+                        "endOffsets": "337,435"
+                    },
+                    "to": {
+                        "startLines": "2575,6554",
+                        "startColumns": "4,4",
+                        "startOffsets": "181371,460489",
+                        "endLines": "2578,6554",
+                        "endColumns": "12,93",
+                        "endOffsets": "181497,460578"
                     }
                 },
                 {

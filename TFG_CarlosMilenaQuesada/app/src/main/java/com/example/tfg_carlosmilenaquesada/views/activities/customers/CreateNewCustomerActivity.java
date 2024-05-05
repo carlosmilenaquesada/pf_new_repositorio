@@ -19,6 +19,7 @@ import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 import com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
 import com.example.tfg_carlosmilenaquesada.models.customer.Customer;
+import com.example.tfg_carlosmilenaquesada.views.activities.tickets.CapitalOperationActivity;
 
 public class CreateNewCustomerActivity extends AppCompatActivity {
 
@@ -89,10 +90,15 @@ public class CreateNewCustomerActivity extends AppCompatActivity {
                     }
                 }
                 try {
-                    SqliteConnector.getInstance(CreateNewCustomerActivity.this).getReadableDatabase().insertOrThrow(SqliteConnector.TABLE_CUSTOMERS, null, newContentValues);
+                    if (SqliteConnector.getInstance(CreateNewCustomerActivity.this).getReadableDatabase().insertOrThrow(SqliteConnector.TABLE_TAXABLE_CUSTOMERS, null, newContentValues) == -1) {
+                        Toast.makeText(CreateNewCustomerActivity.this, "Fallo al realizar la operación", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     Toast.makeText(CreateNewCustomerActivity.this, "Cliente creado con éxito", Toast.LENGTH_SHORT).show();
+
                 } catch (SQLiteConstraintException E) {
-                    Toast.makeText(CreateNewCustomerActivity.this, E.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateNewCustomerActivity.this, "Ocurrió un error en la creación del cliente", Toast.LENGTH_LONG).show();
+                    etCustomerTaxIdCreate.setError("Ya existe un cliente con ese id fiscal");
                 }
 
 

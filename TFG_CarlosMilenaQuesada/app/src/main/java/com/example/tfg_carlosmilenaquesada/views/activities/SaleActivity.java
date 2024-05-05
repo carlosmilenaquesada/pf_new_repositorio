@@ -1,6 +1,6 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TAXABLE_CUSTOMERS;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TYPES;
 import static com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity.RESTORED_TICKET;
 
@@ -40,7 +40,6 @@ import com.example.tfg_carlosmilenaquesada.models.ticket.Ticket;
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLine;
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLineAdapter;
 
-import com.example.tfg_carlosmilenaquesada.views.loaders.SalesLoaderActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -149,7 +148,7 @@ public class SaleActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             jsonHttpGetterCustomers = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomers(SaleActivity.this);
-                            Cursor cursorCustomers = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery("SELECT customer_tax_id FROM " + TABLE_CUSTOMERS, null);
+                            Cursor cursorCustomers = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery("SELECT customer_tax_id FROM " + TABLE_TAXABLE_CUSTOMERS, null);
 
                             while (cursorCustomers.moveToNext()) {
                                 customersTaxIds.add(cursorCustomers.getString(0));

@@ -42,7 +42,7 @@
         android:id="@+id/btPointOfSaleManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gestión de caja" />
+        android:text="Gestión de punto de venta" />
 
     <Button
         android:id="@+id/btLogOut"

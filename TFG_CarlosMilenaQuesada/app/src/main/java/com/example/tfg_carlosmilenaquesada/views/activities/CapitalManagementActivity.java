@@ -1,6 +1,9 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +12,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
+import com.example.tfg_carlosmilenaquesada.views.activities.tickets.CapitalOperationActivity;
 
 public class CapitalManagementActivity extends AppCompatActivity {
+    public static final String CAPITAL_OPERATION_TYPE = "com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity.CAPITAL_OPERATION_TYPE";
+    public static final String AMOUNT_SIGN = "com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity.AMOUNT_SIGN";
+    Button btCashIncome;
+    Button btCashWithdrawal;
+    Button btInitialCashIncome;
+    Button btFinalCashWithdrawal;
+    Button btBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +33,49 @@ public class CapitalManagementActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        btCashIncome = findViewById(R.id.btCashIncome);
+        btCashWithdrawal = findViewById(R.id.btCashWithdrawal);
+        btInitialCashIncome = findViewById(R.id.btInitialCashIncome);
+        btFinalCashWithdrawal = findViewById(R.id.btFinalCashWithdrawal);
+        btBack = findViewById(R.id.btBack);
+
+        btCashIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CapitalManagementActivity.this, CapitalOperationActivity.class);
+                intent.putExtra(CAPITAL_OPERATION_TYPE, "ingreso");
+                intent.putExtra(AMOUNT_SIGN, "+");
+                startActivity(intent);
+            }
+        });
+        btCashWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CapitalManagementActivity.this, CapitalOperationActivity.class);
+                intent.putExtra(CAPITAL_OPERATION_TYPE, "retirada");
+                intent.putExtra(AMOUNT_SIGN, "-");
+                startActivity(intent);
+            }
+        });
+        btInitialCashIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CapitalManagementActivity.this, CapitalOperationActivity.class);
+                intent.putExtra(CAPITAL_OPERATION_TYPE, "dotación inicial");
+                intent.putExtra(AMOUNT_SIGN, "+");
+                startActivity(intent);
+            }
+        });
+        btFinalCashWithdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CapitalManagementActivity.this, CapitalOperationActivity.class);
+                intent.putExtra(CAPITAL_OPERATION_TYPE, "retirada final");
+                intent.putExtra(AMOUNT_SIGN, "-");
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
