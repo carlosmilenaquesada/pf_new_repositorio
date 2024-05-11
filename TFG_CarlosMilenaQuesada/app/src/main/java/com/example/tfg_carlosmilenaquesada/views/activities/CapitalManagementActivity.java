@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
-import com.example.tfg_carlosmilenaquesada.views.activities.tickets.CapitalOperationActivity;
 
 public class CapitalManagementActivity extends AppCompatActivity {
     public static final String CAPITAL_OPERATION_TYPE = "com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity.CAPITAL_OPERATION_TYPE";

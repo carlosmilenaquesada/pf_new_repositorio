@@ -61,7 +61,7 @@ public class MainMenuActivity extends AppCompatActivity {
         findViewById(R.id.btCustomersManagement).setOnClickListener(v -> startActivity(new Intent(MainMenuActivity.this, CustomersLoaderActivity.class)));
         findViewById(R.id.btSalesManagement).setOnClickListener(v -> startActivity(new Intent(MainMenuActivity.this, SalesManagementMenuActivity.class)));
         findViewById(R.id.btCapitalManagement).setOnClickListener(v -> startActivity(new Intent(MainMenuActivity.this, CapitalManagementActivity.class)));
-        findViewById(R.id.btPointOfSaleManagement).setOnClickListener(v -> startActivity(new Intent(MainMenuActivity.this, CapitalManagementActivity.class)));
+        findViewById(R.id.btPointOfSaleManagement).setOnClickListener(v -> startActivity(new Intent(MainMenuActivity.this, PointOfSaleManagementActivity.class)));
 
 
         findViewById(R.id.btLogOut).setOnClickListener(new View.OnClickListener() {

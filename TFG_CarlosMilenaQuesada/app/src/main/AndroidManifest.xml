@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".views.activities.tickets.CapitalOperationActivity"
+            android:name=".views.activities.CapitalOperationActivity"
             android:exported="false" />
         <activity
             android:name=".views.activities.CapitalManagementActivity"

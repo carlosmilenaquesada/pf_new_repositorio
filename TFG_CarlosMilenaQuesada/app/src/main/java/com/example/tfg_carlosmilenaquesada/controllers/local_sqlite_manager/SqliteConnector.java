@@ -36,6 +36,9 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public static final String TABLE_TICKETS_LINES = "tickets_lines";
     public static final String TABLE_USERS = "users";
 
+    public static final String VIEW_CASH_CLOSING = "view_cash_closing";
+    public static final String VIEW_CASH_AUDIT = "view_cash_audit";
+
 
     private SqliteConnector(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,6 +54,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //TABLAS
         db.execSQL("CREATE TABLE " + TABLE_ARTICLES + "(" +
                 "article_id TEXT PRIMARY KEY NOT NULL, " +
                 "name TEXT  NOT NULL, " +
@@ -113,10 +117,14 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "password TEXT NOT NULL, " +
                 "privileges TEXT NOT NULL" +
                 ")");
+        //VISTAS
+        db.execSQL("CREATE VIEW" + VIEW_CASH_CLOSING +
+                "AS SELECT " + SUM(), columna2 FROM tabla WHERE condicion");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //TABLAS
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BARCODES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CAPITAL_OPERATIONS);
@@ -125,6 +133,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS_LINES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        //VISTAS
+        db.execSQL("DROP VIEW IF EXISTS vista_ejemplo");
         onCreate(db);
     }
 

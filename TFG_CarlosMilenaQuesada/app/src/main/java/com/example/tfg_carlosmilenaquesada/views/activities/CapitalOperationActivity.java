@@ -1,11 +1,10 @@
-package com.example.tfg_carlosmilenaquesada.views.activities.tickets;
+package com.example.tfg_carlosmilenaquesada.views.activities;
 
 import static com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity.AMOUNT_SIGN;
 import static com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity.CAPITAL_OPERATION_TYPE;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,7 +25,6 @@ import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 import com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
 import com.example.tfg_carlosmilenaquesada.models.CapitalOperation;
-import com.example.tfg_carlosmilenaquesada.views.activities.customers.CreateNewCustomerActivity;
 
 
 public class CapitalOperationActivity extends AppCompatActivity {
