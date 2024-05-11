@@ -3,9 +3,7 @@ package com.example.tfg_carlosmilenaquesada.controllers.tools;
 import android.content.ContentValues;
 
 
-import androidx.annotation.NonNull;
-
-import com.example.tfg_carlosmilenaquesada.models.CapitalOperation;
+import com.example.tfg_carlosmilenaquesada.models.desk.CapitalOperation;
 import com.example.tfg_carlosmilenaquesada.models.customer.Customer;
 
 public class Tools {

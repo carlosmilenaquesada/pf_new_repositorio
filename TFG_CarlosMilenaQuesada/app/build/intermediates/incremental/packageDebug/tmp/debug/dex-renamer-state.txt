@@ -1,7 +1,7 @@
-#Sat May 11 18:01:46 CEST 2024
+#Sun May 12 00:38:37 CEST 2024
 base.0=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.10=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+base.10=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
 base.2=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
 base.3=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
 base.4=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
@@ -12,7 +12,7 @@ base.8=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_Carlo
 base.9=C\:\\Users\\Administrador\\Desktop\\NEW_PF\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
-path.10=2/classes.dex
+path.10=14/classes.dex
 path.2=10/classes.dex
 path.3=11/classes.dex
 path.4=15/classes.dex

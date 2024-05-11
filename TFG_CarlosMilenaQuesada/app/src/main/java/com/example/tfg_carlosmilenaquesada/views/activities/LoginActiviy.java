@@ -1,7 +1,7 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
 
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.VIEW_CASH_CLOSING;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -52,7 +52,6 @@ public class LoginActiviy extends AppCompatActivity {
 
 
 
-        SqliteConnector.getInstance(this).executeView(VIEW_CASH_CLOSING);
 
 
 

@@ -24,7 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 import com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
-import com.example.tfg_carlosmilenaquesada.models.CapitalOperation;
+import com.example.tfg_carlosmilenaquesada.models.desk.CapitalOperation;
 
 
 public class CapitalOperationActivity extends AppCompatActivity {

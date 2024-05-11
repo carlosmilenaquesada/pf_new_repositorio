@@ -1,8 +1,9 @@
 package com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CAPITAL_OPERATIONS;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS;
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteCursorBuilder.RangeFrom.ALL_DAYS;
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteCursorBuilder.RangeFrom.CURRENT_DAY;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_LINES;
+
 
 import android.content.Context;
 import android.database.Cursor;
@@ -10,16 +11,20 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.tfg_carlosmilenaquesada.models.desk.ArticlesFamilyShare;
+import com.example.tfg_carlosmilenaquesada.models.desk.BaseAndVat;
+import com.example.tfg_carlosmilenaquesada.models.desk.FirstAndLast;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class SqliteCursorBuilder {
 
-    public enum RangeFrom {
-        ALL_DAYS, CURRENT_DAY
-    }
 
     Context context;
     SqliteConnector sqliteConnector;
@@ -30,32 +35,93 @@ public class SqliteCursorBuilder {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Cursor getTicketsMinMaxRange(RangeFrom rangeFrom) {
-        String query = "";
-        switch (rangeFrom) {
-            case ALL_DAYS:
-                query = "SELECT MIN(ticket_id), MAX(ticket_id) FROM " + TABLE_TICKETS;
-                break;
-            case CURRENT_DAY:
-                query = "SELECT MIN(ticket_id), MAX(ticket_id) FROM " + TABLE_TICKETS + " WHERE substr(sale_date, 1, 10) = " + LocalDate.now().toString();
-                break;
+    public FirstAndLast<String> getFirstAndLastTicketId(boolean onlyToday) {
+        FirstAndLast<String> firstAndLastTicketId = new FirstAndLast<>();
+        String query = "SELECT MIN(ticket_id) AS 'ticket_id_from', MAX(ticket_id) as 'ticket_id_to' FROM " + TABLE_TICKETS;
+        if (onlyToday) {
+            query += " WHERE substr(sale_date, 1, 10) = " + LocalDate.now().toString();
         }
-        return this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
-    }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Cursor getTicketsMinMaxDate(RangeFrom rangeFrom) {
-        String query = "";
-        switch (rangeFrom) {
-            case ALL_DAYS:
-                query = "SELECT MIN(sale_date), MAX(sale_date) FROM " + TABLE_TICKETS;
-                break;
-            case CURRENT_DAY:
-                query = "SELECT MIN(sale_date), MAX(sale_date) FROM " + TABLE_TICKETS + " WHERE substr(sale_date, 1, 10) = " + LocalDate.now().toString();
-                break;
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            firstAndLastTicketId.setFirst(cursor.getString(0));
+            firstAndLastTicketId.setLast(cursor.getString(1));
         }
-        return this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        cursor.close();
+        return firstAndLastTicketId;
     }
+
+    public FirstAndLast<String> getFirstAndLastTicketDate(boolean onlyToday) {
+        FirstAndLast<String> firstAndLastTicketDate = new FirstAndLast<>();
+        String query = "SELECT MIN(sale_date) AS 'sale_date_from', MAX(sale_date) as 'sale_date_to' FROM " + TABLE_TICKETS;
+        if (onlyToday) {
+            query += " WHERE substr(sale_date, 1, 10) = " + LocalDate.now().toString();
+        }
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            firstAndLastTicketDate.setFirst(cursor.getString(0));
+            firstAndLastTicketDate.setLast(cursor.getString(1));
+        }
+        cursor.close();
+        return firstAndLastTicketDate;
+    }
+
+    /**
+     *
+     * @param onlyToday
+     * @param specificPaymentMethod if null, this method will return total sales from all payment method
+     * @return
+     */
+    public BaseAndVat getBaseAndVatFromTotal(boolean onlyToday, String specificPaymentMethod) {
+        BaseAndVat baseAndVatFromTotal = new BaseAndVat();
+        String query = "SELECT SUM(TL.unit_sale_base_price) as 'total_sales_base', SUM(TL.unit_sale_base_price * TL.vat_fraction)) as 'total_vat' FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id";
+        if(specificPaymentMethod != null){
+            query += " AND T.payment_method_id = '" + specificPaymentMethod + "'";
+        }
+        if (onlyToday) {
+            query += " AND substr(T.sale_date, 1, 10) = " + LocalDate.now().toString();
+        }
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            baseAndVatFromTotal.setBase(cursor.getFloat(0));
+            baseAndVatFromTotal.setVat(cursor.getFloat(1));
+        }
+        cursor.close();
+        return baseAndVatFromTotal;
+    }
+
+    public ArrayList<ArticlesFamilyShare> getArticlesFamilyShares(boolean onlyToday){
+        ArrayList<ArticlesFamilyShare> articlesFamilyShares = new ArrayList<>();
+        //String query = ;
+        return articlesFamilyShares;
+    }
+
+
+    public float getTotalCashAmount(boolean onlyToday) {
+        float totalCashAmount = 0f;
+        String query = "SELECT SUM(amount) AS 'total_cash_amount' FROM" + TABLE_CAPITAL_OPERATIONS;
+        if (onlyToday) {
+            query += " WHERE substr(operation_date, 1, 10) = " + LocalDate.now().toString();
+        }
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            totalCashAmount = cursor.getFloat(0);
+        }
+        cursor.close();
+        return totalCashAmount;
+    }
+
+    public float getFinalCashWithdrawal() {
+        float finalCashWithdrawal = 0f;
+        String query = "SELECT amount as 'final_cash_withdrawal' FROM " + TABLE_CAPITAL_OPERATIONS + " WHERE capital_operation_type = 'retirada final'";
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            finalCashWithdrawal = cursor.getFloat(0);
+        }
+        cursor.close();
+        return finalCashWithdrawal;
+    }
+
+
 }
     /*
         CIERRE TOTAL------------------
@@ -87,18 +153,7 @@ public class SqliteCursorBuilder {
 /*db.execSQL("CREATE VIEW "
         + VIEW_CASH_CLOSING
         + " AS SELECT "
-        + " (SELECT MIN(ticket_id) FROM " + TABLE_TICKETS + ") AS 'ticket_id_from', "
-        + " (SELECT MAX(ticket_id) FROM " + TABLE_TICKETS + ") AS 'ticket_id_to', "
-        + " (SELECT MIN(sale_date) FROM " + TABLE_TICKETS + ") AS 'sale_date_from', "
-        + " (SELECT MAX(sale_date) FROM " + TABLE_TICKETS + ") AS 'sale_date_to', "
-        + " (SELECT SUM(unit_sale_base_price) FROM " + TABLE_TICKETS_LINES + ") AS 'total_sales_base', "
-        + " (SELECT SUM(unit_sale_base_price * (1 + vat_fraction)) FROM " + TABLE_TICKETS_LINES + ") AS 'total_sales_with_vat', "
-        + " (SELECT SUM(amount) FROM " + TABLE_CAPITAL_OPERATIONS + ") AS 'total_cash_amount', "
-        + " (SELECT amount FROM " + TABLE_CAPITAL_OPERATIONS + " WHERE capital_operation_type = 'retirada final') AS 'final_cash_withdrawal', "
-        + " (SELECT SUM(TL.unit_sale_base_price) FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id AND T.payment_method_id = 'bankcard') AS 'total_bankcard_sales_base', "
-        + " (SELECT SUM(TL.unit_sale_base_price * (1 + TL.vat_fraction)) FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id AND T.payment_method_id = 'bankcard') AS 'total_bankcard_sales_base', "
-        + " (SELECT SUM(TL.unit_sale_base_price) FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id AND T.payment_method_id = 'cash') AS 'total_cash_sales_base', "
-        + " (SELECT SUM(TL.unit_sale_base_price * (1 + TL.vat_fraction)) FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id AND T.payment_method_id = 'cash') AS 'total_cash_sales_base'"
+
 
         );*/
 
