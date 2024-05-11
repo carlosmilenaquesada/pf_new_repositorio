@@ -3213,8 +3213,6 @@ int id btCloseUpdateDropdownMenu 0x7f080070
 int id btCompleteCashPayment 0x7f080071
 int id btCreateNewCustomer 0x7f080072
 int id btCustomersManagement 0x7f080073
-int id btFinalCashWithdrawal 0x7f080280
-int id btInitialCashIncome 0x7f080281
 int id btInitializeCardPayment 0x7f080074
 int id btLogOn 0x7f080075
 int id btLogOut 0x7f080076

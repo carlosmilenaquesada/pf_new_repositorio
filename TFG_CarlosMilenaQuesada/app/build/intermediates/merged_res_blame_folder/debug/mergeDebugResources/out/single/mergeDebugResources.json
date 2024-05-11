@@ -8,6 +8,10 @@
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_login_loader.xml"
     },
     {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_capital_management.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_capital_management.xml"
+    },
+    {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_all_tickets.xml.flat",
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_all_tickets.xml"
     },
@@ -18,10 +22,6 @@
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_capital_operation.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_capital_operation.xml"
     },
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\xml_data_extraction_rules.xml.flat",

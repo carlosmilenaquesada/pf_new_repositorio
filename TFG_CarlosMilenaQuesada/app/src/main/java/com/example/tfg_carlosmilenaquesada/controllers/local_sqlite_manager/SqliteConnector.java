@@ -24,20 +24,19 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //SQLite solo permite tipos INTEGER, REAL, TEXT, BLOB, NUMERIC y NULL,
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
-    public static final String NODE_SERVER = "http://192.168.0.3:3000/sync/";
-    private static final int DATABASE_VERSION = 17;
+    public static final String NODE_SERVER = "http://192.168.0.4:3000/sync/";
+    private static final int DATABASE_VERSION = 40;
     private static final String DATABASE_NAME = "tpv.db";
+
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_BARCODES = "barcodes";
     public static final String TABLE_CAPITAL_OPERATIONS = "capital_operations";
-    public static final String TABLE_TAXABLE_CUSTOMERS = "taxable_customers";
     public static final String TABLE_CUSTOMERS_TYPES = "customers_types";
+    public static final String TABLE_TAXABLE_CUSTOMERS = "taxable_customers";
     public static final String TABLE_TICKETS = "tickets";
     public static final String TABLE_TICKETS_LINES = "tickets_lines";
     public static final String TABLE_USERS = "users";
 
-    public static final String VIEW_CASH_CLOSING = "view_cash_closing";
-    public static final String VIEW_CASH_AUDIT = "view_cash_audit";
 
 
     private SqliteConnector(@Nullable Context context) {
@@ -100,7 +99,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "article_quantity REAL NOT NULL, " +
                 "unit_sale_base_price REAL NOT NULL, " +
                 "is_in_offer TEXT NOT NULL, " +
-                "vat_fraction float NOT NULL " +
+                "vat_fraction REAL NOT NULL " +
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_TAXABLE_CUSTOMERS + "(" +
@@ -117,9 +116,11 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "password TEXT NOT NULL, " +
                 "privileges TEXT NOT NULL" +
                 ")");
-        //VISTAS
-        db.execSQL("CREATE VIEW" + VIEW_CASH_CLOSING +
-                "AS SELECT " + SUM(), columna2 FROM tabla WHERE condicion");
+
+
+
+
+
     }
 
     @Override
@@ -133,8 +134,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS_LINES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-        //VISTAS
-        db.execSQL("DROP VIEW IF EXISTS vista_ejemplo");
+
         onCreate(db);
     }
 
@@ -205,6 +205,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
         }
         return contentValues;
     }
+
 
     public String getUserPrivileges(String userId, String password) {
         String[] selectionArgs = {userId, password};

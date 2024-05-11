@@ -1,9 +1,12 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
 
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.VIEW_CASH_CLOSING;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
@@ -19,6 +22,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
+
+import java.sql.SQLOutput;
 
 
 public class LoginActiviy extends AppCompatActivity {
@@ -44,6 +49,12 @@ public class LoginActiviy extends AppCompatActivity {
             return insets;
         });
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+
+
+        SqliteConnector.getInstance(this).executeView(VIEW_CASH_CLOSING);
+
+
 
         etUserId = findViewById(R.id.etUserId);
         etPassword = findViewById(R.id.etPassword);

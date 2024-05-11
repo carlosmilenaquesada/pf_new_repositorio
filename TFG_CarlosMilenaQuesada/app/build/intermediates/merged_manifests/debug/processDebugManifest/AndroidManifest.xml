@@ -51,7 +51,7 @@
         android:theme="@style/Theme.TFG_CarlosMilenaQuesada"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.CapitalOperationActivity"
+            android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalOperationActivity"
             android:exported="false" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity"

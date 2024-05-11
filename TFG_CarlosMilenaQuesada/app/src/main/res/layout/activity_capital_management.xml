@@ -21,18 +21,6 @@
         android:text="Retirar efectivo" />
 
     <Button
-        android:id="@+id/btInitialCashIncome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dotación inicial" />
-
-    <Button
-        android:id="@+id/btFinalCashWithdrawal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Retirada final" />
-
-    <Button
         android:id="@+id/btBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

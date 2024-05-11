@@ -90,8 +90,8 @@
 52-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:16:9-44
 53        <activity
 53-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:18:9-20:40
-54            android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.CapitalOperationActivity"
-54-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:19:13-78
+54            android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalOperationActivity"
+54-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:19:13-70
 55            android:exported="false" />
 55-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:20:13-37
 56        <activity

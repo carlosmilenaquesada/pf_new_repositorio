@@ -18,8 +18,6 @@ public class CapitalManagementActivity extends AppCompatActivity {
     public static final String AMOUNT_SIGN = "com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity.AMOUNT_SIGN";
     Button btCashIncome;
     Button btCashWithdrawal;
-    Button btInitialCashIncome;
-    Button btFinalCashWithdrawal;
     Button btBack;
 
     @Override
@@ -34,8 +32,7 @@ public class CapitalManagementActivity extends AppCompatActivity {
         });
         btCashIncome = findViewById(R.id.btCashIncome);
         btCashWithdrawal = findViewById(R.id.btCashWithdrawal);
-        btInitialCashIncome = findViewById(R.id.btInitialCashIncome);
-        btFinalCashWithdrawal = findViewById(R.id.btFinalCashWithdrawal);
+
         btBack = findViewById(R.id.btBack);
 
         btCashIncome.setOnClickListener(new View.OnClickListener() {
@@ -56,25 +53,5 @@ public class CapitalManagementActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btInitialCashIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CapitalManagementActivity.this, CapitalOperationActivity.class);
-                intent.putExtra(CAPITAL_OPERATION_TYPE, "dotación inicial");
-                intent.putExtra(AMOUNT_SIGN, "+");
-                startActivity(intent);
-            }
-        });
-        btFinalCashWithdrawal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CapitalManagementActivity.this, CapitalOperationActivity.class);
-                intent.putExtra(CAPITAL_OPERATION_TYPE, "retirada final");
-                intent.putExtra(AMOUNT_SIGN, "-");
-                startActivity(intent);
-            }
-        });
-
-
     }
 }

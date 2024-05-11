@@ -3214,8 +3214,6 @@ id btCloseUpdateDropdownMenu
 id btCompleteCashPayment
 id btCreateNewCustomer
 id btCustomersManagement
-id btFinalCashWithdrawal
-id btInitialCashIncome
 id btInitializeCardPayment
 id btLogOn
 id btLogOut
