@@ -89,7 +89,7 @@ public class CreateNewCustomerActivity extends AppCompatActivity {
                     }
                 }
                 try {
-                    if (SqliteConnector.getInstance(CreateNewCustomerActivity.this).getReadableDatabase().insertOrThrow(SqliteConnector.TABLE_TAXABLE_CUSTOMERS, null, newContentValues) == -1) {
+                    if (SqliteConnector.getInstance(CreateNewCustomerActivity.this).getReadableDatabase().insertOrThrow(SqliteConnector.TABLE_CUSTOMERS_TAXABLES, null, newContentValues) == -1) {
                         Toast.makeText(CreateNewCustomerActivity.this, "Fallo al realizar la operación", Toast.LENGTH_SHORT).show();
                         return;
                     }

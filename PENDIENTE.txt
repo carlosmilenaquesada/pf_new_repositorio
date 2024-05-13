@@ -33,3 +33,7 @@ HACER----------------------------------------------------------------------
 --Cuando se aplica un cambio en SQLite en una tabla llenada inicialmente de la base de datos MySql, si se cierra el programa, se pierde, ya que se vuelve a cargar la info de MySql y se machaca lo que hubiese en SQLite (por ejemplo, cuando se modifica un cliente)
 
 --he quitado lo de unique en la tabla customer en razón social de sqlite, por que no hace nada, así que a que quitarlo de todos lados o investigarlo, porque en mysql sí está puesto
+
+--Revisar todos los getString, getFloat, etc que obtengan por índice de los cursor, ya que puede dar problemas si se añade una columna, mejor obtener el índice por nombre de columna, tal que así -> String articleId = cursor.getString(cursor.getColumnIndexOrThrow("article_id"));
+
+--comprobar en la Sale que si se eligió "cliente fiscal" no esté vacío y exista ese cliente

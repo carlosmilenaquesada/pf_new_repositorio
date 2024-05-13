@@ -77,7 +77,7 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
         btBackFromAllCustomersActivity = findViewById(R.id.btBackFromAllCustomersActivity);
 
         new ItemTouchHelper(((CustomerAdapter) rvAllCustomers.getAdapter()).getSimpleCallback()).attachToRecyclerView(rvAllCustomers);
-        Cursor cursor = SqliteConnector.getInstance(this).getReadableDatabase().rawQuery("SELECT * FROM " + SqliteConnector.TABLE_TAXABLE_CUSTOMERS, null);
+        Cursor cursor = SqliteConnector.getInstance(this).getReadableDatabase().rawQuery("SELECT * FROM " + SqliteConnector.TABLE_CUSTOMERS_TAXABLES, null);
         while (cursor.moveToNext()) {
             ((CustomerAdapter) rvAllCustomers.getAdapter()).addCustomer(new Customer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)), rvAllCustomers.getAdapter().getItemCount());
         }
@@ -109,7 +109,7 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
                     }
                 }
 
-                if (SqliteConnector.getInstance(ShowAndModifyCustomersActivity.this).getReadableDatabase().update(SqliteConnector.TABLE_TAXABLE_CUSTOMERS, newContentValues, "customer_tax_id=?", new String[]{oldCustomer.getCustomer_tax_id()}) == 1) {
+                if (SqliteConnector.getInstance(ShowAndModifyCustomersActivity.this).getReadableDatabase().update(SqliteConnector.TABLE_CUSTOMERS_TAXABLES, newContentValues, "customer_tax_id=?", new String[]{oldCustomer.getCustomer_tax_id()}) == 1) {
                     ArrayList<Customer> customersList = ((CustomerAdapter) rvAllCustomers.getAdapter()).getCustomerList();
                     customersList.set(customersList.indexOf(oldCustomer), updatedCustomer);
                     rvAllCustomers.getAdapter().notifyItemChanged(customersList.indexOf(updatedCustomer));

@@ -24,7 +24,7 @@ connection.connect((err) => {
 
 
 app.get('/sync/articles', (req, res) => {
-    const sql = 'SELECT A.article_id, A.name, A.sale_base_price, V.vat_fraction, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price FROM articles A LEFT OUTER JOIN vats V ON A.vat_id = V.vat_id';
+    const sql = 'SELECT A.article_id, A.article_name, AF.family_name, A.sale_base_price, A.vat_id, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price FROM articles A LEFT OUTER JOIN articles_categories AC ON AC.article_category_id = A.article_category_id LEFT OUTER JOIN articles_families AF ON AF.article_family_id = AC.article_family_id';
 
     connection.query(sql, (err, result) => {
         if (err) {
@@ -49,8 +49,8 @@ app.get('/sync/barcodes', (req, res) => {
     });
 });
 
-app.get('/sync/taxable_customers', (req, res) => {
-    const sql = 'SELECT * FROM taxable_customers';
+app.get('/sync/customers_taxables', (req, res) => {
+    const sql = 'SELECT * FROM customers_taxables';
 
     connection.query(sql, (err, result) => {
         if (err) {
@@ -81,6 +81,19 @@ app.get('/sync/users', (req, res) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
             res.status(500).json({ error: 'Error al obtener la información de usuarios' });
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.get('/sync/vats', (req, res) => {
+    const sql = 'SELECT * FROM vats';
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ error: 'Error al obtener la información de IVA' });
         } else {
             res.json(result);
         }

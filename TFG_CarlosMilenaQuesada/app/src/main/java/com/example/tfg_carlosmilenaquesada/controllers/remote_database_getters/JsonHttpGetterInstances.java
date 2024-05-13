@@ -65,7 +65,7 @@ public class JsonHttpGetterInstances {
 
     public static JsonHttpGetter getInstanceJsonHttpGetterCustomers(Context context) {
         if (jsonHttpGetterCustomers == null) {
-            jsonHttpGetterCustomers = new JsonHttpGetter(context, SqliteConnector.TABLE_TAXABLE_CUSTOMERS);
+            jsonHttpGetterCustomers = new JsonHttpGetter(context, SqliteConnector.TABLE_CUSTOMERS_TAXABLES);
             jsonHttpGetterCustomers.getJsonFromHttp();
             try {
                 jsonHttpGetterCustomers.getLatch().await();

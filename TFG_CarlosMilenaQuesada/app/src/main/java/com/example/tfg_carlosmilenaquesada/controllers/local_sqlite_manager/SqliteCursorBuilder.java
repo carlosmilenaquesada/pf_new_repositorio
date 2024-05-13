@@ -1,5 +1,6 @@
 package com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CAPITAL_OPERATIONS;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_LINES;
@@ -66,7 +67,6 @@ public class SqliteCursorBuilder {
     }
 
     /**
-     *
      * @param onlyToday
      * @param specificPaymentMethod if null, this method will return total sales from all payment method
      * @return
@@ -74,7 +74,7 @@ public class SqliteCursorBuilder {
     public BaseAndVat getBaseAndVatFromTotal(boolean onlyToday, String specificPaymentMethod) {
         BaseAndVat baseAndVatFromTotal = new BaseAndVat();
         String query = "SELECT SUM(TL.unit_sale_base_price) as 'total_sales_base', SUM(TL.unit_sale_base_price * TL.vat_fraction)) as 'total_vat' FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id";
-        if(specificPaymentMethod != null){
+        if (specificPaymentMethod != null) {
             query += " AND T.payment_method_id = '" + specificPaymentMethod + "'";
         }
         if (onlyToday) {
@@ -89,11 +89,26 @@ public class SqliteCursorBuilder {
         return baseAndVatFromTotal;
     }
 
-    public ArrayList<ArticlesFamilyShare> getArticlesFamilyShares(boolean onlyToday){
+    public ArrayList<ArticlesFamilyShare> getArticlesFamilyShares(boolean onlyToday) {
         ArrayList<ArticlesFamilyShare> articlesFamilyShares = new ArrayList<>();
-        //String query = ;
+        String query = "SELECT A.family_name, SUM(TL.article_quantity) AS 'sold_unit_from_family', SUM(TL.article_quantity *  TL.unit_sale_base_price) AS 'total_sold_base_from_family' FROM " + TABLE_ARTICLES + " A JOIN " + TABLE_TICKETS_LINES + " TL ON A.article_id = TL.article_id GROUP BY A.family_name";
+        if (onlyToday) {
+            query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = " + LocalDate.now().toString();
+        }
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            articlesFamilyShares.add(
+                    new ArticlesFamilyShare(
+                            cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("sold_unit_from_family")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_sold_base_from_family"))
+                    )
+            );
+        }
         return articlesFamilyShares;
     }
+
+
 
 
     public float getTotalCashAmount(boolean onlyToday) {
