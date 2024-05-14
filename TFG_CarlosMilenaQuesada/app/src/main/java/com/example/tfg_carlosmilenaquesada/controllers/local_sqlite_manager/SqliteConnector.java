@@ -61,21 +61,16 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "article_name TEXT  NOT NULL, " +
                 "article_category_id TEXT  NOT NULL, " +
                 "sale_base_price REAL NOT NULL," +
-                "vat_id TEXT NOT NULL," +
+                "vat_id TEXT NOT NULL, " +
                 "offer_start_date TEXT," +
                 "offer_end_date TEXT," +
                 "offer_sale_base_price REAL" +
                 ")");
 
-        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_CATEGORIES + "(" +
-                "article_category_id TEXT PRIMARY KEY NOT NULL, " +
-                "article_family_id TEXT NOT NULL, " +
-                "category_name TEXT NOT NULL " +
-                ")");
+        db.execSQL("CREATE TABLE " + TABLE_VATS + "(" +
+                "vat_id TEXT PRIMARY KEY NOT NULL, " +
+                "vat_fraction REAL NOT NULL " +
 
-        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_FAMILIES + "(" +
-                "article_family_id TEXT PRIMARY KEY NOT NULL, " +
-                "family_name TEXT PRIMARY KEY NOT NULL " +
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_BARCODES + "(" +
