@@ -29,6 +29,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "tpv.db";
 
     public static final String TABLE_ARTICLES = "articles";
+    public static final String TABLE_ARTICLES_CATEGORIES = "articles_categories";
+    public static final String TABLE_ARTICLES_FAMILIES = "articles_families";
     public static final String TABLE_BARCODES = "barcodes";
     public static final String TABLE_CAPITAL_OPERATIONS = "capital_operations";
     public static final String TABLE_CUSTOMERS_TYPES = "customers_types";
@@ -57,7 +59,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_ARTICLES + "(" +
                 "article_id TEXT PRIMARY KEY NOT NULL, " +
                 "article_name TEXT  NOT NULL, " +
-                "family_name TEXT  NOT NULL, " +
+                "article_category_id TEXT  NOT NULL, " +
                 "sale_base_price REAL NOT NULL," +
                 "vat_id TEXT NOT NULL," +
                 "offer_start_date TEXT," +
@@ -65,6 +67,16 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "offer_sale_base_price REAL" +
                 ")");
 
+        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_CATEGORIES + "(" +
+                "article_category_id TEXT PRIMARY KEY NOT NULL, " +
+                "article_family_id TEXT NOT NULL, " +
+                "category_name TEXT NOT NULL " +
+                ")");
+
+        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_FAMILIES + "(" +
+                "article_family_id TEXT PRIMARY KEY NOT NULL, " +
+                "family_name TEXT PRIMARY KEY NOT NULL " +
+                ")");
 
         db.execSQL("CREATE TABLE " + TABLE_BARCODES + "(" +
                 "barcode TEXT PRIMARY KEY NOT NULL," +

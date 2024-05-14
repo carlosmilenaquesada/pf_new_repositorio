@@ -24,7 +24,7 @@ connection.connect((err) => {
 
 
 app.get('/sync/articles', (req, res) => {
-    const sql = 'SELECT A.article_id, A.article_name, AF.family_name, A.sale_base_price, A.vat_id, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price FROM articles A LEFT OUTER JOIN articles_categories AC ON AC.article_category_id = A.article_category_id LEFT OUTER JOIN articles_families AF ON AF.article_family_id = AC.article_family_id';
+    const sql = 'SELECT A.article_id, A.article_name, A.article_category_id, A.sale_base_price, A.vat_id, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price FROM articles';
 
     connection.query(sql, (err, result) => {
         if (err) {

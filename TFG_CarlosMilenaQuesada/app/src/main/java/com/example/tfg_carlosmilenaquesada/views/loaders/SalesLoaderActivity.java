@@ -24,6 +24,8 @@ public class SalesLoaderActivity extends AppCompatActivity {
     ProgressBar pbSalesLoader;
 
     JsonHttpGetter jsonHttpGetterArticles;
+
+    JsonHttpGetter jsonHttpGetterVats;
     JsonHttpGetter jsonHttpGetterBarcodes;
     JsonHttpGetter jsonHttpGetterCustomersTypes;
 
@@ -44,6 +46,7 @@ public class SalesLoaderActivity extends AppCompatActivity {
             @Override
             public void run() {
                 jsonHttpGetterArticles = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
+                jsonHttpGetterVats = JsonHttpGetterInstances.getInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
                 jsonHttpGetterBarcodes = JsonHttpGetterInstances.getInstanceJsonHttpGetterBarcodes(SalesLoaderActivity.this);
                 jsonHttpGetterCustomersTypes = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
 

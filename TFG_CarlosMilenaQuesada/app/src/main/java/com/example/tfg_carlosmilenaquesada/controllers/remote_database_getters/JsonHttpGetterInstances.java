@@ -7,6 +7,7 @@ import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.Sqli
 public class JsonHttpGetterInstances {
     private static JsonHttpGetter jsonHttpGetterUsers;
     private static JsonHttpGetter jsonHttpGetterArticles;
+    private static JsonHttpGetter jsonHttpGetterVats;
     private static JsonHttpGetter jsonHttpGetterBarcodes;
     private static JsonHttpGetter jsonHttpGetterCustomersTypes;
     private static JsonHttpGetter jsonHttpGetterCustomers;
@@ -35,6 +36,20 @@ public class JsonHttpGetterInstances {
             }
         }
         return jsonHttpGetterArticles;
+    }
+
+
+    public static JsonHttpGetter getInstanceJsonHttpGetterVats(Context context) {
+        if (jsonHttpGetterVats == null) {
+            jsonHttpGetterVats = new JsonHttpGetter(context, SqliteConnector.TABLE_VATS);
+            jsonHttpGetterVats.getJsonFromHttp();
+            try {
+                jsonHttpGetterVats.getLatch().await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return jsonHttpGetterVats;
     }
 
     public static JsonHttpGetter getInstanceJsonHttpGetterBarcodes(Context context) {

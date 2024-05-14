@@ -229,11 +229,11 @@ public class SaleActivity extends AppCompatActivity {
                     return;
                 }
 
-TENGO QUE RELLENAR LA TABLA DE VATS
+
                 String barcode = String.valueOf(etArticleCode.getText());
 
 
-                String query = "SELECT A.article_id, A.article_name, A.sale_base_price, V.vat_fraction, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price" +
+                String query = "SELECT A.article_id, A.article_name, A.article_category_id, A.sale_base_price, V.vat_fraction, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price" +
                         " FROM " + TABLE_ARTICLES + " A JOIN " + TABLE_BARCODES + " B ON A.article_id = B.article_id" +
                         " AND B.barcode = '" + barcode + "' JOIN " + TABLE_VATS + " V ON V.vat_id = A.vat_id";
 
@@ -249,6 +249,8 @@ TENGO QUE RELLENAR LA TABLA DE VATS
                     ticketLine.setTicket_id(ticket.getTicket_id());
                     ticketLine.setArticle_id(cursor.getString(cursor.getColumnIndexOrThrow("article_id")));
                     ticketLine.setArticle_name(cursor.getString(cursor.getColumnIndexOrThrow("article_name")));
+                    ticketLine.setArticle_name(cursor.getString(cursor.getColumnIndexOrThrow("article_name")));
+                    article_category_id //falta cogerlo
                     ticketLine.setArticle_quantity(Float.parseFloat(String.valueOf(etndArticleQuantity.getText())));
                     ticketLine.setUnit_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("sale_base_price")));
 
