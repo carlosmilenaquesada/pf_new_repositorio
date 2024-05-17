@@ -37,3 +37,5 @@ HACER----------------------------------------------------------------------
 --Revisar todos los getString, getFloat, etc que obtengan por índice de los cursor, ya que puede dar problemas si se añade una columna, mejor obtener el índice por nombre de columna, tal que así -> String articleId = cursor.getString(cursor.getColumnIndexOrThrow("article_id"));
 
 --comprobar en la Sale que si se eligió "cliente fiscal" no esté vacío y exista ese cliente
+
+--cambiar is_in_offer a booleano en todos lados.

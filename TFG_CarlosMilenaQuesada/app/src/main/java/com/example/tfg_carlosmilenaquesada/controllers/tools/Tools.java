@@ -1,10 +1,18 @@
 package com.example.tfg_carlosmilenaquesada.controllers.tools;
 
 import android.content.ContentValues;
+import android.database.Cursor;
+import android.os.Build;
 
+
+import androidx.annotation.RequiresApi;
 
 import com.example.tfg_carlosmilenaquesada.models.desk.CapitalOperation;
 import com.example.tfg_carlosmilenaquesada.models.customer.Customer;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class Tools {
 
@@ -29,6 +37,21 @@ public class Tools {
         newContentValues.put("amount", capitalOperation.getAmount());
         newContentValues.put("description", capitalOperation.getDescription());
         return newContentValues;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean isArticleInOffer(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        LocalDateTime currentDateTime = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
+        if ((startDateTime.isEqual(currentDateTime) || startDateTime.isBefore(currentDateTime)) && (endDateTime.isEqual(currentDateTime) || endDateTime.isAfter(currentDateTime))) {
+            return true;
+        }
+        return false;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static LocalDateTime stringToLocalDateTime(String date) {
+        return LocalDateTime.ofInstant(Instant.parse(date), ZoneId.systemDefault());
     }
 
 }

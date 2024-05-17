@@ -39,6 +39,7 @@ import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter;
 import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
+import com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
 import com.example.tfg_carlosmilenaquesada.models.ticket.Ticket;
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLine;
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLineAdapter;
@@ -101,16 +102,20 @@ public class SaleActivity extends AppCompatActivity {
             String selectTicketLinesQuery = "SELECT * FROM " + SqliteConnector.TABLE_TICKETS_LINES + " WHERE ticket_id = ?";
             Cursor cursor = SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().rawQuery(selectTicketLinesQuery, new String[]{ticket.getTicket_id()});
             while (cursor.moveToNext()) {
+
+
                 ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(
                         new TicketLine(
                                 cursor.getString(cursor.getColumnIndexOrThrow("ticket_line_id")),
-                                cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("ticked_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
+                                cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
-                                cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")),
-                                cursor.getString(cursor.getColumnIndexOrThrow("is_in_offer")),
-                                cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction"))
+                                cursor.getFloat(cursor.getColumnIndexOrThrow("applicable_sale_base_price")),
+                                cursor.getInt(cursor.getColumnIndexOrThrow("is_in_offer")) != 0
                         ),
                         rvArticlesOnTicket.getAdapter().getItemCount()
                 );
@@ -233,7 +238,7 @@ public class SaleActivity extends AppCompatActivity {
                 String barcode = String.valueOf(etArticleCode.getText());
 
 
-                String query = "SELECT A.article_id, A.article_name, A.article_category_id, A.sale_base_price, V.vat_fraction, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price" +
+                String query = "SELECT A.article_id, A.article_name, A.article_category_id, A.unit_sale_base_price, V.vat_fraction, A.offer_start_date, A.offer_end_date, A.offer_unit_sale_base_price" +
                         " FROM " + TABLE_ARTICLES + " A JOIN " + TABLE_BARCODES + " B ON A.article_id = B.article_id" +
                         " AND B.barcode = '" + barcode + "' JOIN " + TABLE_VATS + " V ON V.vat_id = A.vat_id";
 
@@ -243,6 +248,7 @@ public class SaleActivity extends AppCompatActivity {
 
 
                 if (cursor.moveToNext()) {
+
                     TicketLine ticketLine = new TicketLine(
                             ticket.getTicket_id() + "LIN" + (rvArticlesOnTicket.getAdapter().getItemCount() + 1),
                             ticket.getTicket_id(),
@@ -253,27 +259,21 @@ public class SaleActivity extends AppCompatActivity {
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
                             Float.parseFloat(String.valueOf(etndArticleQuantity.getText()))
                     );
-                    ticketLine.setSale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("sale_base_price")));
-                    ticketLine.setIs_in_offer("no");
+                    ticketLine.setIs_in_offer(
+                            Tools.isArticleInOffer(
+                                    Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_start_date"))),
+                                    Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_end_date")))
+                            )
+                    );
 
-                    String offerStartDate = cursor.getString(cursor.getColumnIndexOrThrow("offer_start_date"));
-                    String offerEndDate = cursor.getString(cursor.getColumnIndexOrThrow("offer_end_date"));
-                    if (offerStartDate != null && offerEndDate != null) {
-                        LocalDateTime startDateTime = LocalDateTime.ofInstant(Instant.parse(offerStartDate), ZoneId.systemDefault());
-                        LocalDateTime endDateTime = LocalDateTime.ofInstant(Instant.parse(offerEndDate), ZoneId.systemDefault());
-                        LocalDateTime currentDateTime = LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
-                        if ((currentDateTime.isEqual(startDateTime) || currentDateTime.isAfter(startDateTime))
-                                && (currentDateTime.isEqual(endDateTime) || currentDateTime.isBefore(endDateTime))) {
-                            ticketLine.setSale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_sale_base_price")));
-                            ticketLine.setIs_in_offer("sí");
-                        }
+                    if (ticketLine.isIs_in_offer()) {
+                        ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
+                    } else {
+                        ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
                     }
-                    ticketLine.setIs_in_offer(isInOffer);
-                    ticketLine.setVat_fraction(cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")));
-
 
                     ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, rvArticlesOnTicket.getAdapter().getItemCount());
-                    float totalLineAmount = (ticketLine.getSale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
+                    float totalLineAmount = (ticketLine.getApplicable_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
                     float totalAmount = Float.parseFloat(String.valueOf(tvTicketTotalAmount.getText())) + totalLineAmount;
                     tvTicketTotalAmount.setText(String.valueOf(totalAmount));
                 } else {

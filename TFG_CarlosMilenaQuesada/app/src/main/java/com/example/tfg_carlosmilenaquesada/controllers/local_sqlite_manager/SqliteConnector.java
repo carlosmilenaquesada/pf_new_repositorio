@@ -60,17 +60,16 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "article_id TEXT PRIMARY KEY NOT NULL, " +
                 "article_name TEXT  NOT NULL, " +
                 "article_category_id TEXT  NOT NULL, " +
-                "sale_base_price REAL NOT NULL," +
+                "unit_sale_base_price REAL NOT NULL," +
                 "vat_id TEXT NOT NULL, " +
                 "offer_start_date TEXT," +
                 "offer_end_date TEXT," +
-                "offer_sale_base_price REAL" +
+                "offer_unit_sale_base_price REAL" +
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_VATS + "(" +
                 "vat_id TEXT PRIMARY KEY NOT NULL, " +
                 "vat_fraction REAL NOT NULL " +
-
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_BARCODES + "(" +
@@ -105,10 +104,12 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "ticket_id TEXT NOT NULL, " +
                 "article_id TEXT NOT NULL, " +
                 "article_name TEXT NOT NULL, " +
+                "article_category_id TEXT NOT NULL, " +
+                "vat_id TEXT NOT NULL, " +
+                "vat_fraction REAL NOT NULL, " +
                 "article_quantity REAL NOT NULL, " +
-                "unit_sale_base_price REAL NOT NULL, " +
-                "is_in_offer TEXT NOT NULL, " +
-                "vat_id TEXT NOT NULL " +
+                "applicable_sale_base_price REAL NOT NULL, " +
+                "is_in_offer INTEGER NOT NULL " +
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TAXABLES + "(" +

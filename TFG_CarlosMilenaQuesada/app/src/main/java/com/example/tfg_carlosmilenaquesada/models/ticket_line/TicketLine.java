@@ -10,13 +10,22 @@ public class TicketLine implements Serializable {
     String article_category_id;
     String vat_id;
     float vat_fraction;
-
     float article_quantity;
+    float applicable_sale_base_price;
+    boolean is_in_offer;
 
-    String offer_start_date;
-    String offer_end_date;
-    String is_in_offer;
-    float sale_base_price;
+    public TicketLine(String ticket_line_id, String ticked_id, String article_id, String article_name, String article_category_id, String vat_id, float vat_fraction, float article_quantity, float applicable_sale_base_price, boolean is_in_offer) {
+        this.ticket_line_id = ticket_line_id;
+        this.ticked_id = ticked_id;
+        this.article_id = article_id;
+        this.article_name = article_name;
+        this.article_category_id = article_category_id;
+        this.vat_id = vat_id;
+        this.vat_fraction = vat_fraction;
+        this.article_quantity = article_quantity;
+        this.applicable_sale_base_price = applicable_sale_base_price;
+        this.is_in_offer = is_in_offer;
+    }
 
     public TicketLine(String ticket_line_id, String ticked_id, String article_id, String article_name, String article_category_id, String vat_id, float vat_fraction, float article_quantity) {
         this.ticket_line_id = ticket_line_id;
@@ -93,35 +102,19 @@ public class TicketLine implements Serializable {
         this.article_quantity = article_quantity;
     }
 
-    public String getOffer_start_date() {
-        return offer_start_date;
+    public float getApplicable_sale_base_price() {
+        return applicable_sale_base_price;
     }
 
-    public void setOffer_start_date(String offer_start_date) {
-        this.offer_start_date = offer_start_date;
+    public void setApplicable_sale_base_price(float applicable_sale_base_price) {
+        this.applicable_sale_base_price = applicable_sale_base_price;
     }
 
-    public String getOffer_end_date() {
-        return offer_end_date;
-    }
-
-    public void setOffer_end_date(String offer_end_date) {
-        this.offer_end_date = offer_end_date;
-    }
-
-    public String getIs_in_offer() {
+    public boolean isIs_in_offer() {
         return is_in_offer;
     }
 
-    public void setIs_in_offer(String is_in_offer) {
+    public void setIs_in_offer(boolean is_in_offer) {
         this.is_in_offer = is_in_offer;
-    }
-
-    public float getSale_base_price() {
-        return sale_base_price;
-    }
-
-    public void setSale_base_price(float sale_base_price) {
-        this.sale_base_price = sale_base_price;
     }
 }
