@@ -25,9 +25,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
     public static final String NODE_SERVER = "http://192.168.0.4:3000/sync/";
-    private static final int DATABASE_VERSION = 44;
+    private static final int DATABASE_VERSION = 50;
     private static final String DATABASE_NAME = "tpv.db";
-
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_ARTICLES_CATEGORIES = "articles_categories";
     public static final String TABLE_ARTICLES_FAMILIES = "articles_families";
@@ -58,8 +57,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
         //TABLAS
         db.execSQL("CREATE TABLE " + TABLE_ARTICLES + "(" +
                 "article_id TEXT PRIMARY KEY NOT NULL, " +
-                "article_name TEXT  NOT NULL, " +
-                "article_category_id TEXT  NOT NULL, " +
+                "article_name TEXT NOT NULL, " +
+                "article_category_id TEXT NOT NULL, " +
                 "unit_sale_base_price REAL NOT NULL," +
                 "vat_id TEXT NOT NULL, " +
                 "offer_start_date TEXT," +
@@ -67,20 +66,20 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "offer_unit_sale_base_price REAL" +
                 ")");
 
-        db.execSQL("CREATE TABLE " + TABLE_VATS + "(" +
-                "vat_id TEXT PRIMARY KEY NOT NULL, " +
-                "vat_fraction REAL NOT NULL " +
+        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_CATEGORIES + "(" +
+                "article_category_id TEXT NOT NULL, " +
+                "article_family_id TEXT NOT NULL, " +
+                "category_name TEXT NOT NULL " +
+                ")");
+
+        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_FAMILIES + "(" +
+                "article_family_id  TEXT NOT NULL, " +
+                "family_name TEXT NOT NULL " +
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_BARCODES + "(" +
                 "barcode TEXT PRIMARY KEY NOT NULL," +
                 "article_id TEXT NOT NULL " +
-                ")");
-
-
-        db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TYPES + "(" +
-                "customer_type_id TEXT PRIMARY KEY NOT NULL," +
-                "description TEXT NOT NULL " +
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_CAPITAL_OPERATIONS + "(" +
@@ -90,6 +89,20 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "amount REAL NOT NULL," +
                 "description TEXT NOT NULL " +
                 ")");
+        db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TAXABLES + "(" +
+                "customer_tax_id TEXT PRIMARY KEY NOT NULL," +
+                "legal_company_name TEXT NOT NULL, " +
+                "name TEXT, " +
+                "legal_company_address TEXT NOT NULL, " +
+                "legal_country TEXT NOT NULL, " +
+                "legal_location TEXT NOT NULL, " +
+                "legal_zip_code TEXT NOT NULL " +
+                ")");
+        db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TYPES + "(" +
+                "customer_type_id TEXT PRIMARY KEY NOT NULL," +
+                "description TEXT NOT NULL " +
+                ")");
+
 
         db.execSQL("CREATE TABLE " + TABLE_TICKETS + "(" +
                 "ticket_id TEXT PRIMARY KEY NOT NULL," +
@@ -105,22 +118,16 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "article_id TEXT NOT NULL, " +
                 "article_name TEXT NOT NULL, " +
                 "article_category_id TEXT NOT NULL, " +
+                "family_name TEXT NOT NULL, " +
                 "vat_id TEXT NOT NULL, " +
                 "vat_fraction REAL NOT NULL, " +
                 "article_quantity REAL NOT NULL, " +
+                "vat_description TEXT NOT NULL, " +
                 "applicable_sale_base_price REAL NOT NULL, " +
                 "is_in_offer INTEGER NOT NULL " +
                 ")");
 
-        db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TAXABLES + "(" +
-                "customer_tax_id TEXT PRIMARY KEY NOT NULL," +
-                "legal_company_name TEXT NOT NULL, " +
-                "name TEXT, " +
-                "legal_company_address TEXT NOT NULL, " +
-                "legal_country TEXT NOT NULL, " +
-                "legal_location TEXT NOT NULL, " +
-                "legal_zip_code TEXT NOT NULL " +
-                ")");
+
         db.execSQL("CREATE TABLE " + TABLE_USERS + "(" +
                 "user_id TEXT PRIMARY KEY NOT NULL," +
                 "password TEXT NOT NULL, " +
@@ -140,8 +147,10 @@ public class SqliteConnector extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BARCODES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CAPITAL_OPERATIONS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS_TYPES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES_CATEGORIES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES_FAMILIES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS_TAXABLES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS_TYPES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS_LINES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
@@ -206,6 +215,10 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 }
                 if (value instanceof Long) {
                     contentValues.put(key, (Long) value);
+                    continue;
+                }
+                if (value instanceof Boolean) {
+                    contentValues.put(key, (Boolean) value ? 1 : 0);
                     continue;
                 }
                 if (value == null) {

@@ -7,6 +7,8 @@ import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.Sqli
 public class JsonHttpGetterInstances {
     private static JsonHttpGetter jsonHttpGetterUsers;
     private static JsonHttpGetter jsonHttpGetterArticles;
+    private static JsonHttpGetter jsonHttpGetterArticlesCategories;
+    private static JsonHttpGetter jsonHttpGetterArticlesFamilies;
     private static JsonHttpGetter jsonHttpGetterVats;
     private static JsonHttpGetter jsonHttpGetterBarcodes;
     private static JsonHttpGetter jsonHttpGetterCustomersTypes;
@@ -36,6 +38,32 @@ public class JsonHttpGetterInstances {
             }
         }
         return jsonHttpGetterArticles;
+    }
+
+    public static JsonHttpGetter getInstanceJsonHttpGetterArticlesCategories(Context context) {
+        if (jsonHttpGetterArticlesCategories == null) {
+            jsonHttpGetterArticlesCategories = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLES_CATEGORIES);
+            jsonHttpGetterArticlesCategories.getJsonFromHttp();
+            try {
+                jsonHttpGetterArticlesCategories.getLatch().await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return jsonHttpGetterArticlesCategories;
+    }
+
+    public static JsonHttpGetter getInstanceJsonHttpGetterArticlesFamilies(Context context) {
+        if (jsonHttpGetterArticlesFamilies == null) {
+            jsonHttpGetterArticlesFamilies = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLES_FAMILIES);
+            jsonHttpGetterArticlesFamilies.getJsonFromHttp();
+            try {
+                jsonHttpGetterArticlesFamilies.getLatch().await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return jsonHttpGetterArticlesFamilies;
     }
 
 

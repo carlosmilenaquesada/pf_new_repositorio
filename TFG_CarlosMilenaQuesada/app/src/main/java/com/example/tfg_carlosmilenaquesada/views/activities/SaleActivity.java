@@ -1,6 +1,8 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES_CATEGORIES;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES_FAMILIES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_BARCODES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TAXABLES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TYPES;
@@ -107,12 +109,14 @@ public class SaleActivity extends AppCompatActivity {
                 ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(
                         new TicketLine(
                                 cursor.getString(cursor.getColumnIndexOrThrow("ticket_line_id")),
-                                cursor.getString(cursor.getColumnIndexOrThrow("ticked_id")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("applicable_sale_base_price")),
                                 cursor.getInt(cursor.getColumnIndexOrThrow("is_in_offer")) != 0
@@ -238,29 +242,31 @@ public class SaleActivity extends AppCompatActivity {
                 String barcode = String.valueOf(etArticleCode.getText());
 
 
-                String query = "SELECT A.article_id, A.article_name, A.article_category_id, A.unit_sale_base_price, V.vat_fraction, A.offer_start_date, A.offer_end_date, A.offer_unit_sale_base_price" +
-                        " FROM " + TABLE_ARTICLES + " A JOIN " + TABLE_BARCODES + " B ON A.article_id = B.article_id" +
-                        " AND B.barcode = '" + barcode + "' JOIN " + TABLE_VATS + " V ON V.vat_id = A.vat_id";
+                String query = "SELECT A.*, AF.family_name, V.vat_fraction, V.vat_description " +
+                        "FROM " + TABLE_ARTICLES + " A " +
+                        "JOIN " + TABLE_BARCODES + " B ON A.article_id = B.article_id AND B.barcode = '" + barcode + "' " +
+                        "JOIN " + TABLE_VATS + " V ON A.vat_id = V.vat_id " +
+                        "JOIN " + TABLE_ARTICLES_CATEGORIES + " AC ON AC.article_category_id = A.article_category_id " +
+                        "JOIN " + TABLE_ARTICLES_FAMILIES + " AF ON AF.article_family_id = AC.article_family_id";
 
-
-                System.out.println(query);
                 Cursor cursor = SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().rawQuery(query, null);
 
 
                 if (cursor.moveToNext()) {
-
                     TicketLine ticketLine = new TicketLine(
                             ticket.getTicket_id() + "LIN" + (rvArticlesOnTicket.getAdapter().getItemCount() + 1),
                             ticket.getTicket_id(),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
                             Float.parseFloat(String.valueOf(etndArticleQuantity.getText()))
                     );
                     ticketLine.setIs_in_offer(
-                            Tools.isArticleInOffer(
+                            !cursor.isNull(cursor.getColumnIndexOrThrow("offer_start_date")) && !cursor.isNull(cursor.getColumnIndexOrThrow("offer_end_date")) && Tools.isArticleInOffer(
                                     Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_start_date"))),
                                     Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_end_date")))
                             )
@@ -271,6 +277,7 @@ public class SaleActivity extends AppCompatActivity {
                     } else {
                         ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
                     }
+
 
                     ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, rvArticlesOnTicket.getAdapter().getItemCount());
                     float totalLineAmount = (ticketLine.getApplicable_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();

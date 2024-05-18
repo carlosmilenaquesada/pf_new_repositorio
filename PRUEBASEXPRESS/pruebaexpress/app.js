@@ -24,12 +24,38 @@ connection.connect((err) => {
 
 
 app.get('/sync/articles', (req, res) => {
-    const sql = 'SELECT A.article_id, A.article_name, A.article_category_id, A.sale_base_price, A.vat_id, A.offer_start_date, A.offer_end_date, A.offer_sale_base_price FROM articles';
-
+    const sql = 'SELECT A.article_id, A.article_name, A.article_category_id, A.unit_sale_base_price, A.vat_id, A.offer_start_date, A.offer_end_date, A.offer_unit_sale_base_price FROM articles A';
+    
     connection.query(sql, (err, result) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
             res.status(500).json({ error: 'Error al obtener la información de artículos' });
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.get('/sync/articles_categories', (req, res) => {
+    const sql = 'SELECT * FROM articles_categories';
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ error: 'Error al obtener la información de categorias de artículos' });
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.get('/sync/articles_families', (req, res) => {
+    const sql = 'SELECT * FROM articles_families';
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ error: 'Error al obtener la información de familias de artículos' });
         } else {
             res.json(result);
         }

@@ -1,14 +1,14 @@
 package com.example.tfg_carlosmilenaquesada.models.desk;
 
-public class ArticlesFamilyShare {
+public class ArticlesFamilyRatio {
     String family_name;
     float family_unit_quantity;
     float family_sales_base;
 
-    public ArticlesFamilyShare() {
+    public ArticlesFamilyRatio() {
     }
 
-    public ArticlesFamilyShare(String family_name, float family_unit_quantity, float family_sales_base) {
+    public ArticlesFamilyRatio(String family_name, float family_unit_quantity, float family_sales_base) {
         this.family_name = family_name;
         this.family_unit_quantity = family_unit_quantity;
         this.family_sales_base = family_sales_base;
@@ -36,5 +36,14 @@ public class ArticlesFamilyShare {
 
     public void setFamily_sales_base(float family_sales_base) {
         this.family_sales_base = family_sales_base;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticlesFamilyRatio{" +
+                "family_name='" + family_name + '\'' +
+                ", family_unit_quantity=" + family_unit_quantity +
+                ", family_sales_base=" + family_sales_base +
+                '}';
     }
 }

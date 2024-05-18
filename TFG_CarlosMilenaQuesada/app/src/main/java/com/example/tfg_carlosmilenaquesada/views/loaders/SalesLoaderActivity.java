@@ -24,7 +24,8 @@ public class SalesLoaderActivity extends AppCompatActivity {
     ProgressBar pbSalesLoader;
 
     JsonHttpGetter jsonHttpGetterArticles;
-
+    JsonHttpGetter jsonHttpGetterArticlesCategories;
+    JsonHttpGetter jsonHttpGetterArticlesFamilies;
     JsonHttpGetter jsonHttpGetterVats;
     JsonHttpGetter jsonHttpGetterBarcodes;
     JsonHttpGetter jsonHttpGetterCustomersTypes;
@@ -46,6 +47,8 @@ public class SalesLoaderActivity extends AppCompatActivity {
             @Override
             public void run() {
                 jsonHttpGetterArticles = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
+                jsonHttpGetterArticlesCategories = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesCategories(SalesLoaderActivity.this);
+                jsonHttpGetterArticlesFamilies = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesFamilies(SalesLoaderActivity.this);
                 jsonHttpGetterVats = JsonHttpGetterInstances.getInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
                 jsonHttpGetterBarcodes = JsonHttpGetterInstances.getInstanceJsonHttpGetterBarcodes(SalesLoaderActivity.this);
                 jsonHttpGetterCustomersTypes = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
@@ -55,12 +58,4 @@ public class SalesLoaderActivity extends AppCompatActivity {
         }.start();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (jsonHttpGetterArticles != null && jsonHttpGetterBarcodes != null && jsonHttpGetterCustomersTypes != null) {
-            startActivity(new Intent(SalesLoaderActivity.this, MainMenuActivity.class));
-        }
-
-    }
 }

@@ -104,7 +104,6 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
 
                 for (String key : newContentValues.keySet()) {
                     if ((newContentValues.get(key) != null && newContentValues.get(key).equals(""))) {
-                        System.out.println(key + ": " + newContentValues.get(key));
                         return;
                     }
                 }

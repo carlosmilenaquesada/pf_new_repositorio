@@ -95,7 +95,18 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
         while (cursor.moveToNext()){
             ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).addTicketLine(
                     new TicketLine(
-                            cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getFloat(4), cursor.getFloat(5), cursor.getString(6),cursor.getFloat(7)
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_line_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("applicable_sale_base_price")),
+                            cursor.getInt(cursor.getColumnIndexOrThrow("is_in_offer")) != 0
                     ),
                     rvTicketDetailLines.getAdapter().getItemCount()
             );

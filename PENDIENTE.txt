@@ -39,3 +39,5 @@ HACER----------------------------------------------------------------------
 --comprobar en la Sale que si se eligió "cliente fiscal" no esté vacío y exista ese cliente
 
 --cambiar is_in_offer a booleano en todos lados.
+
+--Algunos select que tienen join no van a arrojar ningún resulstado si en la secuencia de joins hay algún null o el 'ON' no encuenta correspondencia, por lo que debo considerar si es mejor hacer subconsultas para los casos en los que los join puedan enlazar a valores null, o hacer left outer join. Un ejemplo es en las categorías y familias de artículos, ya que si esa tabla no tiene registro correspondiente con la categoría del artículo que se está tratando, se rompe la cadena del join.

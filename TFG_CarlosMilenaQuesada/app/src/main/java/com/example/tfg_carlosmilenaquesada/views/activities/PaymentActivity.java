@@ -100,12 +100,12 @@ public class PaymentActivity extends AppCompatActivity {
                 contentValues.put("customer_tax_id", customerTaxId);
                 contentValues.put("payment_method_id", "cash");
                 contentValues.put("ticket_status_id", "paid");
-                System.out.println("update resultado: "+ SqliteConnector.getInstance(PaymentActivity.this).getReadableDatabase().update(
+                SqliteConnector.getInstance(PaymentActivity.this).getReadableDatabase().update(
                         SqliteConnector.TABLE_TICKETS,
                         contentValues,
                         "ticket_id = ?",
                         new String[]{ticketLinesList.get(0).getTicket_id()}
-                ));
+                );
                 startActivity(new Intent(PaymentActivity.this, SaleActivity.class));
             }
         });
@@ -115,18 +115,19 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(PaymentActivity.this, "Pago con tarjeta realizado correctamente", Toast.LENGTH_LONG).show();
                 //Inserto las líneas de ticket en la base de datos de SQLITE
+
                 SqliteConnector.getInstance(PaymentActivity.this).insertManyElementsToSqlite(ticketLinesList, SqliteConnector.TABLE_TICKETS_LINES);//modificar campos adecuados
                 //Actualizo el ticket a su nuevo estado.
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("customer_tax_id", customerTaxId);
                 contentValues.put("payment_method_id", "bankcard");
                 contentValues.put("ticket_status_id", "paid");
-                System.out.println("update resultado: "+ SqliteConnector.getInstance(PaymentActivity.this).getReadableDatabase().update(
+                SqliteConnector.getInstance(PaymentActivity.this).getReadableDatabase().update(
                         SqliteConnector.TABLE_TICKETS,
                         contentValues,
                         "ticket_id = ?",
                         new String[]{ticketLinesList.get(0).getTicket_id()}
-                ));
+                );
                 startActivity(new Intent(PaymentActivity.this, SaleActivity.class));
             }
         });

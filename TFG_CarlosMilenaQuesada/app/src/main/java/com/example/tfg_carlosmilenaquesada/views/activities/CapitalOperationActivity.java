@@ -86,7 +86,7 @@ public class CapitalOperationActivity extends AppCompatActivity {
                 CapitalOperation capitalOperation = new CapitalOperation(
                         capitalOperationType, Float.parseFloat(amountSign + etndOperationAmount.getText().toString()), etDescription.getText().toString()
                 );
-                System.out.println(capitalOperation.getAmount());
+
                 ContentValues newContentValues = Tools.getContentValuesFromCapitalOperation(capitalOperation);
 
                 try {

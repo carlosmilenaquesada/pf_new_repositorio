@@ -4,37 +4,46 @@ import java.io.Serializable;
 
 public class TicketLine implements Serializable {
     String ticket_line_id;
-    String ticked_id;
+    String ticket_id;
     String article_id;
     String article_name;
     String article_category_id;
+    String family_name;
     String vat_id;
     float vat_fraction;
+    String vat_description;
     float article_quantity;
     float applicable_sale_base_price;
     boolean is_in_offer;
 
-    public TicketLine(String ticket_line_id, String ticked_id, String article_id, String article_name, String article_category_id, String vat_id, float vat_fraction, float article_quantity, float applicable_sale_base_price, boolean is_in_offer) {
+    public TicketLine() {
+    }
+
+    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String article_category_id, String family_name, String vat_id, float vat_fraction, String vat_description, float article_quantity, float applicable_sale_base_price, boolean is_in_offer) {
         this.ticket_line_id = ticket_line_id;
-        this.ticked_id = ticked_id;
+        this.ticket_id = ticket_id;
         this.article_id = article_id;
         this.article_name = article_name;
         this.article_category_id = article_category_id;
+        this.family_name = family_name;
         this.vat_id = vat_id;
         this.vat_fraction = vat_fraction;
+        this.vat_description = vat_description;
         this.article_quantity = article_quantity;
         this.applicable_sale_base_price = applicable_sale_base_price;
         this.is_in_offer = is_in_offer;
     }
 
-    public TicketLine(String ticket_line_id, String ticked_id, String article_id, String article_name, String article_category_id, String vat_id, float vat_fraction, float article_quantity) {
+    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String article_category_id, String family_name, String vat_id, float vat_fraction, String vat_description, float article_quantity) {
         this.ticket_line_id = ticket_line_id;
-        this.ticked_id = ticked_id;
+        this.ticket_id = ticket_id;
         this.article_id = article_id;
         this.article_name = article_name;
         this.article_category_id = article_category_id;
+        this.family_name = family_name;
         this.vat_id = vat_id;
         this.vat_fraction = vat_fraction;
+        this.vat_description = vat_description;
         this.article_quantity = article_quantity;
     }
 
@@ -46,12 +55,12 @@ public class TicketLine implements Serializable {
         this.ticket_line_id = ticket_line_id;
     }
 
-    public String getTicked_id() {
-        return ticked_id;
+    public String getTicket_id() {
+        return ticket_id;
     }
 
-    public void setTicked_id(String ticked_id) {
-        this.ticked_id = ticked_id;
+    public void setTicket_id(String ticket_id) {
+        this.ticket_id = ticket_id;
     }
 
     public String getArticle_id() {
@@ -78,6 +87,14 @@ public class TicketLine implements Serializable {
         this.article_category_id = article_category_id;
     }
 
+    public String getFamily_name() {
+        return family_name;
+    }
+
+    public void setFamily_name(String family_name) {
+        this.family_name = family_name;
+    }
+
     public String getVat_id() {
         return vat_id;
     }
@@ -92,6 +109,14 @@ public class TicketLine implements Serializable {
 
     public void setVat_fraction(float vat_fraction) {
         this.vat_fraction = vat_fraction;
+    }
+
+    public String getVat_description() {
+        return vat_description;
+    }
+
+    public void setVat_description(String vat_description) {
+        this.vat_description = vat_description;
     }
 
     public float getArticle_quantity() {

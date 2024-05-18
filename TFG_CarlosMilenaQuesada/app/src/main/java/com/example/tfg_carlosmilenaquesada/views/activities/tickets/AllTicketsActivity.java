@@ -48,7 +48,6 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
         rvTicketDetailLines.setAdapter(new TicketLineAdapter());
 
 
-
         new ItemTouchHelper(((TicketAdapter) rvAllTickets.getAdapter()).getSimpleCallback()).attachToRecyclerView(rvAllTickets);
         Cursor cursor = SqliteConnector.getInstance(this).getReadableDatabase().rawQuery(
                 "SELECT * FROM " + SqliteConnector.TABLE_TICKETS, null
@@ -77,10 +76,22 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
         ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).getTicketLinesList().clear();
         String query = "SELECT * FROM " + SqliteConnector.TABLE_TICKETS_LINES + " WHERE ticket_id = ?";
         Cursor cursor = SqliteConnector.getInstance(AllTicketsActivity.this).getReadableDatabase().rawQuery(query, new String[]{ticketId});
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).addTicketLine(
                     new TicketLine(
-                            cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getFloat(4), cursor.getFloat(5), cursor.getString(6),cursor.getFloat(7)
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_line_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("applicable_sale_base_price")),
+                            cursor.getInt(cursor.getColumnIndexOrThrow("is_in_offer")) != 0
+
                     ),
                     rvTicketDetailLines.getAdapter().getItemCount()
             );

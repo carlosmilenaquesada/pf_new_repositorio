@@ -90,62 +90,62 @@
 52-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:16:9-44
 53        <activity
 53-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:18:9-20:40
-54            android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalOperationActivity"
-54-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:19:13-70
+54            android:name="com.example.tfg_carlosmilenaquesada.views.activities.PointOfSaleManagementActivity"
+54-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:19:13-75
 55            android:exported="false" />
 55-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:20:13-37
 56        <activity
 56-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:21:9-23:40
-57            android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity"
-57-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:22:13-71
+57            android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalOperationActivity"
+57-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:22:13-70
 58            android:exported="false" />
 58-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:23:13-37
 59        <activity
 59-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:24:9-26:40
-60            android:name="com.example.tfg_carlosmilenaquesada.views.loaders.CustomersLoaderActivity"
-60-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:25:13-66
+60            android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity"
+60-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:25:13-71
 61            android:exported="false" />
 61-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:26:13-37
 62        <activity
 62-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:27:9-29:40
-63            android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.CreateNewCustomerActivity"
-63-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:28:13-81
+63            android:name="com.example.tfg_carlosmilenaquesada.views.loaders.CustomersLoaderActivity"
+63-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:28:13-66
 64            android:exported="false" />
 64-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:29:13-37
 65        <activity
 65-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:30:9-32:40
-66            android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.ShowAndModifyCustomersActivity"
-66-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:31:13-86
+66            android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.CreateNewCustomerActivity"
+66-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:31:13-81
 67            android:exported="false" />
 67-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:32:13-37
 68        <activity
 68-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:33:9-35:40
-69            android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.CustomersManagementMenuActivity"
-69-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:34:13-87
+69            android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.ShowAndModifyCustomersActivity"
+69-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:34:13-86
 70            android:exported="false" />
 70-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:35:13-37
 71        <activity
 71-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:36:9-38:40
-72            android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.TicketDetailActivity"
-72-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:37:13-74
+72            android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.CustomersManagementMenuActivity"
+72-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:37:13-87
 73            android:exported="false" />
 73-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:38:13-37
 74        <activity
 74-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:39:9-41:40
-75            android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.AllTicketsActivity"
-75-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:40:13-72
+75            android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity"
+75-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:40:13-77
 76            android:exported="false" />
 76-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:41:13-37
 77        <activity
 77-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:42:9-44:40
-78            android:name="com.example.tfg_carlosmilenaquesada.views.activities.SalesManagementMenuActivity"
-78-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:43:13-73
+78            android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.AllTicketsActivity"
+78-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:43:13-72
 79            android:exported="false" />
 79-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:44:13-37
 80        <activity
 80-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:45:9-47:40
-81            android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity"
-81-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:46:13-77
+81            android:name="com.example.tfg_carlosmilenaquesada.views.activities.SalesManagementMenuActivity"
+81-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:46:13-73
 82            android:exported="false" />
 82-->C:\Users\Administrador\Desktop\NEW_PF\pf_new_repositorio\TFG_CarlosMilenaQuesada\app\src\main\AndroidManifest.xml:47:13-37
 83        <activity

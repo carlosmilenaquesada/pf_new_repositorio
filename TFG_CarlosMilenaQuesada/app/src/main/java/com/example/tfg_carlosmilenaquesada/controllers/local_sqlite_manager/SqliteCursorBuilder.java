@@ -12,16 +12,12 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.tfg_carlosmilenaquesada.models.desk.ArticlesFamilyShare;
+import com.example.tfg_carlosmilenaquesada.models.desk.ArticlesFamilyRatio;
 import com.example.tfg_carlosmilenaquesada.models.desk.BaseAndVat;
 import com.example.tfg_carlosmilenaquesada.models.desk.FirstAndLast;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class SqliteCursorBuilder {
@@ -73,7 +69,11 @@ public class SqliteCursorBuilder {
      */
     public BaseAndVat getBaseAndVatFromTotal(boolean onlyToday, String specificPaymentMethod) {
         BaseAndVat baseAndVatFromTotal = new BaseAndVat();
-        String query = "SELECT SUM(TL.unit_sale_base_price) as 'total_sales_base', SUM(TL.unit_sale_base_price * TL.vat_fraction)) as 'total_vat' FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id";
+        String query = "SELECT " +
+                "SUM(TL.applicable_sale_base_price) as 'total_sales_base', " +
+                "SUM(TL.applicable_sale_base_price * TL.vat_fraction)) as 'total_vat' " +
+                "FROM " + TABLE_TICKETS_LINES + " TL " +
+                "JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id";
         if (specificPaymentMethod != null) {
             query += " AND T.payment_method_id = '" + specificPaymentMethod + "'";
         }
@@ -89,26 +89,30 @@ public class SqliteCursorBuilder {
         return baseAndVatFromTotal;
     }
 
-    public ArrayList<ArticlesFamilyShare> getArticlesFamilyShares(boolean onlyToday) {
-        ArrayList<ArticlesFamilyShare> articlesFamilyShares = new ArrayList<>();
-        String query = "SELECT A.family_name, SUM(TL.article_quantity) AS 'sold_unit_from_family', SUM(TL.article_quantity *  TL.unit_sale_base_price) AS 'total_sold_base_from_family' FROM " + TABLE_ARTICLES + " A JOIN " + TABLE_TICKETS_LINES + " TL ON A.article_id = TL.article_id GROUP BY A.family_name";
+    public ArrayList<ArticlesFamilyRatio> getArticlesFamilyShares(boolean onlyToday) {
+        ArrayList<ArticlesFamilyRatio> articlesFamilyRatios = new ArrayList<>();
+        String query = "SELECT " +
+                "TL.family_name, " +
+                "SUM(TL.article_quantity) AS 'units_sold_from_family', " +
+                "SUM(TL.article_quantity * TL.applicable_sale_base_price) AS 'total_sold_base_from_family' " +
+                "FROM " + TABLE_TICKETS_LINES + " TL ";
         if (onlyToday) {
-            query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = " + LocalDate.now().toString();
+            query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = " + LocalDate.now().toString() + " ";
         }
+        query += "GROUP BY TL.family_name";
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+
         if (cursor.moveToNext()) {
-            articlesFamilyShares.add(
-                    new ArticlesFamilyShare(
+            articlesFamilyRatios.add(
+                    new ArticlesFamilyRatio(
                             cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("sold_unit_from_family")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("units_sold_from_family")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("total_sold_base_from_family"))
                     )
             );
         }
-        return articlesFamilyShares;
+        return articlesFamilyRatios;
     }
-
-
 
 
     public float getTotalCashAmount(boolean onlyToday) {
