@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activities.PointOfSaleManagementActivity">
+    android:orientation="vertical"
+    tools:context=".views.activities.point_of_sale.PointOfSaleManagementActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btPointOfSaleAudit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Arqueo X" />
+
+    <Button
+        android:id="@+id/btPointOfSaleClosing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Arqueo Z" />
+
+    <Button
+        android:id="@+id/btBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver" />
+</LinearLayout>

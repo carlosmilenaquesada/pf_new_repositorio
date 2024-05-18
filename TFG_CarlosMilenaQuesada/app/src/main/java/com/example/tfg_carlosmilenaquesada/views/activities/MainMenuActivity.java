@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
+import com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleManagementActivity;
 import com.example.tfg_carlosmilenaquesada.views.loaders.CustomersLoaderActivity;
 import com.example.tfg_carlosmilenaquesada.views.loaders.SalesLoaderActivity;
 

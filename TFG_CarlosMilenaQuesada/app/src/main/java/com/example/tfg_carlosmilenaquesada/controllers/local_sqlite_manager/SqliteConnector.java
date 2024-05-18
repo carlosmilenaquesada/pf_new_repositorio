@@ -121,8 +121,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "family_name TEXT NOT NULL, " +
                 "vat_id TEXT NOT NULL, " +
                 "vat_fraction REAL NOT NULL, " +
-                "article_quantity REAL NOT NULL, " +
                 "vat_description TEXT NOT NULL, " +
+                "article_quantity REAL NOT NULL, " +
                 "applicable_sale_base_price REAL NOT NULL, " +
                 "is_in_offer INTEGER NOT NULL " +
                 ")");

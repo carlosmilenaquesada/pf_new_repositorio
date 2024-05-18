@@ -272,10 +272,12 @@ public class SaleActivity extends AppCompatActivity {
                             )
                     );
 
+
+
                     if (ticketLine.isIs_in_offer()) {
-                        ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
-                    } else {
                         ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
+                    } else {
+                        ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
                     }
 
 

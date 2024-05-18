@@ -31,6 +31,8 @@ id btLogOut
 id btNewSale
 id btOpenScanner
 id btPayTicket
+id btPointOfSaleAudit
+id btPointOfSaleClosing
 id btPointOfSaleManagement
 id btPutArticle
 id btReserveTicket
@@ -146,6 +148,8 @@ layout activity_customers_management_menu
 layout activity_login_loader
 layout activity_main_menu
 layout activity_payment
+layout activity_point_of_sale_audit
+layout activity_point_of_sale_closing
 layout activity_point_of_sale_management
 layout activity_reserved_tickets
 layout activity_sale

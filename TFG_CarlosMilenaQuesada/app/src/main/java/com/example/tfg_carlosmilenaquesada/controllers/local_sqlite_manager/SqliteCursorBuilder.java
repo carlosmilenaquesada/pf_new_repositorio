@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import com.example.tfg_carlosmilenaquesada.models.desk.ArticlesFamilyRatio;
 import com.example.tfg_carlosmilenaquesada.models.desk.BaseAndVat;
 import com.example.tfg_carlosmilenaquesada.models.desk.FirstAndLast;
+import com.example.tfg_carlosmilenaquesada.models.desk.VatRatio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class SqliteCursorBuilder {
         FirstAndLast<String> firstAndLastTicketId = new FirstAndLast<>();
         String query = "SELECT MIN(ticket_id) AS 'ticket_id_from', MAX(ticket_id) as 'ticket_id_to' FROM " + TABLE_TICKETS;
         if (onlyToday) {
-            query += " WHERE substr(sale_date, 1, 10) = " + LocalDate.now().toString();
+            query += " WHERE substr(sale_date, 1, 10) = '" + LocalDate.now().toString()+"'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -51,7 +52,7 @@ public class SqliteCursorBuilder {
         FirstAndLast<String> firstAndLastTicketDate = new FirstAndLast<>();
         String query = "SELECT MIN(sale_date) AS 'sale_date_from', MAX(sale_date) as 'sale_date_to' FROM " + TABLE_TICKETS;
         if (onlyToday) {
-            query += " WHERE substr(sale_date, 1, 10) = " + LocalDate.now().toString();
+            query += " WHERE substr(sale_date, 1, 10) = '" + LocalDate.now().toString()+"'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -78,7 +79,7 @@ public class SqliteCursorBuilder {
             query += " AND T.payment_method_id = '" + specificPaymentMethod + "'";
         }
         if (onlyToday) {
-            query += " AND substr(T.sale_date, 1, 10) = " + LocalDate.now().toString();
+            query += " AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -89,7 +90,7 @@ public class SqliteCursorBuilder {
         return baseAndVatFromTotal;
     }
 
-    public ArrayList<ArticlesFamilyRatio> getArticlesFamilyShares(boolean onlyToday) {
+    public ArrayList<ArticlesFamilyRatio> getArticlesFamilyRatios(boolean onlyToday) {
         ArrayList<ArticlesFamilyRatio> articlesFamilyRatios = new ArrayList<>();
         String query = "SELECT " +
                 "TL.family_name, " +
@@ -97,12 +98,11 @@ public class SqliteCursorBuilder {
                 "SUM(TL.article_quantity * TL.applicable_sale_base_price) AS 'total_sold_base_from_family' " +
                 "FROM " + TABLE_TICKETS_LINES + " TL ";
         if (onlyToday) {
-            query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = " + LocalDate.now().toString() + " ";
+            query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
         }
         query += "GROUP BY TL.family_name";
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
-
-        if (cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             articlesFamilyRatios.add(
                     new ArticlesFamilyRatio(
                             cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
@@ -114,12 +114,38 @@ public class SqliteCursorBuilder {
         return articlesFamilyRatios;
     }
 
+    public ArrayList<VatRatio> getVatsRatios(boolean onlyToday) {
+        ArrayList<VatRatio> vatRatios = new ArrayList<>();
+        String query = "SELECT " +
+                "TL.vat_description, " +
+                "SUM(TL.applicable_sale_base_price) AS 'total_sale_base_amount_from_vat', " +
+                "SUM(TL.vat_fraction) AS 'total_vat_amount_from_vat', " +
+                "SUM(TL.applicable_sale_base_price * (1 + TL.vat_fraction)) AS 'total_amount_from_vat' " +
+                "FROM " + TABLE_TICKETS_LINES + " TL ";
+        if (onlyToday) {
+            query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
+        }
+        query += "GROUP BY TL.vat_description";
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            vatRatios.add(
+                    new VatRatio(
+                            cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_sale_base_amount_from_vat")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_vat_amount_from_vat")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_amount_from_vat"))
+                    )
+            );
+        }
+        return vatRatios;
+    }
+
 
     public float getTotalCashAmount(boolean onlyToday) {
         float totalCashAmount = 0f;
         String query = "SELECT SUM(amount) AS 'total_cash_amount' FROM" + TABLE_CAPITAL_OPERATIONS;
         if (onlyToday) {
-            query += " WHERE substr(operation_date, 1, 10) = " + LocalDate.now().toString();
+            query += " WHERE substr(operation_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -151,17 +177,17 @@ public class SqliteCursorBuilder {
         -- CAPITAL EFECTIVO DECLARADO -- este viene del conteo de caja pre-cierre (retirada final) que se ejecuta al hacer el cierre (se incluirá en la tabla TABLE_CAPITAL_OPERATIONS con la capital_operation_type "retirada final")
         -- DIFERENCIA DECLARACIÓN - OK
 
-        -- TOTAL VENTA EN TARJETA
+        -- TOTAL VENTA EN TARJETA - OK
             --SIN IVA / CON IVA
 
-        -- VENTA EN EFECTIVO
+        -- VENTA EN EFECTIVO - OK
             --SIN IVA / CON IVA
 
 
-        -- PORCENTAJE E IMPORTE DE VENTA POR FAMILIAS (SIN IVA)
+        -- PORCENTAJE E IMPORTE DE VENTA POR FAMILIAS (SIN IVA) - OK
 
 
-        -- PORCENTAJE E IMPORTE DE VENTAS POR IVA
+        -- PORCENTAJE E IMPORTE DE VENTAS POR IVA - OK
             -- CON IVA INCLUIDO
             -- SIN IVA INCLUIDO
 
@@ -169,10 +195,5 @@ public class SqliteCursorBuilder {
 
 
 
-/*db.execSQL("CREATE VIEW "
-        + VIEW_CASH_CLOSING
-        + " AS SELECT "
 
-
-        );*/
 

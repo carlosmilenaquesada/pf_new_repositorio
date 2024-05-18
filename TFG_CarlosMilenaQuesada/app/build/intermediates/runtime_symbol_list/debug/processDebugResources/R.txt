@@ -3219,6 +3219,8 @@ int id btLogOut 0x7f080076
 int id btNewSale 0x7f080077
 int id btOpenScanner 0x7f080078
 int id btPayTicket 0x7f080079
+int id btPointOfSaleAudit 0x7f080289
+int id btPointOfSaleClosing 0x7f08028a
 int id btPointOfSaleManagement 0x7f08007a
 int id btPutArticle 0x7f08007b
 int id btReserveTicket 0x7f08007c
@@ -3863,6 +3865,8 @@ int layout activity_customers_management_menu 0x7f0b0020
 int layout activity_login_loader 0x7f0b0021
 int layout activity_main_menu 0x7f0b0022
 int layout activity_payment 0x7f0b0023
+int layout activity_point_of_sale_audit 0x7f0b0087
+int layout activity_point_of_sale_closing 0x7f0b0088
 int layout activity_point_of_sale_management 0x7f0b0024
 int layout activity_reserved_tickets 0x7f0b0025
 int layout activity_sale 0x7f0b0026
