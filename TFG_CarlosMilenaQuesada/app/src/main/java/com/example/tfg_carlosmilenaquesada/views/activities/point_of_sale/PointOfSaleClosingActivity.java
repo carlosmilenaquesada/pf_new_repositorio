@@ -26,8 +26,8 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
 
      /*
         CIERRE TOTAL------------------
-        -- TICKET DESDE / TICKET HASTA - OK
-        -- FECHA DESDE / FECHA HASTA - OK
+        -- TICKET DESDE / TICKET HASTA - OK - OK
+        -- FECHA DESDE / FECHA HASTA - OK - OK
         -- VENTA TOTAL SIN IVA - OK
         -- VENTA TOTAL CON IVA - OK
         -- CAPITAL EFECTIVO DECLARADO -- este viene del conteo de caja pre-cierre (retirada final) que se ejecuta al hacer el cierre (se incluirá en la tabla TABLE_CAPITAL_OPERATIONS con la capital_operation_type "retirada final")
