@@ -101,6 +101,18 @@ app.get('/sync/customers_types', (req, res) => {
     });
 });
 
+app.get('/sync/payment_methods', (req, res) => {
+    const sql = 'SELECT * FROM payment_methods';
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ error: 'Error al obtener la información de formas de pago' });
+        } else {
+            res.json(result);
+        }
+    });
+});
+
 app.get('/sync/users', (req, res) => {
     const sql = 'SELECT * FROM users';
     connection.query(sql, (err, result) => {

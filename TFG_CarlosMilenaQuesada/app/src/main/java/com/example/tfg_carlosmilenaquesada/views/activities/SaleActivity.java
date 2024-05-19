@@ -91,10 +91,12 @@ public class SaleActivity extends AppCompatActivity {
         rvArticlesOnTicket.setAdapter(new TicketLineAdapter());
 
         if ((ticket = (Ticket) intent.getSerializableExtra(RESTORED_TICKET)) == null) {
-            ticket = new Ticket(null, "processing", "undefined");
+            ticket = new Ticket();
         } else {
             ContentValues contentValues = new ContentValues();
             contentValues.put("ticket_status_id", "processing");
+            contentValues.put("payment_method_id", "PAYMENT001");
+            contentValues.put("payment_method_name", "undefined");
             SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().update(
                     SqliteConnector.TABLE_TICKETS,
                     contentValues,

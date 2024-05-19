@@ -9,10 +9,13 @@ public class JsonHttpGetterInstances {
     private static JsonHttpGetter jsonHttpGetterArticles;
     private static JsonHttpGetter jsonHttpGetterArticlesCategories;
     private static JsonHttpGetter jsonHttpGetterArticlesFamilies;
-    private static JsonHttpGetter jsonHttpGetterVats;
+    private static JsonHttpGetter jsonHttpGetterPaymentMethods;
+
+
     private static JsonHttpGetter jsonHttpGetterBarcodes;
-    private static JsonHttpGetter jsonHttpGetterCustomersTypes;
     private static JsonHttpGetter jsonHttpGetterCustomers;
+    private static JsonHttpGetter jsonHttpGetterCustomersTypes;
+    private static JsonHttpGetter jsonHttpGetterVats;
 
     public static JsonHttpGetter getInstanceJsonHttpGetterUsers(Context context) {
         if (jsonHttpGetterUsers == null) {
@@ -67,19 +70,6 @@ public class JsonHttpGetterInstances {
     }
 
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterVats(Context context) {
-        if (jsonHttpGetterVats == null) {
-            jsonHttpGetterVats = new JsonHttpGetter(context, SqliteConnector.TABLE_VATS);
-            jsonHttpGetterVats.getJsonFromHttp();
-            try {
-                jsonHttpGetterVats.getLatch().await();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return jsonHttpGetterVats;
-    }
-
     public static JsonHttpGetter getInstanceJsonHttpGetterBarcodes(Context context) {
         if (jsonHttpGetterBarcodes == null) {
             jsonHttpGetterBarcodes = new JsonHttpGetter(context, SqliteConnector.TABLE_BARCODES);
@@ -91,19 +81,6 @@ public class JsonHttpGetterInstances {
             }
         }
         return jsonHttpGetterBarcodes;
-    }
-
-    public static JsonHttpGetter getInstanceJsonHttpGetterCustomersTypes(Context context) {
-        if (jsonHttpGetterCustomersTypes == null) {
-            jsonHttpGetterCustomersTypes = new JsonHttpGetter(context, SqliteConnector.TABLE_CUSTOMERS_TYPES);
-            jsonHttpGetterCustomersTypes.getJsonFromHttp();
-            try {
-                jsonHttpGetterCustomersTypes.getLatch().await();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return jsonHttpGetterCustomersTypes;
     }
 
     public static JsonHttpGetter getInstanceJsonHttpGetterCustomers(Context context) {
@@ -119,5 +96,43 @@ public class JsonHttpGetterInstances {
         return jsonHttpGetterCustomers;
     }
 
+    public static JsonHttpGetter getInstanceJsonHttpGetterCustomersTypes(Context context) {
+        if (jsonHttpGetterCustomersTypes == null) {
+            jsonHttpGetterCustomersTypes = new JsonHttpGetter(context, SqliteConnector.TABLE_CUSTOMERS_TYPES);
+            jsonHttpGetterCustomersTypes.getJsonFromHttp();
+            try {
+                jsonHttpGetterCustomersTypes.getLatch().await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return jsonHttpGetterCustomersTypes;
+    }
+    public static JsonHttpGetter getInstanceJsonHttpGetterPaymentMethods(Context context) {
+        if (jsonHttpGetterPaymentMethods == null) {
+            jsonHttpGetterPaymentMethods = new JsonHttpGetter(context, SqliteConnector.TABLE_PAYMENT_METHODS);
+            jsonHttpGetterPaymentMethods.getJsonFromHttp();
+            try {
+                jsonHttpGetterPaymentMethods.getLatch().await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return jsonHttpGetterPaymentMethods;
+    }
 
+
+
+    public static JsonHttpGetter getInstanceJsonHttpGetterVats(Context context) {
+        if (jsonHttpGetterVats == null) {
+            jsonHttpGetterVats = new JsonHttpGetter(context, SqliteConnector.TABLE_VATS);
+            jsonHttpGetterVats.getJsonFromHttp();
+            try {
+                jsonHttpGetterVats.getLatch().await();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return jsonHttpGetterVats;
+    }
 }

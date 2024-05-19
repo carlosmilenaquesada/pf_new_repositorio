@@ -41,3 +41,11 @@ HACER----------------------------------------------------------------------
 --cambiar is_in_offer a booleano en todos lados.
 
 --Algunos select que tienen join no van a arrojar ningún resulstado si en la secuencia de joins hay algún null o el 'ON' no encuenta correspondencia, por lo que debo considerar si es mejor hacer subconsultas para los casos en los que los join puedan enlazar a valores null, o hacer left outer join. Un ejemplo es en las categorías y familias de artículos, ya que si esa tabla no tiene registro correspondiente con la categoría del artículo que se está tratando, se rompe la cadena del join.
+
+--Hay que acotar la longitud de los campos de las tablas, por ejemplo, los id de los tickets tienen una longitud en mysql de 50, pero no devería ser tan larga, ya que nunca va a superar la longitud del timeinmillis (además una longitud superior va a descuadrar los layout de los arqueos, etc)
+
+--limpiar formulario de retirada/ingreso en efectivo
+
+--quitar los plurales de las tablas, de modo que una tabla llamada "Custormers types" se debe llamar "Customer types" (customer en singular)
+
+--el contenido de las tablas (por ejemplo para los métodos de pago), debe estar en español, en lugar de "cash", debe poner "efectivo"

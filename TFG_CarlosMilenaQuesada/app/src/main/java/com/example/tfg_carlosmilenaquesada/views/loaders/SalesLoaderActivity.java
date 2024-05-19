@@ -22,13 +22,14 @@ import com.example.tfg_carlosmilenaquesada.views.activities.SaleActivity;
 public class SalesLoaderActivity extends AppCompatActivity {
 
     ProgressBar pbSalesLoader;
-
     JsonHttpGetter jsonHttpGetterArticles;
     JsonHttpGetter jsonHttpGetterArticlesCategories;
     JsonHttpGetter jsonHttpGetterArticlesFamilies;
-    JsonHttpGetter jsonHttpGetterVats;
+    JsonHttpGetter jsonHttpGetterPaymentMethods;
     JsonHttpGetter jsonHttpGetterBarcodes;
     JsonHttpGetter jsonHttpGetterCustomersTypes;
+    JsonHttpGetter jsonHttpGetterVats;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +50,10 @@ public class SalesLoaderActivity extends AppCompatActivity {
                 jsonHttpGetterArticles = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
                 jsonHttpGetterArticlesCategories = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesCategories(SalesLoaderActivity.this);
                 jsonHttpGetterArticlesFamilies = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesFamilies(SalesLoaderActivity.this);
-                jsonHttpGetterVats = JsonHttpGetterInstances.getInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
+                jsonHttpGetterPaymentMethods = JsonHttpGetterInstances.getInstanceJsonHttpGetterPaymentMethods(SalesLoaderActivity.this);
                 jsonHttpGetterBarcodes = JsonHttpGetterInstances.getInstanceJsonHttpGetterBarcodes(SalesLoaderActivity.this);
                 jsonHttpGetterCustomersTypes = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
+                jsonHttpGetterVats = JsonHttpGetterInstances.getInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
 
                 startActivity(new Intent(SalesLoaderActivity.this, SaleActivity.class));
             }

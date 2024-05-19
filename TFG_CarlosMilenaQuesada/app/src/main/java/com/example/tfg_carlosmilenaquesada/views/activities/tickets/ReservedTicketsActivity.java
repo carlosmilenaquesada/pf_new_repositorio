@@ -46,7 +46,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
         });
         rvTicketsInReserve = findViewById(R.id.rvTicketsInReserve);
         rvTicketDetailLines = findViewById(R.id.rvTicketDetailLines);
-        btBackFromReservedTicketsActivity =findViewById(R.id.btBackFromReservedTicketsActivity);
+        btBackFromReservedTicketsActivity = findViewById(R.id.btBackFromReservedTicketsActivity);
         btRestoreTicket = findViewById(R.id.btRestoreTicket);
         rvTicketsInReserve.setLayoutManager(new LinearLayoutManager(this));
         rvTicketsInReserve.setAdapter(new TicketAdapter(this));
@@ -61,7 +61,12 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
         while (cursor.moveToNext()) {
             ((TicketAdapter) rvTicketsInReserve.getAdapter()).addTicket(
                     new Ticket(
-                            cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("sale_date")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("customer_tax_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_status_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("payment_method_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("payment_method_name"))
                     ),
                     rvTicketsInReserve.getAdapter().getItemCount()
             );
@@ -75,7 +80,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
         btRestoreTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rescuedTicket == null){
+                if (rescuedTicket == null) {
                     return;
                 }
                 Intent intent = new Intent(ReservedTicketsActivity.this, SaleActivity.class);
@@ -92,7 +97,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
         ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).getTicketLinesList().clear();
         String query = "SELECT * FROM " + SqliteConnector.TABLE_TICKETS_LINES + " WHERE ticket_id = ?";
         Cursor cursor = SqliteConnector.getInstance(ReservedTicketsActivity.this).getReadableDatabase().rawQuery(query, new String[]{ticketId});
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).addTicketLine(
                     new TicketLine(
                             cursor.getString(cursor.getColumnIndexOrThrow("ticket_line_id")),

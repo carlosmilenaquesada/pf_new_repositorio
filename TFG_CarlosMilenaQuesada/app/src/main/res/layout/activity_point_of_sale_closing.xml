@@ -11,15 +11,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_shadow_start_color"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvCountedTicketsTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:background="@color/design_default_color_secondary_variant"
             android:gravity="center"
-            android:text="Tickets contabilizados" />
+            android:text="Tickets"
+            android:textColor="#000000" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -31,6 +33,7 @@
                 android:id="@+id/tvCountedTicketsFromTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/design_default_color_secondary"
                 android:gravity="center"
                 android:text="Desde" />
 
@@ -52,6 +55,7 @@
                 android:id="@+id/tvCountedTicketToTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/design_default_color_secondary"
                 android:gravity="center"
                 android:text="Hasta" />
 
@@ -62,20 +66,27 @@
                 android:gravity="end"
                 android:hint="Hasta" />
         </LinearLayout>
+
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_shadow_start_color"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvCountedDateTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:background="@color/design_default_color_secondary_variant"
             android:gravity="center"
-            android:text="Fechas contabilizadas" />
+            android:text="Fechas"
+            android:textColor="#000000" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -87,6 +98,7 @@
                 android:id="@+id/tvCountedTicketsDateTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/design_default_color_secondary"
                 android:gravity="center"
                 android:text="Desde" />
 
@@ -108,6 +120,7 @@
                 android:id="@+id/tvCountedDateToTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/design_default_color_secondary"
                 android:gravity="center"
                 android:text="Hasta" />
 
@@ -119,18 +132,24 @@
                 android:hint="Hasta" />
         </LinearLayout>
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_shadow_start_color"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvTotalSaleTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary_variant"
             android:gravity="center"
-            android:text="Venta total" />
+            android:text="Venta total"
+            android:textColor="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,15 +166,16 @@
                     android:id="@+id/tvTotalSaleBaseTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/design_default_color_secondary"
                     android:gravity="center"
-                    android:text="Total Base Imponible" />
+                    android:text="B. imponible" />
 
                 <TextView
                     android:id="@+id/tvTotalSaleBase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:hint="Total Base Imponible" />
+                    android:hint="B. imponible" />
             </LinearLayout>
 
             <LinearLayout
@@ -168,6 +188,7 @@
                     android:id="@+id/tvTotalVatTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/design_default_color_secondary"
                     android:gravity="center"
                     android:text="Total IVA" />
 
@@ -189,6 +210,7 @@
                     android:id="@+id/tvTotalSaleAmountTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/design_default_color_secondary"
                     android:gravity="center"
                     android:text="Venta total" />
 
@@ -202,18 +224,24 @@
         </LinearLayout>
 
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_shadow_start_color"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvCapitalOperationsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary_variant"
             android:gravity="center"
-            android:text="Operaciones con capital" />
+            android:text="Operaciones con capital"
+            android:textColor="#000000" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -230,15 +258,16 @@
                     android:id="@+id/tvCashInDeskTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/design_default_color_secondary"
                     android:gravity="center"
-                    android:text="Efectivo en caja" />
+                    android:text="En caja" />
 
                 <TextView
-                    android:id="@+id/tvTCashInDesk"
+                    android:id="@+id/tvCashInDesk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:hint="Efectivo en caja" />
+                    android:hint="En caja" />
             </LinearLayout>
 
             <LinearLayout
@@ -251,15 +280,16 @@
                     android:id="@+id/tvOperationsTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/design_default_color_secondary"
                     android:gravity="center"
-                    android:text="Operaciones" />
+                    android:text="Tramitado" />
 
                 <TextView
                     android:id="@+id/tvOperations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:hint="Operaciones" />
+                    android:hint="Tramitado" />
             </LinearLayout>
 
             <LinearLayout
@@ -272,18 +302,224 @@
                     android:id="@+id/tvCapitalDiffenceTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/design_default_color_secondary"
                     android:gravity="center"
-                    android:text="Diferencia capital" />
+                    android:text="Diferencia" />
 
                 <TextView
                     android:id="@+id/tvCapitalDiffence"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
-                    android:hint="Diferencia capital" />
+                    android:hint="Diferencia" />
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_shadow_start_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvSaleByPaymentMethodTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary_variant"
+            android:gravity="center"
+            android:text="Venta por forma de pago"
+            android:textColor="#000000" />
+
+        <TableLayout
+            android:id="@+id/tlSalesByPaymentMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvPaymentMethodTypeTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Forma pago" />
+
+                <TextView
+                    android:id="@+id/tvSaleBaseByPaymentMethodTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="B. imponible" />
+
+                <TextView
+                    android:id="@+id/tvVatAmountByPaymentMethodTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Total IVA" />
+
+                <TextView
+                    android:id="@+id/tvTotalSaleByPaymentMethodTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Venta total" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_shadow_start_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvSaleRatioByFamilyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary_variant"
+            android:gravity="center"
+            android:text="Participación por familia"
+            android:textColor="#000000" />
+
+        <TableLayout
+            android:id="@+id/tlSalesRatioByFamily"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvFamilyNameTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Familia" />
+
+                <TextView
+                    android:id="@+id/tvSaleBaseByFamilyTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="B. imponible" />
+
+                <TextView
+                    android:id="@+id/tvPercentRatioByFamiyTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Participación" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_shadow_start_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvSaleByVatTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary_variant"
+            android:gravity="center"
+            android:text="Venta por tipo de IVA"
+            android:textColor="#000000" />
+
+        <TableLayout
+            android:id="@+id/tlSalesByVat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvVatDescriptionTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Tipo" />
+
+                <TextView
+                    android:id="@+id/tvVatPercentTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="%" />
+
+                <TextView
+                    android:id="@+id/tvSaleBaseByVatTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="B. imponible" />
+
+                <TextView
+                    android:id="@+id/tvVatAmountByVatTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Total IVA" />
+
+                <TextView
+                    android:id="@+id/tvTotalSaleByVatTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/design_default_color_secondary"
+                    android:gravity="center"
+                    android:text="Venta total" />
+
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
 </LinearLayout>

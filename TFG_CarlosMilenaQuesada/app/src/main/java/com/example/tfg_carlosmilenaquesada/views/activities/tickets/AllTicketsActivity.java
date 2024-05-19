@@ -55,7 +55,12 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
         while (cursor.moveToNext()) {
             ((TicketAdapter) rvAllTickets.getAdapter()).addTicket(
                     new Ticket(
-                            cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("sale_date")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("customer_tax_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("ticket_status_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("payment_method_id")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("payment_method_name"))
                     ),
                     rvAllTickets.getAdapter().getItemCount()
             );

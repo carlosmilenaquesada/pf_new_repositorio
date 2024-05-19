@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import com.example.tfg_carlosmilenaquesada.models.desk.ArticlesFamilyRatio;
 import com.example.tfg_carlosmilenaquesada.models.desk.BaseAndVat;
 import com.example.tfg_carlosmilenaquesada.models.desk.FirstAndLast;
+import com.example.tfg_carlosmilenaquesada.models.desk.PaymentMethodRatio;
 import com.example.tfg_carlosmilenaquesada.models.desk.VatRatio;
 
 import java.time.LocalDate;
@@ -37,7 +38,7 @@ public class SqliteCursorBuilder {
         FirstAndLast<String> firstAndLastTicketId = new FirstAndLast<>();
         String query = "SELECT MIN(ticket_id) AS 'ticket_id_from', MAX(ticket_id) as 'ticket_id_to' FROM " + TABLE_TICKETS;
         if (onlyToday) {
-            query += " WHERE substr(sale_date, 1, 10) = '" + LocalDate.now().toString()+"'";
+            query += " WHERE substr(sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -52,7 +53,7 @@ public class SqliteCursorBuilder {
         FirstAndLast<String> firstAndLastTicketDate = new FirstAndLast<>();
         String query = "SELECT MIN(sale_date) AS 'sale_date_from', MAX(sale_date) as 'sale_date_to' FROM " + TABLE_TICKETS;
         if (onlyToday) {
-            query += " WHERE substr(sale_date, 1, 10) = '" + LocalDate.now().toString()+"'";
+            query += " WHERE substr(sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -63,21 +64,14 @@ public class SqliteCursorBuilder {
         return firstAndLastTicketDate;
     }
 
-    /**
-     * @param onlyToday
-     * @param specificPaymentMethod if null, this method will return total sales from all payment method
-     * @return
-     */
-    public BaseAndVat getBaseAndVatFromTotal(boolean onlyToday, String specificPaymentMethod) {
+    public BaseAndVat getBaseAndVatFromTotal(boolean onlyToday) {
         BaseAndVat baseAndVatFromTotal = new BaseAndVat();
         String query = "SELECT " +
                 "SUM(TL.applicable_sale_base_price) as 'total_sales_base', " +
-                "SUM(TL.applicable_sale_base_price * TL.vat_fraction)) as 'total_vat' " +
+                "SUM(TL.applicable_sale_base_price * TL.vat_fraction) as 'total_vat' " +
                 "FROM " + TABLE_TICKETS_LINES + " TL " +
                 "JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id";
-        if (specificPaymentMethod != null) {
-            query += " AND T.payment_method_id = '" + specificPaymentMethod + "'";
-        }
+
         if (onlyToday) {
             query += " AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
@@ -90,12 +84,13 @@ public class SqliteCursorBuilder {
         return baseAndVatFromTotal;
     }
 
+
     public ArrayList<ArticlesFamilyRatio> getArticlesFamilyRatios(boolean onlyToday) {
         ArrayList<ArticlesFamilyRatio> articlesFamilyRatios = new ArrayList<>();
         String query = "SELECT " +
                 "TL.family_name, " +
-                "SUM(TL.article_quantity) AS 'units_sold_from_family', " +
-                "SUM(TL.article_quantity * TL.applicable_sale_base_price) AS 'total_sold_base_from_family' " +
+                "SUM(TL.article_quantity) AS 'units_sold_by_family', " +
+                "SUM(TL.article_quantity * TL.applicable_sale_base_price) AS 'total_sold_base_by_family' " +
                 "FROM " + TABLE_TICKETS_LINES + " TL ";
         if (onlyToday) {
             query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
@@ -106,21 +101,21 @@ public class SqliteCursorBuilder {
             articlesFamilyRatios.add(
                     new ArticlesFamilyRatio(
                             cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("units_sold_from_family")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_sold_base_from_family"))
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("units_sold_by_family")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_sold_base_by_family"))
                     )
             );
         }
         return articlesFamilyRatios;
     }
 
-    public ArrayList<VatRatio> getVatsRatios(boolean onlyToday) {
+   /* public ArrayList<VatRatio> getVatsRatios(boolean onlyToday) {
         ArrayList<VatRatio> vatRatios = new ArrayList<>();
         String query = "SELECT " +
                 "TL.vat_description, " +
-                "SUM(TL.applicable_sale_base_price) AS 'total_sale_base_amount_from_vat', " +
-                "SUM(TL.vat_fraction) AS 'total_vat_amount_from_vat', " +
-                "SUM(TL.applicable_sale_base_price * (1 + TL.vat_fraction)) AS 'total_amount_from_vat' " +
+                "SUM(TL.applicable_sale_base_pricealñkás) AS 'total_sale_base_amount_from_vat', " +
+                "SUM(TL.vat_fraction) ASasdf 'total_vat_amount_from_vat', " + asdf
+        "SUM(TL.applicable_sale_base_price * (1 + TL.vat_fraction)) AS 'total_amount_from_vat' " +
                 "FROM " + TABLE_TICKETS_LINES + " TL ";
         if (onlyToday) {
             query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
@@ -138,12 +133,12 @@ public class SqliteCursorBuilder {
             );
         }
         return vatRatios;
-    }
+    }*/
 
 
     public float getTotalCashAmount(boolean onlyToday) {
         float totalCashAmount = 0f;
-        String query = "SELECT SUM(amount) AS 'total_cash_amount' FROM" + TABLE_CAPITAL_OPERATIONS;
+        String query = "SELECT SUM(amount) AS 'total_cash_amount' FROM " + TABLE_CAPITAL_OPERATIONS;
         if (onlyToday) {
             query += " WHERE substr(operation_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
@@ -153,6 +148,33 @@ public class SqliteCursorBuilder {
         }
         cursor.close();
         return totalCashAmount;
+    }
+
+    public ArrayList<PaymentMethodRatio> getPaymentMethodsRatios(boolean onlyToday) {
+        ArrayList<PaymentMethodRatio> paymentMethodRatios = new ArrayList<>();
+        String query = "SELECT " +
+                "T.payment_method_name, " +
+                "SUM(TL.applicable_sale_base_price * TL.article_quantity) AS 'sale_base_amount', " +
+                "SUM((TL.applicable_sale_base_price * TL.article_quantity) * (TL.vat_fraction)) AS 'vat_amount' " +
+                "FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id ";
+        if (onlyToday) {
+            query += " AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
+        }
+        query += "GROUP BY T.payment_method_name";
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            float totalSale = cursor.getFloat(cursor.getColumnIndexOrThrow("sale_base_amount")) +
+                    cursor.getFloat(cursor.getColumnIndexOrThrow("vat_amount"));
+            paymentMethodRatios.add(
+                    new PaymentMethodRatio(
+                            cursor.getString(cursor.getColumnIndexOrThrow("payment_method_name")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("sale_base_amount")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("vat_amount")),
+                            totalSale
+                    )
+            );
+        }
+        return paymentMethodRatios;
     }
 
     public float getFinalCashWithdrawal() {
@@ -174,7 +196,7 @@ public class SqliteCursorBuilder {
         -- FECHA DESDE / FECHA HASTA - OK
         -- VENTA TOTAL SIN IVA - OK
         -- VENTA TOTAL CON IVA - OK
-        -- CAPITAL EFECTIVO DECLARADO -- este viene del conteo de caja pre-cierre (retirada final) que se ejecuta al hacer el cierre (se incluirá en la tabla TABLE_CAPITAL_OPERATIONS con la capital_operation_type "retirada final")
+        -- CAPITAL EFECTIVO DECLARADO - OK viene de la pantalla anterior, del recuento de capital
         -- DIFERENCIA DECLARACIÓN - OK
 
         -- TOTAL VENTA EN TARJETA - OK

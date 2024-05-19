@@ -98,8 +98,10 @@ public class PaymentActivity extends AppCompatActivity {
                 //Actualizo el ticket a su nuevo estado.
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("customer_tax_id", customerTaxId);
-                contentValues.put("payment_method_id", "cash");
                 contentValues.put("ticket_status_id", "paid");
+                contentValues.put("payment_method_id", "PAYMENT002");
+                contentValues.put("payment_method_name", "cash");
+
                 SqliteConnector.getInstance(PaymentActivity.this).getReadableDatabase().update(
                         SqliteConnector.TABLE_TICKETS,
                         contentValues,
@@ -120,8 +122,9 @@ public class PaymentActivity extends AppCompatActivity {
                 //Actualizo el ticket a su nuevo estado.
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("customer_tax_id", customerTaxId);
-                contentValues.put("payment_method_id", "bankcard");
                 contentValues.put("ticket_status_id", "paid");
+                contentValues.put("payment_method_id", "PAYMENT003");
+                contentValues.put("payment_method_name", "bankcard");
                 SqliteConnector.getInstance(PaymentActivity.this).getReadableDatabase().update(
                         SqliteConnector.TABLE_TICKETS,
                         contentValues,
