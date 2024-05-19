@@ -5,13 +5,16 @@ public class ArticlesFamilyRatio {
     float family_unit_quantity;
     float family_sales_base;
 
+    float family_ratio;
+
     public ArticlesFamilyRatio() {
     }
 
-    public ArticlesFamilyRatio(String family_name, float family_unit_quantity, float family_sales_base) {
+    public ArticlesFamilyRatio(String family_name, float family_unit_quantity, float family_sales_base, float family_ratio) {
         this.family_name = family_name;
         this.family_unit_quantity = family_unit_quantity;
         this.family_sales_base = family_sales_base;
+        this.family_ratio = family_ratio;
     }
 
     public String getFamily_name() {
@@ -38,12 +41,11 @@ public class ArticlesFamilyRatio {
         this.family_sales_base = family_sales_base;
     }
 
-    @Override
-    public String toString() {
-        return "ArticlesFamilyRatio{" +
-                "family_name='" + family_name + '\'' +
-                ", family_unit_quantity=" + family_unit_quantity +
-                ", family_sales_base=" + family_sales_base +
-                '}';
+    public float getFamily_ratio() {
+        return family_ratio;
+    }
+
+    public void setFamily_ratio(float family_ratio) {
+        this.family_ratio = family_ratio;
     }
 }

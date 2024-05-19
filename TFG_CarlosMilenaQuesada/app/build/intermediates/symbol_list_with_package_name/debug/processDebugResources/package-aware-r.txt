@@ -3217,6 +3217,7 @@ id btCustomersManagement
 id btInitializeCardPayment
 id btLogOn
 id btLogOut
+id btMoneyCounting
 id btNewSale
 id btOpenScanner
 id btPayTicket
@@ -3745,6 +3746,7 @@ id tvTotalSaleTitle
 id tvTotalTitle
 id tvTotalVat
 id tvTotalVatTitle
+id tvUnitsSoldByFamily
 id tvVatAmountByPaymentMethodTitle
 id tvVatAmountByVatTitle
 id tvVatDescriptionTitle
@@ -3907,8 +3909,8 @@ layout activity_customers_loader
 layout activity_customers_management_menu
 layout activity_login_loader
 layout activity_main_menu
+layout activity_money_counting
 layout activity_payment
-layout activity_point_of_sale_audit
 layout activity_point_of_sale_closing
 layout activity_point_of_sale_management
 layout activity_reserved_tickets

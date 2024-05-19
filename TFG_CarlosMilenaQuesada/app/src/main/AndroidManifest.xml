@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".views.activities.point_of_sale.MoneyCountingActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.activities.point_of_sale.PointOfSaleClosingActivity"
             android:exported="false" />
         <activity

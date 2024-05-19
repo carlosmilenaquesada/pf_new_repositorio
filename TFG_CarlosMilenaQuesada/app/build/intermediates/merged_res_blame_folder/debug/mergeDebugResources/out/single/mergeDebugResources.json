@@ -4,12 +4,16 @@
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_capital_operation.xml"
     },
     {
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_login_loader.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_login_loader.xml"
+    },
+    {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_point_of_sale_audit.xml.flat",
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_point_of_sale_audit.xml"
     },
     {
-        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_login_loader.xml.flat",
-        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_login_loader.xml"
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_point_of_sale_management.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_point_of_sale_management.xml"
     },
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_all_tickets.xml.flat",
@@ -22,10 +26,6 @@
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_point_of_sale_closing.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_point_of_sale_closing.xml"
     },
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\xml_data_extraction_rules.xml.flat",
@@ -82,6 +82,10 @@
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_customers_management_menu.xml.flat",
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_customers_management_menu.xml"
+    },
+    {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_money_counting.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_money_counting.xml"
     },
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_sales_loader.xml.flat",

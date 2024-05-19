@@ -21,8 +21,10 @@ import com.example.tfg_carlosmilenaquesada.views.activities.MainMenuActivity;
 import java.util.ArrayList;
 
 public class PointOfSaleManagementActivity extends AppCompatActivity {
+
+    public static final String IS_TODAY_AUDIT = "com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleManagementActivity.IS_TODAY_AUDIT";
     Button btPointOfSaleAudit;
-    Button btPointOfSaleClosing;
+    Button btMoneyCounting;
     Button btBack;
 
     @Override
@@ -36,20 +38,22 @@ public class PointOfSaleManagementActivity extends AppCompatActivity {
             return insets;
         });
         btPointOfSaleAudit = findViewById(R.id.btPointOfSaleAudit);
-        btPointOfSaleClosing = findViewById(R.id.btPointOfSaleClosing);
+        btMoneyCounting = findViewById(R.id.btMoneyCounting);
         btBack = findViewById(R.id.btBack);
 
         btPointOfSaleAudit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PointOfSaleManagementActivity.this, PointOfSaleAuditActivity.class));
+                Intent intent = new Intent(PointOfSaleManagementActivity.this, PointOfSaleClosingActivity.class);
+                intent.putExtra(IS_TODAY_AUDIT, Boolean.valueOf(true));
+                startActivity(intent);
             }
         });
 
-        btPointOfSaleClosing.setOnClickListener(new View.OnClickListener() {
+        btMoneyCounting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PointOfSaleManagementActivity.this, PointOfSaleClosingActivity.class));
+                startActivity(new Intent(PointOfSaleManagementActivity.this, MoneyCountingActivity.class));
             }
         });
 

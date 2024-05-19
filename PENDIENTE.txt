@@ -49,3 +49,5 @@ HACER----------------------------------------------------------------------
 --quitar los plurales de las tablas, de modo que una tabla llamada "Custormers types" se debe llamar "Customer types" (customer en singular)
 
 --el contenido de las tablas (por ejemplo para los métodos de pago), debe estar en español, en lugar de "cash", debe poner "efectivo"
+
+--poner scrolles en todos sitios

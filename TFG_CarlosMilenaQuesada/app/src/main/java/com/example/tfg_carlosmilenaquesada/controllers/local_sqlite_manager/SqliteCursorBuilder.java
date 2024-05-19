@@ -23,8 +23,6 @@ import java.util.ArrayList;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class SqliteCursorBuilder {
-
-
     Context context;
     SqliteConnector sqliteConnector;
 
@@ -32,7 +30,6 @@ public class SqliteCursorBuilder {
         this.context = context;
         this.sqliteConnector = SqliteConnector.getInstance(context);
     }
-
 
     public FirstAndLast<String> getFirstAndLastTicketId(boolean onlyToday) {
         FirstAndLast<String> firstAndLastTicketId = new FirstAndLast<>();
@@ -67,13 +64,12 @@ public class SqliteCursorBuilder {
     public BaseAndVat getBaseAndVatFromTotal(boolean onlyToday) {
         BaseAndVat baseAndVatFromTotal = new BaseAndVat();
         String query = "SELECT " +
-                "SUM(TL.applicable_sale_base_price) as 'total_sales_base', " +
-                "SUM(TL.applicable_sale_base_price * TL.vat_fraction) as 'total_vat' " +
-                "FROM " + TABLE_TICKETS_LINES + " TL " +
-                "JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id";
+                "SUM(TL.article_quantity * TL.applicable_sale_base_price) as 'total_sales_base', " +
+                "SUM((TL.article_quantity * TL.applicable_sale_base_price) * TL.vat_fraction) as 'total_vat' " +
+                "FROM " + TABLE_TICKETS_LINES + " TL";
 
         if (onlyToday) {
-            query += " AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
+            query += " JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
@@ -87,6 +83,13 @@ public class SqliteCursorBuilder {
 
     public ArrayList<ArticlesFamilyRatio> getArticlesFamilyRatios(boolean onlyToday) {
         ArrayList<ArticlesFamilyRatio> articlesFamilyRatios = new ArrayList<>();
+        float totalSoldBase = 0.0f;
+        Cursor cursorTotal = this.sqliteConnector.getReadableDatabase().rawQuery("SELECT SUM(article_quantity * applicable_sale_base_price) AS 'total_sold_base' FROM " + TABLE_TICKETS_LINES, null);
+        if (cursorTotal.moveToNext()) {
+            totalSoldBase = cursorTotal.getFloat(cursorTotal.getColumnIndexOrThrow("total_sold_base"));
+        }
+        cursorTotal.close();
+
         String query = "SELECT " +
                 "TL.family_name, " +
                 "SUM(TL.article_quantity) AS 'units_sold_by_family', " +
@@ -96,26 +99,30 @@ public class SqliteCursorBuilder {
             query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
         }
         query += "GROUP BY TL.family_name";
-        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
-        while (cursor.moveToNext()) {
+        Cursor cursorFamily = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+
+        while (cursorFamily.moveToNext()) {
+            float ratio = (cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("total_sold_base_by_family")) * 100) / totalSoldBase;
             articlesFamilyRatios.add(
                     new ArticlesFamilyRatio(
-                            cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("units_sold_by_family")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_sold_base_by_family"))
+                            cursorFamily.getString(cursorFamily.getColumnIndexOrThrow("family_name")),
+                            cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("units_sold_by_family")),
+                            cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("total_sold_base_by_family")),
+                            ratio
                     )
             );
         }
+        cursorFamily.close();
         return articlesFamilyRatios;
     }
 
-   /* public ArrayList<VatRatio> getVatsRatios(boolean onlyToday) {
+    public ArrayList<VatRatio> getVatsRatios(boolean onlyToday) {
         ArrayList<VatRatio> vatRatios = new ArrayList<>();
         String query = "SELECT " +
                 "TL.vat_description, " +
-                "SUM(TL.applicable_sale_base_pricealñkás) AS 'total_sale_base_amount_from_vat', " +
-                "SUM(TL.vat_fraction) ASasdf 'total_vat_amount_from_vat', " + asdf
-        "SUM(TL.applicable_sale_base_price * (1 + TL.vat_fraction)) AS 'total_amount_from_vat' " +
+                "TL.vat_fraction, " +
+                "SUM(TL.article_quantity * TL.applicable_sale_base_price) AS 'total_sale_base_amount_from_vat', " +
+                "SUM((TL.article_quantity * TL.applicable_sale_base_price) * TL.vat_fraction) 'total_vat_amount_from_vat' " +
                 "FROM " + TABLE_TICKETS_LINES + " TL ";
         if (onlyToday) {
             query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
@@ -123,17 +130,20 @@ public class SqliteCursorBuilder {
         query += "GROUP BY TL.vat_description";
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         while (cursor.moveToNext()) {
+            float totalAmount = cursor.getFloat(cursor.getColumnIndexOrThrow("total_sale_base_amount_from_vat")) + cursor.getFloat(cursor.getColumnIndexOrThrow("total_vat_amount_from_vat"));
             vatRatios.add(
                     new VatRatio(
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")) * 100,
                             cursor.getFloat(cursor.getColumnIndexOrThrow("total_sale_base_amount_from_vat")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("total_vat_amount_from_vat")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("total_amount_from_vat"))
+                            totalAmount
                     )
             );
         }
+        cursor.close();
         return vatRatios;
-    }*/
+    }
 
 
     public float getTotalCashAmount(boolean onlyToday) {

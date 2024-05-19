@@ -51,6 +51,9 @@
         android:theme="@style/Theme.TFG_CarlosMilenaQuesada"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name="com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.MoneyCountingActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleClosingActivity"
             android:exported="false" />
         <activity

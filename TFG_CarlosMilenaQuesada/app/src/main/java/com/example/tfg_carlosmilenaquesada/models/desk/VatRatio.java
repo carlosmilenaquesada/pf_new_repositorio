@@ -2,6 +2,8 @@ package com.example.tfg_carlosmilenaquesada.models.desk;
 
 public class VatRatio {
     String vat_description;
+
+    float vat_percent;
     float sale_base_amount;
     float vat_amount;
     float total_amount;
@@ -9,8 +11,9 @@ public class VatRatio {
     public VatRatio() {
     }
 
-    public VatRatio(String vat_description, float sale_base_amount, float vat_amount, float total_amount) {
+    public VatRatio(String vat_description, float vat_percent, float sale_base_amount, float vat_amount, float total_amount) {
         this.vat_description = vat_description;
+        this.vat_percent = vat_percent;
         this.sale_base_amount = sale_base_amount;
         this.vat_amount = vat_amount;
         this.total_amount = total_amount;
@@ -22,6 +25,14 @@ public class VatRatio {
 
     public void setVat_description(String vat_description) {
         this.vat_description = vat_description;
+    }
+
+    public float getVat_percent() {
+        return vat_percent;
+    }
+
+    public void setVat_percent(float vat_percent) {
+        this.vat_percent = vat_percent;
     }
 
     public float getSale_base_amount() {
