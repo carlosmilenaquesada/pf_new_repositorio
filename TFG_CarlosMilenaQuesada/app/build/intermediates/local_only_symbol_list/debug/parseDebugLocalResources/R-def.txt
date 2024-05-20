@@ -2,8 +2,23 @@ R_DEF: Internal format may change without notice
 local
 color black
 color white
+drawable billete100e
+drawable billete10e
+drawable billete200e
+drawable billete20e
+drawable billete500e
+drawable billete50e
+drawable billete5e
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable moneda10c
+drawable moneda1c
+drawable moneda1e
+drawable moneda20c
+drawable moneda2c
+drawable moneda2e
+drawable moneda50c
+drawable moneda5c
 id actvCustomerId
 id btApply
 id btApplyCustomerCreate
@@ -44,6 +59,7 @@ id btShowAllTickets
 id btShowAndModifyCustomers
 id btShowReservedTickets
 id btWipeFieldCustomerCreate
+id editTextNumberDecimal
 id etArticleCode
 id etCash
 id etCustomerTaxIdCreate
@@ -65,6 +81,7 @@ id etPassword
 id etUserId
 id etndArticleQuantity
 id etndOperationAmount
+id imageView
 id llUpdateCustomerDropdownMenu
 id main
 id pbCustomersLoader
@@ -76,6 +93,7 @@ id rvArticlesOnTicket
 id rvTicketDetailLines
 id rvTicketsInReserve
 id spCustomersTypes
+id textView
 id tlSalesByPaymentMethod
 id tlSalesByVat
 id tlSalesRatioByFamily
