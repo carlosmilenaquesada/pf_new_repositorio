@@ -34,6 +34,12 @@ public class MoneyCountingActivity extends AppCompatActivity {
 
         float declaredCash = 0f;
 
+        findViewById(R.id.iv500e).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("clicado");
+            }
+        });
         btPointOfSaleClosing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

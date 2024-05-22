@@ -1,210 +1,214 @@
 [
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_point_of_sale_management.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_point_of_sale_management.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_capital_operation.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_capital_operation.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_create_new_customer.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_create_new_customer.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda1e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda1e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda5c.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda5c.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda5c.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda5c.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda2c.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda2c.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_show_and_modify_customers.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_show_and_modify_customers.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_capital_operation.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_capital_operation.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_point_of_sale_closing.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_point_of_sale_closing.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete500e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete500e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_reserved_tickets.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_reserved_tickets.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_item_layout_ticket_line.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\item_layout_ticket_line.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda10c.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda10c.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_sales_management_menu.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_sales_management_menu.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_capital_management.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_capital_management.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_main_menu.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_main_menu.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_create_new_customer.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_create_new_customer.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_customers_management_menu.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_customers_management_menu.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda10c.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda10c.png"
     },
     {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_money_counting.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_money_counting.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda20c.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda20c.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_billete500e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete500e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_sales_management_menu.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_sales_management_menu.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_billete200e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete200e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_customers_loader.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_customers_loader.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda50c.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda50c.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda1c.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda1c.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_item_layout_customer.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\item_layout_customer.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda20c.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda20c.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete100e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete100e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/xml_backup_rules.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda2c.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda2c.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda50c.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda50c.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_point_of_sale_closing.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_point_of_sale_closing.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_billete100e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete100e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_customers_loader.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_customers_loader.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activiy_login.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activiy_login.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_login_loader.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_login_loader.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_login_loader.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_login_loader.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_capital_management.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_capital_management.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_all_tickets.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_all_tickets.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_item_layout_ticket_line.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/item_layout_ticket_line.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete200e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete200e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda1c.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda1c.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_customers_management_menu.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_customers_management_menu.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_item_layout_ticket.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/item_layout_ticket.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_sale.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_sale.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda2e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda2e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_main_menu.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_main_menu.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_billete50e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete50e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_point_of_sale_management.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_point_of_sale_management.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_show_and_modify_customers.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_show_and_modify_customers.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_sales_loader.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_sales_loader.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_payment.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_payment.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_item_layout_ticket.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\item_layout_ticket.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete20e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete20e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_item_layout_customer.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/item_layout_customer.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_billete10e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete10e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda2e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda2e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_billete20e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete20e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete10e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete10e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_sales_loader.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_sales_loader.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_money_counting.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_money_counting.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_sale.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_sale.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_payment.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_payment.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activiy_login.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activiy_login.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_all_tickets.xml.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_all_tickets.xml"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete5e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete5e.png"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda1e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/moneda1e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_reserved_tickets.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_reserved_tickets.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_billete5e.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete5e.png"
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete50e.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete50e.png"
     }
 ]

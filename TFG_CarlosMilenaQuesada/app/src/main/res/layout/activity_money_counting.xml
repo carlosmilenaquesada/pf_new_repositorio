@@ -11,92 +11,79 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv500e"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                tools:srcCompat="@drawable/billete500e" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/billete500e" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et500eQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv500eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et500eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
+                android:hint="Unidades"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:textAlignment="textEnd" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv200e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete200e" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/billete200e" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et200eQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Unidades"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:textAlignment="textEnd" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv100e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/billete100e" />
+
+            <EditText
+                android:id="@+id/et100eQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv200eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et200eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
+                android:hint="Unidades"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:textAlignment="textEnd" />
 
         </LinearLayout>
 
@@ -106,49 +93,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv100e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete100e" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv100eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et100eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -159,45 +103,20 @@
 
             <ImageView
                 android:id="@+id/iv50e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete50e" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/billete50e" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et50eQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv50eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et50eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
+                android:hint="Unidades"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:textAlignment="textEnd" />
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -208,37 +127,18 @@
 
             <ImageView
                 android:id="@+id/iv20e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete20e" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/billete20e" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et20eQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv20eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et20eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
+                android:hint="Unidades"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:textAlignment="textEnd" />
 
         </LinearLayout>
 
@@ -251,36 +151,18 @@
 
             <ImageView
                 android:id="@+id/iv10e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete10e" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/billete10e" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et10eQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv10eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et10eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
+                android:hint="Unidades"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:textAlignment="textEnd" />
 
         </LinearLayout>
 

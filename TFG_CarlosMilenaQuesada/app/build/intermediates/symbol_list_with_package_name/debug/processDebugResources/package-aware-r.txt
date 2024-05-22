@@ -3322,7 +3322,6 @@ id easeInOut
 id easeOut
 id east
 id edge
-id editTextNumberDecimal
 id edit_query
 id elastic
 id embed
@@ -3331,6 +3330,12 @@ id endToStart
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id et100eQuantity
+id et10eQuantity
+id et200eQuantity
+id et20eQuantity
+id et500eQuantity
+id et50eQuantity
 id etArticleCode
 id etCash
 id etCustomerTaxIdCreate
@@ -3392,7 +3397,6 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id imageView
 id immediateStop
 id included
 id indeterminate
@@ -3402,6 +3406,12 @@ id inward
 id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
+id iv100e
+id iv10e
+id iv200e
+id iv20e
+id iv500e
+id iv50e
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3636,7 +3646,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3665,6 +3674,12 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv100eMultiplyTitle
+id tv10eMultiplyTitle
+id tv200eMultiplyTitle
+id tv20eMultiplyTitle
+id tv500eMultiplyTitle
+id tv50eMultiplyTitle
 id tvCapitalDiffence
 id tvCapitalDiffenceTitle
 id tvCapitalOperationsTitle
