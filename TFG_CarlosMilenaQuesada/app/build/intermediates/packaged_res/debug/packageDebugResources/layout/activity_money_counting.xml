@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,288 +9,974 @@
     android:orientation="vertical"
     tools:context=".views.activities.point_of_sale.MoneyCountingActivity">
 
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:background="#009688"
+        android:orientation="vertical">
+        <!-- 500€ y 200€ -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv500e"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/billete500e"
-                tools:srcCompat="@drawable/billete500e" />
-
+            android:orientation="horizontal">
+            <!-- 500 € -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/tv500eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
+                <ImageView
+                    android:id="@+id/iv500e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="50000"
+                    app:srcCompat="@drawable/billete500e" />
 
-                <EditText
-                    android:id="@+id/et500eQuantity"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt500eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et500eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt500eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv200e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete200e" />
-
+            <!-- 200 € -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv200eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et200eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv100e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete100e" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/tv100eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
+                <ImageView
+                    android:id="@+id/iv200e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="20000"
+                    app:srcCompat="@drawable/billete200e" />
 
-                <EditText
-                    android:id="@+id/et100eQuantity"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt200eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et200eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt200eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
 
             </LinearLayout>
-
         </LinearLayout>
-
+        <!-- 100€ y 50€ -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv50e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete50e" />
-
+            android:orientation="horizontal">
+            <!-- 100 € -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv50eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:id="@+id/et50eQuantity"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv20e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete20e" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/tv20eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
+                <ImageView
+                    android:id="@+id/iv100e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="10000"
+                    app:srcCompat="@drawable/billete100e" />
 
-                <EditText
-                    android:id="@+id/et20eQuantity"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt100eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et100eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt100eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
 
             </LinearLayout>
+            <!-- 50 € -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
 
+                <ImageView
+                    android:id="@+id/iv50e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="5000"
+                    app:srcCompat="@drawable/billete50e" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt50eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et50eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt50eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
-
+        <!-- 20€ y 10€ -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+            <!-- 20 € -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/iv10e"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                tools:srcCompat="@drawable/billete10e" />
+                <ImageView
+                    android:id="@+id/iv20e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="2000"
+                    app:srcCompat="@drawable/billete20e" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt20eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et20eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt20eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 10 € -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv10e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="1000"
+                    app:srcCompat="@drawable/billete10e" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt10eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et10eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt10eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 5€ y 2€ -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- 5 € -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv5e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="500"
+                    app:srcCompat="@drawable/billete5e" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt5eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et5eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt5eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 2 € -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv2e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="200"
+                    app:srcCompat="@drawable/moneda2e" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt2eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et2eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt2eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 1€ y 50C -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- 1 € -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv1e"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="100"
+                    app:srcCompat="@drawable/moneda1e" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt1eIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et1eQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt1eReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 50 C -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv50c"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="50"
+                    app:srcCompat="@drawable/moneda50c" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt50cIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et50cQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt50cReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 20 C y 10 C -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- 20 C -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv20c"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="20"
+                    app:srcCompat="@drawable/moneda20c" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt20cIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et20cQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt20cReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 10 C -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv10c"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="10"
+                    app:srcCompat="@drawable/moneda10c" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt10cIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et10cQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt10cReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 5 C y 2 C -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- 5 C -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv5c"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="5"
+                    app:srcCompat="@drawable/moneda5c" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt5cIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et5cQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt5cReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 2 C -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/iv2c"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="2"
+                    app:srcCompat="@drawable/moneda2c" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt2cIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et2cQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt2cReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 1 C -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- 1 C -->
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#03A9F4"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/tv10eMultiplyTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textAlignment="center" />
+                <ImageView
+                    android:id="@+id/iv1c"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:tag="1"
+                    app:srcCompat="@drawable/moneda1c" />
 
-                <EditText
-                    android:id="@+id/et10eQuantity"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:hint="Indique las unidades"
-                    android:inputType="numberDecimal"
-                    android:minHeight="48dp"
-                    android:text="0"
-                    android:textAlignment="textEnd" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt1cIncrease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="increaseUnit"
+                        android:padding="0dp"
+                        android:text="+"
+                        app:cornerRadius="3dp" />
+
+                    <EditText
+                        android:id="@+id/et1cQuantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:hint="Unidades"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:tag="quantity_tv"
+                        android:textAlignment="textEnd" />
+
+                    <Button
+                        android:id="@+id/bt1cReduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="decreaseUnit"
+                        android:padding="0dp"
+                        android:text="-"
+                        app:cornerRadius="3dp" />
+                </LinearLayout>
 
             </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#4CAF50"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tvTotalTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total contabilizado"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/etTotal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/etTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Total"
+                    android:inputType="numberDecimal"
+                    android:minHeight="48dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintBottom_toTopOf="@id/btRecalculate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTotalTitle"
+                    app:layout_constraintVertical_bias="0.5" />
+
+                <Button
+                    android:id="@+id/btRecalculate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recalcular"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etTotal"
+                    app:layout_constraintVertical_bias="1.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </LinearLayout>
 
+
+        <!--    OTROS ELEMENTOS    ##################################################################-->
+        <Button
+            android:id="@+id/btPointOfSaleClosing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Declarar" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btPointOfSaleClosing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Declarar" />
-
-</LinearLayout>
+</ScrollView>
