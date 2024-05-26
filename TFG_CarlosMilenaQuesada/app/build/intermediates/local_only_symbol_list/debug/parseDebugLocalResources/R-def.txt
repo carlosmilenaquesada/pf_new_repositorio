@@ -90,6 +90,8 @@ id btShowAllTickets
 id btShowAndModifyCustomers
 id btShowReservedTickets
 id btWipeFieldCustomerCreate
+id button2
+id clDeclare
 id et100eQuantity
 id et10cQuantity
 id et10eQuantity
@@ -152,6 +154,8 @@ id rvAllTickets
 id rvArticlesOnTicket
 id rvTicketDetailLines
 id rvTicketsInReserve
+id scrollView2
+id scrollView3
 id spCustomersTypes
 id tlSalesByPaymentMethod
 id tlSalesByVat

@@ -85,6 +85,11 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
         notifyItemInserted(position);
     }
 
+    public void replaceTicketLine(int oldTicketLinePosition, TicketLine newTicketLine){
+        ticketLineItemsList.set(oldTicketLinePosition, newTicketLine);
+        notifyItemChanged(oldTicketLinePosition);
+    }
+
 
     public static class TicketLineItemViewHolder extends RecyclerView.ViewHolder {
         public TextView tvItemArticleName;

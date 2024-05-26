@@ -20,12 +20,12 @@
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\xml\\data_extraction_rules.xml"
-    },
-    {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_billete500e.png.flat",
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete500e.png"
+    },
+    {
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\xml\\data_extraction_rules.xml"
     },
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_item_layout_ticket_line.xml.flat",
@@ -92,12 +92,12 @@
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\billete100e.png"
     },
     {
-        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda2c.png.flat",
-        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda2c.png"
-    },
-    {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_point_of_sale_closing.xml.flat",
         "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\layout\\activity_point_of_sale_closing.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\drawable_moneda2c.png.flat",
+        "source": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-main-36:\\drawable\\moneda2c.png"
     },
     {
         "merged": "C:\\Users\\Administrador\\.gradle\\daemon\\8.4\\com.example.tfg_carlosmilenaquesada.app-debug-34:\\layout_activity_customers_loader.xml.flat",

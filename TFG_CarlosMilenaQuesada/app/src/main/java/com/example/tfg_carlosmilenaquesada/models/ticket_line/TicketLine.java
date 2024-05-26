@@ -1,6 +1,7 @@
 package com.example.tfg_carlosmilenaquesada.models.ticket_line;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class TicketLine implements Serializable {
     String ticket_line_id;
@@ -141,5 +142,18 @@ public class TicketLine implements Serializable {
 
     public void setIs_in_offer(boolean is_in_offer) {
         this.is_in_offer = is_in_offer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TicketLine that = (TicketLine) o;
+        return Objects.equals(ticket_id, that.ticket_id) && Objects.equals(article_id, that.article_id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ticket_id, article_id);
     }
 }

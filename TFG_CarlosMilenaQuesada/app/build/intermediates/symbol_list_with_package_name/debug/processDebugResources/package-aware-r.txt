@@ -3279,6 +3279,7 @@ id btShowAllTickets
 id btShowAndModifyCustomers
 id btShowReservedTickets
 id btWipeFieldCustomerCreate
+id button2
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3297,6 +3298,7 @@ id checkbox
 id checked
 id chronometer
 id circle_center
+id clDeclare
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3621,6 +3623,8 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
+id scrollView2
+id scrollView3
 id scrollable
 id search_badge
 id search_bar

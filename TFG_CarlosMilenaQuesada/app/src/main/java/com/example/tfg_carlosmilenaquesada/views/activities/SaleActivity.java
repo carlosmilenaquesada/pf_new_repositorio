@@ -49,9 +49,6 @@ import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLineAdapter;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class SaleActivity extends AppCompatActivity {
@@ -73,6 +70,7 @@ public class SaleActivity extends AppCompatActivity {
     JsonHttpGetter jsonHttpGetterCustomers;
     private Ticket ticket;
     ArrayList<String> customersTaxIds;
+    int indexOfCurrentTicketLine;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -106,8 +104,6 @@ public class SaleActivity extends AppCompatActivity {
             String selectTicketLinesQuery = "SELECT * FROM " + SqliteConnector.TABLE_TICKETS_LINES + " WHERE ticket_id = ?";
             Cursor cursor = SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().rawQuery(selectTicketLinesQuery, new String[]{ticket.getTicket_id()});
             while (cursor.moveToNext()) {
-
-
                 ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(
                         new TicketLine(
                                 cursor.getString(cursor.getColumnIndexOrThrow("ticket_line_id")),
@@ -275,7 +271,6 @@ public class SaleActivity extends AppCompatActivity {
                     );
 
 
-
                     if (ticketLine.isIs_in_offer()) {
                         ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
                     } else {
@@ -283,7 +278,15 @@ public class SaleActivity extends AppCompatActivity {
                     }
 
 
-                    ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, rvArticlesOnTicket.getAdapter().getItemCount());
+                    if ((indexOfCurrentTicketLine = ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTicketLinesList().indexOf(ticketLine)) != -1) {
+                        float oldQuantity = ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTicketLinesList().get(indexOfCurrentTicketLine).getArticle_quantity();
+                        ticketLine.setArticle_quantity(ticketLine.getArticle_quantity() + oldQuantity);
+                        ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).replaceTicketLine(indexOfCurrentTicketLine, ticketLine);
+                    } else {
+                        indexOfCurrentTicketLine = rvArticlesOnTicket.getAdapter().getItemCount();
+                        ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, indexOfCurrentTicketLine);
+                    }
+
                     float totalLineAmount = (ticketLine.getApplicable_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
                     float totalAmount = Float.parseFloat(String.valueOf(tvTicketTotalAmount.getText())) + totalLineAmount;
                     tvTicketTotalAmount.setText(String.valueOf(totalAmount));

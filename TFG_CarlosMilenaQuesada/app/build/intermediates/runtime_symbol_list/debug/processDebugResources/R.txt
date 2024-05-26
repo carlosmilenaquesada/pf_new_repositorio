@@ -3278,6 +3278,7 @@ int id btShowAllTickets 0x7f080087
 int id btShowAndModifyCustomers 0x7f080088
 int id btShowReservedTickets 0x7f080089
 int id btWipeFieldCustomerCreate 0x7f08008a
+int id button2 0x7f0802c8
 int id buttonPanel 0x7f08008b
 int id cache_measures 0x7f08008c
 int id callMeasure 0x7f08008d
@@ -3296,6 +3297,7 @@ int id checkbox 0x7f080099
 int id checked 0x7f08009a
 int id chronometer 0x7f08009b
 int id circle_center 0x7f08009c
+int id clDeclare 0x7f0802fc
 int id clear_text 0x7f08009d
 int id clip_horizontal 0x7f08009e
 int id clip_vertical 0x7f08009f
@@ -3620,6 +3622,8 @@ int id scroll 0x7f0801ca
 int id scrollIndicatorDown 0x7f0801cb
 int id scrollIndicatorUp 0x7f0801cc
 int id scrollView 0x7f0801cd
+int id scrollView2 0x7f0802fb
+int id scrollView3 0x7f0802fd
 int id scrollable 0x7f0801ce
 int id search_badge 0x7f0801cf
 int id search_bar 0x7f0801d0
