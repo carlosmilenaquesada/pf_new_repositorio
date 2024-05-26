@@ -1,8 +1,9 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 
 const app = express();
+const puerto = 3000;
 
 app.use(bodyParser.json());
 
@@ -21,11 +22,11 @@ connection.connect((err) => {
     }
 });
 
-
+//GET ##########################################################################
 
 app.get('/sync/articles', (req, res) => {
     const sql = 'SELECT A.article_id, A.article_name, A.article_category_id, A.unit_sale_base_price, A.vat_id, A.offer_start_date, A.offer_end_date, A.offer_unit_sale_base_price FROM articles A';
-    
+
     connection.query(sql, (err, result) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
@@ -139,7 +140,37 @@ app.get('/sync/vats', (req, res) => {
 });
 
 
-const puerto = 3000;
+
+//POST #########################################################################
+
+app.post('/add/tickets', (req, res) => {
+    const {
+        ticket_id,
+        sale_date,
+        customer_tax_id,
+        ticket_status_id,
+        payment_method_id
+    } = req.body;
+
+    // Imprimir los datos recibidos para depuración
+    console.log('Datos recibidos:', req.body);
+
+    // Validar los datos recibidos
+    if (!ticket_id || !sale_date || !ticket_status_id || !payment_method_id) {
+        return res.status(400).send({ error: true, message: 'Datos de tickets incorrectos' });
+    }
+
+    const query = 'INSERT INTO tickets (ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id) VALUES (?, ?, ?, ?, ?)';
+    connection.query(query, [ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id], (err, result) => {
+        if (err) {
+          console.error('Error al insertar datos en la base de datos:', err);
+          return res.status(500).send({ error: true, message: 'Error al insertar datos en la base de datos', details: err.message });
+        }
+        res.send({ error: false, data: result, message: 'Nuevo ticket agregado correctamente' });
+      });    
+});
+
+
 app.listen(puerto, () => {
     console.log(`Servidor en ejecución en http:localhost:${puerto}`);
 });

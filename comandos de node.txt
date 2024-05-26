@@ -52,3 +52,15 @@ https://www.youtube.com/watch?v=BImKbdy-ubM
 
 
 
+--------------------------------------------------------------------------------
+--PARA CREAR LOS POST
+-Primero, hay que instalar Body-parser: middleware para manejar datos del cuerpo de las peticiones POST.
+Comando -> npm install express mysql body-parser
+
+- segundo, creamos la sentencia del post, mediante app.post('/add/tickets', ...
+
+-- tecero, probamos que funcione (curl o postman permite realizar este tipo de peticdiones) desde bash, no desde powershell
+curl -X POST -H "Content-Type: application/json" -d '{"ticket_id":"asdf2", "sale_date":"2024-05-31", "customer_tax_id":"A11223344", "ticket_status_id":"STAT001", "payment_method_id":"PAYMET001"}' http://localhost:3000/add/tickets
+
+
+
