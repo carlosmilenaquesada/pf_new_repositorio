@@ -43,21 +43,60 @@ public class SalesLoaderActivity extends AppCompatActivity {
         });
 
         pbSalesLoader = findViewById(R.id.pbSalesLoader);
-        new Thread() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
+
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                jsonHttpGetterArticles = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
-                jsonHttpGetterArticlesCategories = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesCategories(SalesLoaderActivity.this);
-                jsonHttpGetterArticlesFamilies = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesFamilies(SalesLoaderActivity.this);
-                jsonHttpGetterPaymentMethods = JsonHttpGetterInstances.getInstanceJsonHttpGetterPaymentMethods(SalesLoaderActivity.this);
-                jsonHttpGetterBarcodes = JsonHttpGetterInstances.getInstanceJsonHttpGetterBarcodes(SalesLoaderActivity.this);
-                jsonHttpGetterCustomersTypes = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
-                jsonHttpGetterVats = JsonHttpGetterInstances.getInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
+                Thread threadArticles = new Thread(() -> {
+                    jsonHttpGetterArticles = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
+                });
+                threadArticles.start();
+
+                Thread threadArticlesCategories = new Thread(() -> {
+                    jsonHttpGetterArticlesCategories = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesCategories(SalesLoaderActivity.this);
+                });
+                threadArticlesCategories.start();
+
+                Thread threadArticlesFamilies = new Thread(() -> {
+                    jsonHttpGetterArticlesFamilies = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesFamilies(SalesLoaderActivity.this);
+                });
+                threadArticlesFamilies.start();
+
+                Thread threadBarcodes = new Thread(() -> {
+                    jsonHttpGetterBarcodes = JsonHttpGetterInstances.getInstanceJsonHttpGetterBarcodes(SalesLoaderActivity.this);
+                });
+                threadBarcodes.start();
+
+                Thread threadCustomersTypes = new Thread(() -> {
+                    jsonHttpGetterCustomersTypes = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
+                });
+                threadCustomersTypes.start();
+
+                Thread threadVats = new Thread(() -> {
+                    jsonHttpGetterVats = JsonHttpGetterInstances.getInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
+                });
+                threadVats.start();
+
+                try {
+                    threadArticles.join();
+                    threadArticlesCategories.join();
+                    threadArticlesFamilies.join();
+                    threadBarcodes.join();
+                    threadCustomersTypes.join();
+                    threadVats.join();
+
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
 
                 startActivity(new Intent(SalesLoaderActivity.this, SaleActivity.class));
             }
-        }.start();
+        }).start();
+
+
+
+
     }
 
 }

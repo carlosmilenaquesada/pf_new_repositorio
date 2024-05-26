@@ -14,16 +14,18 @@ import org.json.JSONArray;
 
 import java.util.concurrent.CountDownLatch;
 
-public class JsonHttpGetter {
+public class JsonHttpGetter{
     private final CountDownLatch latch = new CountDownLatch(1);
     Context context;
     String table;
+
 
 
     public JsonHttpGetter(Context context, String table) {
         this.context = context;
         this.table = table;
     }
+
 
     public CountDownLatch getLatch() {
         return latch;
@@ -44,8 +46,10 @@ public class JsonHttpGetter {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                System.out.println("errro");
                 //setDone(true);
                 latch.countDown();
+
             }
         });
 

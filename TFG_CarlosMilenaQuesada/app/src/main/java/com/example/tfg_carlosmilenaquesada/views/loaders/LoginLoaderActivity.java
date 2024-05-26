@@ -40,6 +40,7 @@ public class LoginLoaderActivity extends AppCompatActivity {
             public void run() {
                 jsonHttpGetterUsers = JsonHttpGetterInstances.getInstanceJsonHttpGetterUsers(LoginLoaderActivity.this);
                 startActivity(new Intent(LoginLoaderActivity.this, LoginActiviy.class));
+
             }
         }.start();
 

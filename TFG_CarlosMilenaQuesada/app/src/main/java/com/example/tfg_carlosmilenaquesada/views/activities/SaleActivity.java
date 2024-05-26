@@ -164,11 +164,17 @@ public class SaleActivity extends AppCompatActivity {
                     new Thread() {
                         @Override
                         public void run() {
+                            System.out.println("trayendo clientes");
                             jsonHttpGetterCustomers = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomers(SaleActivity.this);
-                            Cursor cursorCustomers = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery("SELECT customer_tax_id FROM " + TABLE_CUSTOMERS_TAXABLES, null);
+                            System.out.println("clientes traídos");
+                            String query = "SELECT customer_tax_id FROM " + TABLE_CUSTOMERS_TAXABLES;
+                            System.out.println(query);
+                            Cursor cursor = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery(query, null);
 
-                            while (cursorCustomers.moveToNext()) {
-                                customersTaxIds.add(cursorCustomers.getString(0));
+                            System.out.println("cliente 111");
+                            while (cursor.moveToNext()) {
+                                System.out.println("cliente 111");
+                                customersTaxIds.add(cursor.getString(cursor.getColumnIndexOrThrow("customer_tax_id")));
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, customersTaxIds);
                             runOnUiThread(new Runnable() {

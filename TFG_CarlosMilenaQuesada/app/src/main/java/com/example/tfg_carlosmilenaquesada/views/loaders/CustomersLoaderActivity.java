@@ -44,12 +44,4 @@ public class CustomersLoaderActivity extends AppCompatActivity {
         }.start();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (jsonHttpGetterCustomers != null) {
-            startActivity(new Intent(CustomersLoaderActivity.this, MainMenuActivity.class));
-        }
-
-    }
 }
