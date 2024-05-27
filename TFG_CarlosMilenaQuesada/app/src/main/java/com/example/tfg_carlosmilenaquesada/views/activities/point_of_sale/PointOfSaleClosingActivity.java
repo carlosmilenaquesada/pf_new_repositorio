@@ -1,5 +1,6 @@
 package com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_ADD_QUERY;
 import static com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.MoneyCountingActivity.MONEY_COUNTING;
 import static com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleManagementActivity.IS_TODAY_AUDIT;
 import static com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity.RESTORED_TICKET;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -24,7 +26,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
+import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteCursorBuilder;
+import com.example.tfg_carlosmilenaquesada.controllers.remote_database_setters.JsonHttpSetter;
 import com.example.tfg_carlosmilenaquesada.models.desk.ArticlesFamilyRatio;
 import com.example.tfg_carlosmilenaquesada.models.desk.BaseAndVat;
 import com.example.tfg_carlosmilenaquesada.models.desk.FirstAndLast;
@@ -51,6 +55,8 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
     TableLayout tlSalesByPaymentMethod;
     TableLayout tlSalesRatioByFamily;
     TableLayout tlSalesByVat;
+
+    Button btConfirmClosePointOfSale;
 
     private Boolean isTodayAudit;
 
@@ -94,6 +100,10 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
         tlSalesByPaymentMethod = findViewById(R.id.tlSalesByPaymentMethod);
         tlSalesRatioByFamily = findViewById(R.id.tlSalesRatioByFamily);
         tlSalesByVat = findViewById(R.id.tlSalesByVat);
+
+        btConfirmClosePointOfSale = findViewById(R.id.btConfirmClosePointOfSale);
+
+
 
         SqliteCursorBuilder sqliteCursorBuilder = new SqliteCursorBuilder(this);
 
@@ -215,6 +225,15 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
 
             tlSalesByVat.addView(tableRow);
         }
+
+        btConfirmClosePointOfSale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JsonHttpSetter jsonHttpSetter = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
+                jsonHttpSetter.setHttpFromJson();
+            }
+        });
+
     }
 
      /*

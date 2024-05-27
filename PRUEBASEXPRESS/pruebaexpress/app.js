@@ -144,30 +144,29 @@ app.get('/sync/vats', (req, res) => {
 //POST #########################################################################
 
 app.post('/add/tickets', (req, res) => {
-    const {
-        ticket_id,
-        sale_date,
-        customer_tax_id,
-        ticket_status_id,
-        payment_method_id
-    } = req.body;
+    const tickets = req.body.tickets;
 
-    // Imprimir los datos recibidos para depuración
-    console.log('Datos recibidos:', req.body);
-
-    // Validar los datos recibidos
-    if (!ticket_id || !sale_date || !ticket_status_id || !payment_method_id) {
-        return res.status(400).send({ error: true, message: 'Datos de tickets incorrectos' });
+    // Validar que sea un arreglo
+    if (!Array.isArray(tickets)) {
+        return res.status(400).send({ error: true, message: 'Datos de tickets incorrectos, se esperaba un arreglo' });
     }
 
-    const query = 'INSERT INTO tickets (ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id) VALUES (?, ?, ?, ?, ?)';
-    connection.query(query, [ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id], (err, result) => {
+    const query = 'INSERT INTO tickets (ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id) VALUES ?';
+    const values = tickets.map(ticket => [
+        ticket.ticket_id,
+        ticket.sale_date,
+        ticket.customer_tax_id,
+        ticket.ticket_status_id,
+        ticket.payment_method_id
+    ]);
+
+    connection.query(query, [values], (err, result) => {
         if (err) {
           console.error('Error al insertar datos en la base de datos:', err);
           return res.status(500).send({ error: true, message: 'Error al insertar datos en la base de datos', details: err.message });
         }
-        res.send({ error: false, data: result, message: 'Nuevo ticket agregado correctamente' });
-      });    
+        res.send({ error: false, data: result, message: 'Nuevos tickets agregados correctamente' });
+    });
 });
 
 

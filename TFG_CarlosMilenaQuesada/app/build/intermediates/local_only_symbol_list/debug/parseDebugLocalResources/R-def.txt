@@ -68,6 +68,7 @@ id btCashIncome
 id btCashWithdrawal
 id btCloseUpdateDropdownMenu
 id btCompleteCashPayment
+id btConfirmClosePointOfSale
 id btCreateNewCustomer
 id btCustomersManagement
 id btInitializeCardPayment
@@ -90,7 +91,6 @@ id btShowAllTickets
 id btShowAndModifyCustomers
 id btShowReservedTickets
 id btWipeFieldCustomerCreate
-id button2
 id clDeclare
 id et100eQuantity
 id et10cQuantity

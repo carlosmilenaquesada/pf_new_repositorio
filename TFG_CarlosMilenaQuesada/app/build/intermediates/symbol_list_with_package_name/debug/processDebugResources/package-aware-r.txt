@@ -3257,6 +3257,7 @@ id btCashIncome
 id btCashWithdrawal
 id btCloseUpdateDropdownMenu
 id btCompleteCashPayment
+id btConfirmClosePointOfSale
 id btCreateNewCustomer
 id btCustomersManagement
 id btInitializeCardPayment
@@ -3279,7 +3280,6 @@ id btShowAllTickets
 id btShowAndModifyCustomers
 id btShowReservedTickets
 id btWipeFieldCustomerCreate
-id button2
 id buttonPanel
 id cache_measures
 id callMeasure

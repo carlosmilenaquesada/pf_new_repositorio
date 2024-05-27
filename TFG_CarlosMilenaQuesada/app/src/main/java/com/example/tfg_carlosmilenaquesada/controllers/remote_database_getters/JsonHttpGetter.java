@@ -32,7 +32,7 @@ public class JsonHttpGetter{
     }
 
     public void getJsonFromHttp() {
-        String url = SqliteConnector.NODE_SERVER + table;
+        String url = SqliteConnector.NODE_SYNC + table;
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
