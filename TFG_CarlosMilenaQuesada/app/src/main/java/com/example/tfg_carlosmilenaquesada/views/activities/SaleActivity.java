@@ -116,8 +116,8 @@ public class SaleActivity extends AppCompatActivity {
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
-                                cursor.getFloat(cursor.getColumnIndexOrThrow("applicable_sale_base_price")),
-                                cursor.getInt(cursor.getColumnIndexOrThrow("is_in_offer")) != 0
+                                cursor.getFloat(cursor.getColumnIndexOrThrow("applicated_sale_base_price")),
+                                cursor.getInt(cursor.getColumnIndexOrThrow("sold_during_offer")) != 0
                         ),
                         rvArticlesOnTicket.getAdapter().getItemCount()
                 );
@@ -164,16 +164,16 @@ public class SaleActivity extends AppCompatActivity {
                     new Thread() {
                         @Override
                         public void run() {
-                            System.out.println("trayendo clientes");
+
                             jsonHttpGetterCustomers = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomers(SaleActivity.this);
-                            System.out.println("clientes traídos");
+
                             String query = "SELECT customer_tax_id FROM " + TABLE_CUSTOMERS_TAXABLES;
-                            System.out.println(query);
+
                             Cursor cursor = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery(query, null);
 
-                            System.out.println("cliente 111");
+
                             while (cursor.moveToNext()) {
-                                System.out.println("cliente 111");
+
                                 customersTaxIds.add(cursor.getString(cursor.getColumnIndexOrThrow("customer_tax_id")));
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, customersTaxIds);
@@ -269,7 +269,7 @@ public class SaleActivity extends AppCompatActivity {
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
                             Float.parseFloat(String.valueOf(etndArticleQuantity.getText()))
                     );
-                    ticketLine.setIs_in_offer(
+                    ticketLine.setsold_during_offer(
                             !cursor.isNull(cursor.getColumnIndexOrThrow("offer_start_date")) && !cursor.isNull(cursor.getColumnIndexOrThrow("offer_end_date")) && Tools.isArticleInOffer(
                                     Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_start_date"))),
                                     Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_end_date")))
@@ -277,10 +277,10 @@ public class SaleActivity extends AppCompatActivity {
                     );
 
 
-                    if (ticketLine.isIs_in_offer()) {
-                        ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
+                    if (ticketLine.issold_during_offer()) {
+                        ticketLine.setapplicated_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
                     } else {
-                        ticketLine.setApplicable_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
+                        ticketLine.setapplicated_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
                     }
 
 
@@ -293,7 +293,7 @@ public class SaleActivity extends AppCompatActivity {
                         ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, indexOfCurrentTicketLine);
                     }
 
-                    float totalLineAmount = (ticketLine.getApplicable_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
+                    float totalLineAmount = (ticketLine.getapplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
                     float totalAmount = Float.parseFloat(String.valueOf(tvTicketTotalAmount.getText())) + totalLineAmount;
                     tvTicketTotalAmount.setText(String.valueOf(totalAmount));
                 } else {

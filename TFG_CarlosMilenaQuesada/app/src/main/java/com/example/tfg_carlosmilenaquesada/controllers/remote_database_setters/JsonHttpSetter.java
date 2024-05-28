@@ -56,7 +56,6 @@ public class JsonHttpSetter {
                         default:
                     }
                 }
-                System.out.println(jsonObject);
                 jsonArray.put(jsonObject);
             }
             cursor.close();
@@ -68,25 +67,26 @@ public class JsonHttpSetter {
         String url = SqliteConnector.NODE_ADD + table;
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        JSONObject postData = new JSONObject();
+        JSONObject jsonObject = new JSONObject();
         try {
-            postData.put(table, jsonArray);
+            jsonObject.put(table, jsonArray);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST, url, postData,
+                Request.Method.POST, url, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(context, "Cierre realizado con éxito", Toast.LENGTH_LONG).show();
+                        System.out.println(response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println(error);
+
                     }
                 }
         );

@@ -1,6 +1,7 @@
 package com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale;
 
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_ADD_QUERY;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_LINES_ADD_QUERY;
 import static com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.MoneyCountingActivity.MONEY_COUNTING;
 import static com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleManagementActivity.IS_TODAY_AUDIT;
 import static com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity.RESTORED_TICKET;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.RequiresApi;
@@ -102,7 +104,6 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
         tlSalesByVat = findViewById(R.id.tlSalesByVat);
 
         btConfirmClosePointOfSale = findViewById(R.id.btConfirmClosePointOfSale);
-
 
 
         SqliteCursorBuilder sqliteCursorBuilder = new SqliteCursorBuilder(this);
@@ -229,8 +230,14 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
         btConfirmClosePointOfSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JsonHttpSetter jsonHttpSetter = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
-                jsonHttpSetter.setHttpFromJson();
+                JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
+                jsonHttpSetterTicketsLines.setHttpFromJson();
+
+                JsonHttpSetter jsonHttpSetterTickets = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
+                jsonHttpSetterTickets.setHttpFromJson();
+
+
+
             }
         });
 

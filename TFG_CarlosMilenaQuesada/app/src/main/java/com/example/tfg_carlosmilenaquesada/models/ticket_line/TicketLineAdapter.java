@@ -52,11 +52,11 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
     public void onBindViewHolder(@NonNull TicketLineItemViewHolder holder, int position) {
         TicketLine ticketLine = ticketLineItemsList.get(position);
         holder.tvItemArticleName.setText(ticketLine.getArticle_name());
-        holder.tvItemArticleUnitPrice.setText(String.valueOf(ticketLine.getApplicable_sale_base_price()));
-        holder.tvItemArticleUnitPriceWithVat.setText(String.valueOf((ticketLine.getApplicable_sale_base_price() * (1 + ticketLine.getVat_fraction()))));
+        holder.tvItemArticleUnitPrice.setText(String.valueOf(ticketLine.getapplicated_sale_base_price()));
+        holder.tvItemArticleUnitPriceWithVat.setText(String.valueOf((ticketLine.getapplicated_sale_base_price() * (1 + ticketLine.getVat_fraction()))));
         holder.tvItemArticleQuantity.setText(String.valueOf(ticketLine.getArticle_quantity()));
-        holder.tvItemLineTotalAmount.setText(String.valueOf((ticketLine.getApplicable_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity()));
-        holder.tvItemLineIsInOffer.setText(String.valueOf(ticketLine.isIs_in_offer()));
+        holder.tvItemLineTotalAmount.setText(String.valueOf((ticketLine.getapplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity()));
+        holder.tvItemLineIsInOffer.setText(String.valueOf(ticketLine.issold_during_offer()));
         holder.itemView.setOnClickListener(v -> {
         });
     }

@@ -94,8 +94,8 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("applicable_sale_base_price")),
-                            cursor.getInt(cursor.getColumnIndexOrThrow("is_in_offer")) != 0
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("applicated_sale_base_price")),
+                            cursor.getInt(cursor.getColumnIndexOrThrow("sold_during_offer")) != 0
 
                     ),
                     rvTicketDetailLines.getAdapter().getItemCount()

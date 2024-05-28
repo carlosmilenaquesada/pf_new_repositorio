@@ -144,12 +144,7 @@ app.get('/sync/vats', (req, res) => {
 //POST #########################################################################
 
 app.post('/add/tickets', (req, res) => {
-    const tickets = req.body.tickets;
-
-    // Validar que sea un arreglo
-    if (!Array.isArray(tickets)) {
-        return res.status(400).send({ error: true, message: 'Datos de tickets incorrectos, se esperaba un arreglo' });
-    }
+    const tickets = req.body.tickets;  
 
     const query = 'INSERT INTO tickets (ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id) VALUES ?';
     const values = tickets.map(ticket => [
@@ -166,6 +161,31 @@ app.post('/add/tickets', (req, res) => {
           return res.status(500).send({ error: true, message: 'Error al insertar datos en la base de datos', details: err.message });
         }
         res.send({ error: false, data: result, message: 'Nuevos tickets agregados correctamente' });
+    });
+});
+
+
+app.post('/add/tickets_lines', (req, res) => {
+    const tickets_lines = req.body.tickets_lines;
+
+
+    const query = 'INSERT INTO tickets_lines (ticket_line_id, ticket_id, article_id, article_quantity, applicated_sale_base_price, vat_id, sold_during_offer) VALUES ?';
+    const values = tickets_lines.map(ticket_line => [
+        ticket_line.ticket_line_id,
+        ticket_line.ticket_id,
+        ticket_line.article_id,
+        ticket_line.article_quantity,
+        ticket_line.applicated_sale_base_price,
+        ticket_line.vat_id,
+        ticket_line.sold_during_offer
+    ]);
+
+    connection.query(query, [values], (err, result) => {
+        if (err) {
+          console.error('Error al insertar datos en la base de datos:', err);
+          return res.status(500).send({ error: true, message: 'Error al insertar datos en la base de datos', details: err.message });
+        }
+        res.send({ error: false, data: result, message: 'Nuevas líneas de tickets agregadas correctamente' });
     });
 });
 

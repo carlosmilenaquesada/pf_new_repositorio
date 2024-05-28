@@ -14,13 +14,13 @@ public class TicketLine implements Serializable {
     float vat_fraction;
     String vat_description;
     float article_quantity;
-    float applicable_sale_base_price;
-    boolean is_in_offer;
+    float applicated_sale_base_price;
+    boolean sold_during_offer;
 
     public TicketLine() {
     }
 
-    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String article_category_id, String family_name, String vat_id, float vat_fraction, String vat_description, float article_quantity, float applicable_sale_base_price, boolean is_in_offer) {
+    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String article_category_id, String family_name, String vat_id, float vat_fraction, String vat_description, float article_quantity, float applicated_sale_base_price, boolean sold_during_offer) {
         this.ticket_line_id = ticket_line_id;
         this.ticket_id = ticket_id;
         this.article_id = article_id;
@@ -31,8 +31,8 @@ public class TicketLine implements Serializable {
         this.vat_fraction = vat_fraction;
         this.vat_description = vat_description;
         this.article_quantity = article_quantity;
-        this.applicable_sale_base_price = applicable_sale_base_price;
-        this.is_in_offer = is_in_offer;
+        this.applicated_sale_base_price = applicated_sale_base_price;
+        this.sold_during_offer = sold_during_offer;
     }
 
     public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String article_category_id, String family_name, String vat_id, float vat_fraction, String vat_description, float article_quantity) {
@@ -128,20 +128,20 @@ public class TicketLine implements Serializable {
         this.article_quantity = article_quantity;
     }
 
-    public float getApplicable_sale_base_price() {
-        return applicable_sale_base_price;
+    public float getapplicated_sale_base_price() {
+        return applicated_sale_base_price;
     }
 
-    public void setApplicable_sale_base_price(float applicable_sale_base_price) {
-        this.applicable_sale_base_price = applicable_sale_base_price;
+    public void setapplicated_sale_base_price(float applicated_sale_base_price) {
+        this.applicated_sale_base_price = applicated_sale_base_price;
     }
 
-    public boolean isIs_in_offer() {
-        return is_in_offer;
+    public boolean issold_during_offer() {
+        return sold_during_offer;
     }
 
-    public void setIs_in_offer(boolean is_in_offer) {
-        this.is_in_offer = is_in_offer;
+    public void setsold_during_offer(boolean sold_during_offer) {
+        this.sold_during_offer = sold_during_offer;
     }
 
     @Override

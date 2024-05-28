@@ -24,9 +24,9 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //SQLite solo permite tipos INTEGER, REAL, TEXT, BLOB, NUMERIC y NULL,
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
-    public static final String NODE_SYNC = "http://192.168.0.4:3000/sync/";
-    public static final String NODE_ADD = "http://192.168.0.4:3000/add/";
-    private static final int DATABASE_VERSION = 52;
+    public static final String NODE_SYNC = "http://192.168.0.2:3000/sync/";
+    public static final String NODE_ADD = "http://192.168.0.2:3000/add/";
+    private static final int DATABASE_VERSION = 54;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_ARTICLES_CATEGORIES = "articles_categories";
@@ -42,7 +42,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public static final String TABLE_USERS = "users";
     public static final String TABLE_VATS = "vats";
 
-    public static final String TABLE_TICKETS_ADD_QUERY = "SELECT ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id from " + TABLE_TICKETS;
+    public static final String TABLE_TICKETS_ADD_QUERY = "SELECT ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id FROM " + TABLE_TICKETS;
+    public static final String TABLE_TICKETS_LINES_ADD_QUERY = "SELECT ticket_line_id, ticket_id, article_id, article_quantity, applicated_sale_base_price, vat_id, sold_during_offer FROM " + TABLE_TICKETS_LINES;
 
 
     private SqliteConnector(@Nullable Context context) {
@@ -134,8 +135,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "vat_fraction REAL NOT NULL, " +
                 "vat_description TEXT NOT NULL, " +
                 "article_quantity REAL NOT NULL, " +
-                "applicable_sale_base_price REAL NOT NULL, " +
-                "is_in_offer INTEGER NOT NULL " +
+                "applicated_sale_base_price REAL NOT NULL, " +
+                "sold_during_offer INTEGER NOT NULL " +
                 ")");
 
 
