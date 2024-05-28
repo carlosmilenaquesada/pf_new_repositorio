@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-05-2024 a las 21:20:08
+-- Tiempo de generación: 28-05-2024 a las 15:23:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -241,8 +241,12 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`ticket_id`, `sale_date`, `customer_tax_id`, `ticket_status_id`, `payment_method_id`) VALUES
-('asdf', '2024-05-31', 'A11223344', 'STAT001', 'PAYMET001'),
-('asdf2', '2024-05-31', 'A11223344', 'STAT001', 'PAYMET001');
+('1716840970073', '2024-05-27', NULL, 'paid', 'PAYMENT003'),
+('1716840976402', '2024-05-27', NULL, 'paid', 'PAYMENT002'),
+('1716840998879', '2024-05-27', NULL, 'paid', 'PAYMENT003'),
+('1716841011308', '2024-05-27', NULL, 'paid', 'PAYMENT003'),
+('1716841023134', '2024-05-27', NULL, 'processing', 'PAYMENT001'),
+('1716841032925', '2024-05-27', NULL, 'processing', 'PAYMENT001');
 
 -- --------------------------------------------------------
 
@@ -255,8 +259,8 @@ CREATE TABLE `tickets_lines` (
   `ticket_id` varchar(50) NOT NULL,
   `article_id` varchar(50) NOT NULL,
   `article_quantity` decimal(20,6) NOT NULL,
-  `purchase_base_price_at_sale_moment` decimal(20,6) NOT NULL,
-  `sale_base_price_at_sale_moment` decimal(20,6) NOT NULL,
+  `purchase_base_price_at_sale_moment` decimal(20,6) DEFAULT NULL,
+  `applicated_sale_base_price` decimal(20,6) NOT NULL,
   `vat_id` varchar(50) NOT NULL,
   `sold_during_offer` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -271,17 +275,6 @@ CREATE TABLE `tickets_status` (
   `ticket_status_id` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tickets_status`
---
-
-INSERT INTO `tickets_status` (`ticket_status_id`, `name`) VALUES
-('STAT001', 'processing'),
-('STAT002', 'paid'),
-('STAT003', 'reserved'),
-('STAT004', 'due'),
-('STAT005', 'cancelled');
 
 -- --------------------------------------------------------
 
@@ -387,7 +380,7 @@ ALTER TABLE `tickets`
 -- Indices de la tabla `tickets_lines`
 --
 ALTER TABLE `tickets_lines`
-  ADD PRIMARY KEY (`ticket_line_id`,`ticket_id`) USING BTREE;
+  ADD PRIMARY KEY (`ticket_line_id`);
 
 --
 -- Indices de la tabla `tickets_status`
@@ -428,19 +421,6 @@ ALTER TABLE `articles_categories`
 --
 ALTER TABLE `barcodes`
   ADD CONSTRAINT `barcodes_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`);
-
---
--- Filtros para la tabla `tickets`
---
-ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`customer_tax_id`) REFERENCES `customers_taxables` (`customer_tax_id`);
-
---
--- Filtros para la tabla `tickets_lines`
---
-ALTER TABLE `tickets_lines`
-  ADD CONSTRAINT `tickets_lines_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`),
-  ADD CONSTRAINT `tickets_lines_ibfk_2` FOREIGN KEY (`vat_id`) REFERENCES `vats` (`vat_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
