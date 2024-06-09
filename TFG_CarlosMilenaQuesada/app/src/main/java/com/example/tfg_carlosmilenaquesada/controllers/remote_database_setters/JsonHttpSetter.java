@@ -20,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+
 public class JsonHttpSetter {
 
     Context context;
@@ -33,7 +35,7 @@ public class JsonHttpSetter {
         this.query = query;
     }
 
-    public void setHttpFromJson() {
+    public void setHttpFromJson(){
         JSONArray jsonArray = new JSONArray();
         try {
             Cursor cursor = SqliteConnector.getInstance(context).getReadableDatabase().rawQuery(query, null);
@@ -82,27 +84,25 @@ public class JsonHttpSetter {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        try {
+                            SqliteConnector.getInstance(context).getReadableDatabase().execSQL("DELETE FROM " + table);
+                            Toast.makeText(context, "Cierre completado con éxito", Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Toast.makeText(context, "Error inesperado al realizar el proceso de cierre", Toast.LENGTH_LONG).show();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-                        String errorMessage = "";
-                        try {
-                            JSONObject errorJson = new JSONObject(error.networkResponse.data.toString());
-                            errorMessage = errorJson.optString("message", "Unknown error");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Error inesperado al realizar el proceso de cierre", Toast.LENGTH_LONG).show();
                     }
                 }
         );
 
 
         queue.add(jsonObjectRequest);
+
     }
 
 }
