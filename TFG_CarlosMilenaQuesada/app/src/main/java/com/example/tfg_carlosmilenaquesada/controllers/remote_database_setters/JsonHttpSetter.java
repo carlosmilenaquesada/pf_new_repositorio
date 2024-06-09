@@ -84,6 +84,7 @@ public class JsonHttpSetter {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        System.out.println("response: " + response);
                         try {
                             SqliteConnector.getInstance(context).getReadableDatabase().execSQL("DELETE FROM " + table);
                             Toast.makeText(context, "Cierre completado con éxito", Toast.LENGTH_LONG).show();
@@ -96,6 +97,7 @@ public class JsonHttpSetter {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(context, "Error inesperado al realizar el proceso de cierre", Toast.LENGTH_LONG).show();
+                        System.out.println(table + " " +error.networkResponse.statusCode);
                     }
                 }
         );

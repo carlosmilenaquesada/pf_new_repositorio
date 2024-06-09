@@ -144,16 +144,16 @@ app.get('/sync/vats', (req, res) => {
 //POST #########################################################################
 
 app.post('/add/tickets', (req, res) => {
-    const tickets = req.body.tickets;  
-    if (!Array.isArray(tickets)) {
-        return res.status(400).send({ error: true, message: 'Datos de tickets incorrectos'});
+    const _tickets = req.body.tickets;  
+    if (!Array.isArray(_tickets)) {
+        return res.status(401).send({ error: true, message: 'Datos de tickets incorrectos'});
     }
 
-    if (tickets.length === 0) {
-        return res.status(400).send({ error: true, message: 'No se proporcionaron tickets para insertar' });
+    if (_tickets.length === 0) {
+        return res.status(402).send({ error: true, message: 'No se proporcionaron tickets para insertar' });
     }
     const query = 'INSERT INTO tickets (ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id) VALUES ?';
-    const values = tickets.map(ticket => [
+    const values = _tickets.map(ticket => [
         ticket.ticket_id,
         ticket.sale_date,
         ticket.customer_tax_id,
@@ -172,18 +172,18 @@ app.post('/add/tickets', (req, res) => {
 
 
 app.post('/add/tickets_lines', (req, res) => {
-    const tickets_lines = req.body.tickets_lines;
+    const _ticketsLines = req.body.tickets_lines;
     
-    if (!Array.isArray(ticketsLines)) {
-        return res.status(400).send({ error: true, message: 'Datos de líneas de tickets incorrectos'});
+    if (!Array.isArray(_ticketsLines)) {
+        return res.status(401).send({ error: true, message: 'Datos de líneas de tickets incorrectos'});
     }
 
-    if (ticketsLines.length === 0) {
-        return res.status(400).send({ error: true, message: 'No se proporcionaron líneas de tickets para insertar' });
+    if (_ticketsLines.length === 0) {
+        return res.status(402).send({ error: true, message: 'No se proporcionaron líneas de tickets para insertar' });
     }
 
     const query = 'INSERT INTO tickets_lines (ticket_line_id, ticket_id, article_id, article_quantity, applicated_sale_base_price, vat_id, sold_during_offer) VALUES ?';
-    const values = tickets_lines.map(ticket_line => [
+    const values = _ticketsLines.map(ticket_line => [
         ticket_line.ticket_line_id,
         ticket_line.ticket_id,
         ticket_line.article_id,

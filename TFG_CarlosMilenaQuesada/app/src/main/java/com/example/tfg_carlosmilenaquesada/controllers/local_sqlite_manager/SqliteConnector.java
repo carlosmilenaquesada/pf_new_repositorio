@@ -28,7 +28,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
 
-    private static final int DATABASE_VERSION = 56;
+    private static final int DATABASE_VERSION = 58;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_ARTICLES_CATEGORIES = "articles_categories";
@@ -56,8 +56,6 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public static SqliteConnector getInstance(Context context) {
         if (sqliteConnector == null) {
             sqliteConnector = new SqliteConnector(context);
-            String ipServer = context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getString(SERVER_IP_ADDRESS, null);
-
         }
         return sqliteConnector;
     }
