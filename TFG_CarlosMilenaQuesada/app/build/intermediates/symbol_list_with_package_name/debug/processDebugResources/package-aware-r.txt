@@ -1377,6 +1377,9 @@ color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
+color colorAccent
+color colorPrimary
+color colorPrimaryLight
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -1423,6 +1426,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color gray
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color m3_appbar_overlay_color
@@ -3258,6 +3262,7 @@ id btCashWithdrawal
 id btCloseUpdateDropdownMenu
 id btCompleteCashPayment
 id btConfirmClosePointOfSale
+id btConfirmServer
 id btCreateNewCustomer
 id btCustomersManagement
 id btInitializeCardPayment
@@ -3396,6 +3401,7 @@ id etLegalZipCodeUpdate
 id etNameCreate
 id etNameUpdate
 id etPassword
+id etServerDirection
 id etTotal
 id etUserId
 id etndArticleQuantity
@@ -3700,6 +3706,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3998,6 +4005,7 @@ layout activity_reserved_tickets
 layout activity_sale
 layout activity_sales_loader
 layout activity_sales_management_menu
+layout activity_server_selection
 layout activity_show_and_modify_customers
 layout activiy_login
 layout custom_dialog

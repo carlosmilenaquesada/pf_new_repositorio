@@ -1,35 +1,25 @@
 package com.example.tfg_carlosmilenaquesada.views.loaders;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter.IS_CONNECTED;
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
+
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
-import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
-import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter;
 import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
-import com.example.tfg_carlosmilenaquesada.views.activities.MainMenuActivity;
 import com.example.tfg_carlosmilenaquesada.views.activities.SaleActivity;
 
 public class SalesLoaderActivity extends AppCompatActivity {
 
     ProgressBar pbSalesLoader;
-    JsonHttpGetter jsonHttpGetterArticles;
-    JsonHttpGetter jsonHttpGetterArticlesCategories;
-    JsonHttpGetter jsonHttpGetterArticlesFamilies;
-    JsonHttpGetter jsonHttpGetterPaymentMethods;
-    JsonHttpGetter jsonHttpGetterBarcodes;
-    JsonHttpGetter jsonHttpGetterCustomersTypes;
-    JsonHttpGetter jsonHttpGetterVats;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,54 +37,60 @@ public class SalesLoaderActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Thread threadArticles = new Thread(() -> {
-                    jsonHttpGetterArticles = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
-                });
-                threadArticles.start();
+                if (getSharedPreferences(SHARED_PREFS, MODE_PRIVATE).getBoolean(IS_CONNECTED, false)) {
+                    Thread threadArticles = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
+                    });
+                    threadArticles.start();
 
-                Thread threadArticlesCategories = new Thread(() -> {
-                    jsonHttpGetterArticlesCategories = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesCategories(SalesLoaderActivity.this);
-                });
-                threadArticlesCategories.start();
+                    Thread threadArticlesCategories = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterArticlesCategories(SalesLoaderActivity.this);
+                    });
+                    threadArticlesCategories.start();
 
-                Thread threadArticlesFamilies = new Thread(() -> {
-                    jsonHttpGetterArticlesFamilies = JsonHttpGetterInstances.getInstanceJsonHttpGetterArticlesFamilies(SalesLoaderActivity.this);
-                });
-                threadArticlesFamilies.start();
+                    Thread threadArticlesFamilies = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterArticlesFamilies(SalesLoaderActivity.this);
+                    });
+                    threadArticlesFamilies.start();
 
-                Thread threadBarcodes = new Thread(() -> {
-                    jsonHttpGetterBarcodes = JsonHttpGetterInstances.getInstanceJsonHttpGetterBarcodes(SalesLoaderActivity.this);
-                });
-                threadBarcodes.start();
 
-                Thread threadCustomersTypes = new Thread(() -> {
-                    jsonHttpGetterCustomersTypes = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
-                });
-                threadCustomersTypes.start();
+                    Thread threadPaymentMethod = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterPaymentMethods(SalesLoaderActivity.this);
+                    });
+                    threadPaymentMethod.start();
 
-                Thread threadVats = new Thread(() -> {
-                    jsonHttpGetterVats = JsonHttpGetterInstances.getInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
-                });
-                threadVats.start();
 
-                try {
-                    threadArticles.join();
-                    threadArticlesCategories.join();
-                    threadArticlesFamilies.join();
-                    threadBarcodes.join();
-                    threadCustomersTypes.join();
-                    threadVats.join();
+                    Thread threadBarcodes = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterBarcodes(SalesLoaderActivity.this);
+                    });
+                    threadBarcodes.start();
 
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    Thread threadCustomersTypes = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
+                    });
+                    threadCustomersTypes.start();
+
+                    Thread threadVats = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
+                    });
+                    threadVats.start();
+
+                    try {
+                        threadArticles.join();
+                        threadArticlesCategories.join();
+                        threadArticlesFamilies.join();
+                        threadPaymentMethod.join();
+                        threadBarcodes.join();
+                        threadCustomersTypes.join();
+                        threadVats.join();
+
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-
-
                 startActivity(new Intent(SalesLoaderActivity.this, SaleActivity.class));
             }
         }).start();
-
-
 
 
     }

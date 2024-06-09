@@ -1,8 +1,10 @@
 package com.example.tfg_carlosmilenaquesada.views.loaders;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter.IS_CONNECTED;
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
@@ -13,15 +15,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
 
-import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
-import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter;
 import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
 import com.example.tfg_carlosmilenaquesada.views.activities.LoginActiviy;
-import com.example.tfg_carlosmilenaquesada.views.activities.MainMenuActivity;
 
 public class LoginLoaderActivity extends AppCompatActivity {
     ProgressBar pbLoginLoader;
-    JsonHttpGetter jsonHttpGetterUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,7 @@ public class LoginLoaderActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                jsonHttpGetterUsers = JsonHttpGetterInstances.getInstanceJsonHttpGetterUsers(LoginLoaderActivity.this);
+                JsonHttpGetterInstances.createInstanceJsonHttpGetterUsers(LoginLoaderActivity.this);
                 startActivity(new Intent(LoginLoaderActivity.this, LoginActiviy.class));
 
             }
@@ -46,14 +44,5 @@ public class LoginLoaderActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-            if(jsonHttpGetterUsers != null){
-                startActivity(new Intent(LoginLoaderActivity.this, LoginActiviy.class));
-            }
-
-
-    }
 
 }

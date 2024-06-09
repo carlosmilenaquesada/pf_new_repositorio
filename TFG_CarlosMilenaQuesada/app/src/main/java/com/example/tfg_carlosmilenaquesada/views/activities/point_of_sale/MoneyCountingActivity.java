@@ -108,10 +108,8 @@ public class MoneyCountingActivity extends AppCompatActivity {
     public void decreaseUnit(View view) {
         TextView tv = (TextView) ((View) view.getParent()).findViewWithTag("quantity_tv");
         if (tv.getText().toString().isEmpty() || tv.getText().toString().equals("0")) {
-            System.out.println("vacio");
             tv.setText("0");
         } else {
-            System.out.println("no vacío");
             tv.setText(String.valueOf(Integer.parseInt(tv.getText().toString()) - 1));
         }
     }

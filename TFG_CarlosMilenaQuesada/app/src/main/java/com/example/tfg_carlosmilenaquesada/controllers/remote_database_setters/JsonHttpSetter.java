@@ -1,5 +1,8 @@
 package com.example.tfg_carlosmilenaquesada.controllers.remote_database_setters;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
+import static com.example.tfg_carlosmilenaquesada.views.activities.ServerSelectionActivity.SERVER_IP_ADDRESS;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.widget.Toast;
@@ -63,13 +66,13 @@ public class JsonHttpSetter {
             throw new RuntimeException(e);
         }
 
-
-        String url = SqliteConnector.NODE_ADD + table;
+        String url = "http://" + context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getString(SERVER_IP_ADDRESS, null) + ":3000/add/" + table;
         RequestQueue queue = Volley.newRequestQueue(context);
 
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(table, jsonArray);
+            System.out.println(jsonArray);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -79,18 +82,24 @@ public class JsonHttpSetter {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        System.out.println(response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println(error);
 
+                        String errorMessage = "";
+                        try {
+                            JSONObject errorJson = new JSONObject(error.networkResponse.data.toString());
+                            errorMessage = errorJson.optString("message", "Unknown error");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show();
                     }
                 }
         );
-
 
 
         queue.add(jsonObjectRequest);

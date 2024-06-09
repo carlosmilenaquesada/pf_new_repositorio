@@ -1,5 +1,8 @@
 package com.example.tfg_carlosmilenaquesada.views.loaders;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter.IS_CONNECTED;
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ProgressBar;
@@ -11,16 +14,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
-import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
-import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter;
 import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
-import com.example.tfg_carlosmilenaquesada.views.activities.LoginActiviy;
-import com.example.tfg_carlosmilenaquesada.views.activities.MainMenuActivity;
 import com.example.tfg_carlosmilenaquesada.views.activities.customers.CustomersManagementMenuActivity;
 
 public class CustomersLoaderActivity extends AppCompatActivity {
     ProgressBar pbCustomersLoader;
-    JsonHttpGetter jsonHttpGetterCustomers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,9 @@ public class CustomersLoaderActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                jsonHttpGetterCustomers = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomers(CustomersLoaderActivity.this);
+                if(getSharedPreferences(SHARED_PREFS, MODE_PRIVATE).getBoolean(IS_CONNECTED, false)){
+                    JsonHttpGetterInstances.createInstanceJsonHttpGetterCustomers(CustomersLoaderActivity.this);
+                }
                 startActivity(new Intent(CustomersLoaderActivity.this, CustomersManagementMenuActivity.class));
             }
         }.start();

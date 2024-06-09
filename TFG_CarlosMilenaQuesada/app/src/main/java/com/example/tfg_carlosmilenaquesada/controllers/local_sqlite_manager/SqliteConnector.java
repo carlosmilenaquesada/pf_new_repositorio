@@ -1,6 +1,9 @@
 package com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager;
 
 
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
+import static com.example.tfg_carlosmilenaquesada.views.activities.ServerSelectionActivity.SERVER_IP_ADDRESS;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -24,9 +27,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //SQLite solo permite tipos INTEGER, REAL, TEXT, BLOB, NUMERIC y NULL,
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
-    public static final String NODE_SYNC = "http://192.168.0.2:3000/sync/";
-    public static final String NODE_ADD = "http://192.168.0.2:3000/add/";
-    private static final int DATABASE_VERSION = 54;
+
+    private static final int DATABASE_VERSION = 56;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_ARTICLES_CATEGORIES = "articles_categories";
@@ -54,6 +56,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public static SqliteConnector getInstance(Context context) {
         if (sqliteConnector == null) {
             sqliteConnector = new SqliteConnector(context);
+            String ipServer = context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getString(SERVER_IP_ADDRESS, null);
+
         }
         return sqliteConnector;
     }
@@ -242,15 +246,6 @@ public class SqliteConnector extends SQLiteOpenHelper {
             }
         }
         return contentValues;
-    }
-
-
-    public String getUserPrivileges(String userId, String password) {
-        String[] selectionArgs = {userId, password};
-        Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_USERS + " where user_id = ? AND password = ?", selectionArgs);
-        String privileges = cursor.moveToNext() ? cursor.getString(2) : null;
-        cursor.close();
-        return privileges;
     }
 
 

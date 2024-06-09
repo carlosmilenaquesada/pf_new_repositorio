@@ -36,6 +36,8 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.volley)
     implementation(libs.recyclerview)
+    //librería de marterial
+    implementation(libs.material.v130)
     //implementación para usar la cámara como lector codigo barras
     implementation(libs.zxing.android.embedded)
     //Conversor gson

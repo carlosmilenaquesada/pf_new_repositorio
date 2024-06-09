@@ -145,6 +145,13 @@ public class SqliteCursorBuilder {
         return vatRatios;
     }
 
+    public String getUserPrivileges(String userId, String password) {
+        String[] selectionArgs = {userId, password};
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery("SELECT * FROM " + sqliteConnector.TABLE_USERS + " where user_id = ? AND password = ?", selectionArgs);
+        String privileges = cursor.moveToNext() ? cursor.getString(2) : null;
+        cursor.close();
+        return privileges;
+    }
 
     public float getTotalCashAmount(boolean onlyToday) {
         float totalCashAmount = 0f;

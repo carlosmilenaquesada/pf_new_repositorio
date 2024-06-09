@@ -7,6 +7,8 @@ import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manag
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TAXABLES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TYPES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_VATS;
+import static com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter.IS_CONNECTED;
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
 import static com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity.RESTORED_TICKET;
 
 
@@ -67,7 +69,6 @@ public class SaleActivity extends AppCompatActivity {
     Button btPayTicket;
     Button btReserveTicket;
     Button btBackFromSaleActivity;
-    JsonHttpGetter jsonHttpGetterCustomers;
     private Ticket ticket;
     ArrayList<String> customersTaxIds;
     int indexOfCurrentTicketLine;
@@ -164,9 +165,9 @@ public class SaleActivity extends AppCompatActivity {
                     new Thread() {
                         @Override
                         public void run() {
-
-                            jsonHttpGetterCustomers = JsonHttpGetterInstances.getInstanceJsonHttpGetterCustomers(SaleActivity.this);
-
+                            if (getSharedPreferences(SHARED_PREFS, MODE_PRIVATE).getBoolean(IS_CONNECTED, false)) {
+                                JsonHttpGetterInstances.createInstanceJsonHttpGetterCustomers(SaleActivity.this);
+                            }
                             String query = "SELECT customer_tax_id FROM " + TABLE_CUSTOMERS_TAXABLES;
 
                             Cursor cursor = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery(query, null);

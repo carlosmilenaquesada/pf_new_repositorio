@@ -17,9 +17,9 @@ public class JsonHttpGetterInstances {
     private static JsonHttpGetter jsonHttpGetterCustomersTypes;
     private static JsonHttpGetter jsonHttpGetterVats;
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterUsers(Context context) {
-        if (jsonHttpGetterUsers == null) {
+    public static void createInstanceJsonHttpGetterUsers(Context context) {
 
+        if (jsonHttpGetterUsers == null) {
             jsonHttpGetterUsers = new JsonHttpGetter(context, SqliteConnector.TABLE_USERS);
             jsonHttpGetterUsers.getJsonFromHttp();
             try {
@@ -28,10 +28,9 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterUsers;
     }
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterArticles(Context context) {
+    public static void createInstanceJsonHttpGetterArticles(Context context) {
         if (jsonHttpGetterArticles == null) {
             jsonHttpGetterArticles = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLES);
             jsonHttpGetterArticles.getJsonFromHttp();
@@ -41,10 +40,9 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterArticles;
     }
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterArticlesCategories(Context context) {
+    public static void createInstanceJsonHttpGetterArticlesCategories(Context context) {
         if (jsonHttpGetterArticlesCategories == null) {
             jsonHttpGetterArticlesCategories = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLES_CATEGORIES);
             jsonHttpGetterArticlesCategories.getJsonFromHttp();
@@ -54,10 +52,10 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterArticlesCategories;
+
     }
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterArticlesFamilies(Context context) {
+    public static void createInstanceJsonHttpGetterArticlesFamilies(Context context) {
         if (jsonHttpGetterArticlesFamilies == null) {
             jsonHttpGetterArticlesFamilies = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLES_FAMILIES);
             jsonHttpGetterArticlesFamilies.getJsonFromHttp();
@@ -67,11 +65,11 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterArticlesFamilies;
+
     }
 
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterBarcodes(Context context) {
+    public static void createInstanceJsonHttpGetterBarcodes(Context context) {
         if (jsonHttpGetterBarcodes == null) {
             jsonHttpGetterBarcodes = new JsonHttpGetter(context, SqliteConnector.TABLE_BARCODES);
             jsonHttpGetterBarcodes.getJsonFromHttp();
@@ -81,10 +79,9 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterBarcodes;
     }
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterCustomers(Context context) {
+    public static void createInstanceJsonHttpGetterCustomers(Context context) {
         if (jsonHttpGetterCustomers == null) {
             jsonHttpGetterCustomers = new JsonHttpGetter(context, SqliteConnector.TABLE_CUSTOMERS_TAXABLES);
             jsonHttpGetterCustomers.getJsonFromHttp();
@@ -94,10 +91,10 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterCustomers;
+
     }
 
-    public static JsonHttpGetter getInstanceJsonHttpGetterCustomersTypes(Context context) {
+    public static void createInstanceJsonHttpGetterCustomersTypes(Context context) {
         if (jsonHttpGetterCustomersTypes == null) {
             jsonHttpGetterCustomersTypes = new JsonHttpGetter(context, SqliteConnector.TABLE_CUSTOMERS_TYPES);
             jsonHttpGetterCustomersTypes.getJsonFromHttp();
@@ -107,9 +104,9 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterCustomersTypes;
     }
-    public static JsonHttpGetter getInstanceJsonHttpGetterPaymentMethods(Context context) {
+
+    public static void createInstanceJsonHttpGetterPaymentMethods(Context context) {
         if (jsonHttpGetterPaymentMethods == null) {
             jsonHttpGetterPaymentMethods = new JsonHttpGetter(context, SqliteConnector.TABLE_PAYMENT_METHODS);
             jsonHttpGetterPaymentMethods.getJsonFromHttp();
@@ -119,12 +116,11 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterPaymentMethods;
+
     }
 
 
-
-    public static JsonHttpGetter getInstanceJsonHttpGetterVats(Context context) {
+    public static void createInstanceJsonHttpGetterVats(Context context) {
         if (jsonHttpGetterVats == null) {
             jsonHttpGetterVats = new JsonHttpGetter(context, SqliteConnector.TABLE_VATS);
             jsonHttpGetterVats.getJsonFromHttp();
@@ -134,6 +130,6 @@ public class JsonHttpGetterInstances {
                 throw new RuntimeException(e);
             }
         }
-        return jsonHttpGetterVats;
+
     }
 }

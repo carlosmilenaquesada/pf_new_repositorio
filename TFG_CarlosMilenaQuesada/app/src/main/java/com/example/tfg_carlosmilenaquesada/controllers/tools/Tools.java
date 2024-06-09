@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public class Tools {
-
+    public static final String SHARED_PREFS = "com.example.tfg_carlosmilenaquesada.views.activities.loginactiviy.shared_prefs";
     public static ContentValues getContentValuesFromCustomer(Customer customer) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("customer_tax_id", customer.getCustomer_tax_id());

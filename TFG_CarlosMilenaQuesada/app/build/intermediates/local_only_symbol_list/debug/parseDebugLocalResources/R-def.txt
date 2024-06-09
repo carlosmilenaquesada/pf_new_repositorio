@@ -1,6 +1,10 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color colorAccent
+color colorPrimary
+color colorPrimaryLight
+color gray
 color white
 drawable billete100e
 drawable billete10e
@@ -69,6 +73,7 @@ id btCashWithdrawal
 id btCloseUpdateDropdownMenu
 id btCompleteCashPayment
 id btConfirmClosePointOfSale
+id btConfirmServer
 id btCreateNewCustomer
 id btCustomersManagement
 id btInitializeCardPayment
@@ -125,6 +130,7 @@ id etLegalZipCodeUpdate
 id etNameCreate
 id etNameUpdate
 id etPassword
+id etServerDirection
 id etTotal
 id etUserId
 id etndArticleQuantity
@@ -157,6 +163,7 @@ id rvTicketsInReserve
 id scrollView2
 id scrollView3
 id spCustomersTypes
+id textView
 id tlSalesByPaymentMethod
 id tlSalesByVat
 id tlSalesRatioByFamily
@@ -280,6 +287,7 @@ layout activity_reserved_tickets
 layout activity_sale
 layout activity_sales_loader
 layout activity_sales_management_menu
+layout activity_server_selection
 layout activity_show_and_modify_customers
 layout activiy_login
 layout item_layout_customer

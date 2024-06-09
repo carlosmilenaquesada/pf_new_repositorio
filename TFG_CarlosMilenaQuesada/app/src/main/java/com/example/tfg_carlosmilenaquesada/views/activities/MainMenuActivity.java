@@ -1,5 +1,7 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,7 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        sharedPreferences = getSharedPreferences(LoginActiviy.SHARED_PREFS, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String userId = sharedPreferences.getString(LoginActiviy.USER_ID, null);
         String userPassword = sharedPreferences.getString(LoginActiviy.USER_PASSWORD, null);
         String userPrivileges = sharedPreferences.getString(LoginActiviy.USER_PRIVILEGES, null);

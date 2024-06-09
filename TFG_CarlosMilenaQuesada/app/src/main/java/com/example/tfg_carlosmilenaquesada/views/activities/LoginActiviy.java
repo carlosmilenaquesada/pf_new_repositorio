@@ -3,6 +3,8 @@ package com.example.tfg_carlosmilenaquesada.views.activities;
 
 
 
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,16 +24,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
+import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteCursorBuilder;
 
 import java.sql.SQLOutput;
 
 
 public class LoginActiviy extends AppCompatActivity {
-    SharedPreferences sharedpreferences;
+
     public static final String USER_ID = "com.example.tfg_carlosmilenaquesada.views.activities.loginactiviy.user_id";
     public static final String USER_PASSWORD = "com.example.tfg_carlosmilenaquesada.views.activities.loginactiviy.user_password";
     public static final String USER_PRIVILEGES = "com.example.tfg_carlosmilenaquesada.views.activities.loginactiviy.user_privileges";
-    public static final String SHARED_PREFS = "com.example.tfg_carlosmilenaquesada.views.activities.loginactiviy.shared_prefs";
+
+
     EditText etUserId;
     EditText etPassword;
     Button btLogOn;
@@ -48,13 +52,8 @@ public class LoginActiviy extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
-
-
-
-
-
+        SharedPreferences sharedpreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         etUserId = findViewById(R.id.etUserId);
         etPassword = findViewById(R.id.etPassword);
         etUserId.setText("super");
@@ -65,10 +64,11 @@ public class LoginActiviy extends AppCompatActivity {
                 Toast.makeText(LoginActiviy.this, "Debe introducir usuario y password", Toast.LENGTH_LONG).show();
                 return;
             }
+
             try {
                 String userId = etUserId.getText().toString();
                 String userPassword = etPassword.getText().toString();
-                String userPrivileges = SqliteConnector.getInstance(getApplication()).getUserPrivileges(userId, userPassword);
+                String userPrivileges = new SqliteCursorBuilder(this).getUserPrivileges(userId, userPassword);
                 if (userPrivileges == null) {
                     Toast.makeText(LoginActiviy.this, "Usuario No encontrado", Toast.LENGTH_LONG).show();
                     return;
