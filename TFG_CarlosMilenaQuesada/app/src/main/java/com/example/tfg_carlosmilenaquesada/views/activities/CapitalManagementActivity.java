@@ -33,7 +33,6 @@ public class CapitalManagementActivity extends AppCompatActivity {
         btCashIncome = findViewById(R.id.btCashIncome);
         btCashWithdrawal = findViewById(R.id.btCashWithdrawal);
 
-        btBack = findViewById(R.id.btBack);
 
         btCashIncome.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -144,7 +144,6 @@ public class SaleActivity extends AppCompatActivity {
         new ItemTouchHelper(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getSimpleCallback()).attachToRecyclerView(rvArticlesOnTicket);
         btPayTicket = findViewById(R.id.btPayTicket);
         btReserveTicket = findViewById(R.id.btReserveTicket);
-        btBackFromSaleActivity = findViewById(R.id.btBackFromSaleActivity);
         if (tvTicketTotalAmount.getText().toString().isEmpty()) {
             tvTicketTotalAmount.setText("0.00");
         }
@@ -339,17 +338,11 @@ public class SaleActivity extends AppCompatActivity {
                         "ticket_id = ?",
                         new String[]{ticket.getTicket_id()}
                 );
-                finish();
-                startActivity(getIntent());
-            }
-        });
 
-        btBackFromSaleActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 startActivity(new Intent(SaleActivity.this, MainMenuActivity.class));
             }
         });
+
 
     }
 

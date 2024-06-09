@@ -177,6 +177,7 @@
                 android:id="@+id/btApplyCustomerUpdate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="Aplicar cambios" />
 
@@ -184,16 +185,11 @@
                 android:id="@+id/btCloseUpdateDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="Terminar actualización" />
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btBackFromAllCustomersActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volver" />
 
 </LinearLayout>

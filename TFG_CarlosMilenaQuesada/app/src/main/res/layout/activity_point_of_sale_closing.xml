@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_margin="10dp"
     android:background="#EDF2FB"
     android:orientation="vertical"
     tools:context=".views.activities.point_of_sale.PointOfSaleClosingActivity">
@@ -559,10 +560,11 @@
 
     <Button
         android:id="@+id/btConfirmClosePointOfSale"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="Realizar cierre"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

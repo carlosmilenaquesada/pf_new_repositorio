@@ -28,7 +28,6 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
     public static final String RESTORED_TICKET = "com.example.tfg_carlosmilenaquesada.views.activities.tickets.reservedticketsactivity.restored_ticket";
     RecyclerView rvTicketsInReserve;
     RecyclerView rvTicketDetailLines;
-    Button btBackFromReservedTicketsActivity;
     Button btRestoreTicket;
 
     Ticket rescuedTicket;
@@ -46,7 +45,6 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
         });
         rvTicketsInReserve = findViewById(R.id.rvTicketsInReserve);
         rvTicketDetailLines = findViewById(R.id.rvTicketDetailLines);
-        btBackFromReservedTicketsActivity = findViewById(R.id.btBackFromReservedTicketsActivity);
         btRestoreTicket = findViewById(R.id.btRestoreTicket);
         rvTicketsInReserve.setLayoutManager(new LinearLayoutManager(this));
         rvTicketsInReserve.setAdapter(new TicketAdapter(this));
@@ -71,12 +69,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
                     rvTicketsInReserve.getAdapter().getItemCount()
             );
         }
-        btBackFromReservedTicketsActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ReservedTicketsActivity.this, SalesManagementMenuActivity.class));
-            }
-        });
+
         btRestoreTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

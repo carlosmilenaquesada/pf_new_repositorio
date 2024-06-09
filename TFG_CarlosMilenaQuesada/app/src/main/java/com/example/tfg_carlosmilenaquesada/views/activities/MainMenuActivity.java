@@ -40,24 +40,11 @@ public class MainMenuActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String userId = sharedPreferences.getString(LoginActiviy.USER_ID, null);
         String userPassword = sharedPreferences.getString(LoginActiviy.USER_PASSWORD, null);
-        String userPrivileges = sharedPreferences.getString(LoginActiviy.USER_PRIVILEGES, null);
-        if (userId == null || userPassword == null || userPrivileges == null) {
+        if (userId == null || userPassword == null) {
             Toast.makeText(MainMenuActivity.this, "No tiene permiso para acceder a esta sección", Toast.LENGTH_LONG).show();
             return;
         }
-        switch (userPrivileges) {
-            case "basic":
-                findViewById(R.id.btSalesManagement).setVisibility(View.GONE);
-                findViewById(R.id.btCapitalManagement).setVisibility(View.GONE);
-                findViewById(R.id.btCustomersManagement).setVisibility(View.GONE);
-                break;
-            case "manager":
-                findViewById(R.id.btSalesManagement).setVisibility(View.GONE);
-                findViewById(R.id.btCapitalManagement).setVisibility(View.GONE);
-                break;
-            case "super":
-                break;
-        }
+
         ((TextView) findViewById(R.id.tvGreetingUser)).setText("¡Hola, " + userId + "!");
 
         findViewById(R.id.btNewSale).setOnClickListener(v -> startActivity(new Intent(MainMenuActivity.this, SalesLoaderActivity.class)));

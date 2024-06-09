@@ -27,7 +27,6 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
 
     RecyclerView rvAllTickets;
     RecyclerView rvTicketDetailLines;
-    Button btBackFromAllTicketsActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
         });
         rvAllTickets = findViewById(R.id.rvAllTickets);
         rvTicketDetailLines = findViewById(R.id.rvTicketDetailLines);
-        btBackFromAllTicketsActivity = findViewById(R.id.btBackFromAllTicketsActivity);
         rvAllTickets.setLayoutManager(new LinearLayoutManager(this));
         rvAllTickets.setAdapter(new TicketAdapter(this));
         rvTicketDetailLines.setLayoutManager(new LinearLayoutManager(this));
@@ -65,12 +63,7 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
                     rvAllTickets.getAdapter().getItemCount()
             );
         }
-        btBackFromAllTicketsActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AllTicketsActivity.this, SalesManagementMenuActivity.class));
-            }
-        });
+
 
     }
 

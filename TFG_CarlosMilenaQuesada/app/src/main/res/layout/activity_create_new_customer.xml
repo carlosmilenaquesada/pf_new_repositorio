@@ -5,8 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
-    tools:context=".views.activities.customers.CreateNewCustomerActivity">  
+    tools:context=".views.activities.customers.CreateNewCustomerActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -171,6 +172,7 @@
                 android:id="@+id/btApplyCustomerCreate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="Crear cliente" />
 
@@ -178,19 +180,13 @@
                 android:id="@+id/btWipeFieldCustomerCreate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="Limpiar" />
 
-            <Button
-                android:id="@+id/btBackFromCreateNewCustomerActivity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Volver" />
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

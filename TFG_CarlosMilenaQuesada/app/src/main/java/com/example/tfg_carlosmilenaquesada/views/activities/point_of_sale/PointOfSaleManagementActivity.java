@@ -39,7 +39,6 @@ public class PointOfSaleManagementActivity extends AppCompatActivity {
         });
         btPointOfSaleAudit = findViewById(R.id.btPointOfSaleAudit);
         btMoneyCounting = findViewById(R.id.btMoneyCounting);
-        btBack = findViewById(R.id.btBack);
 
         btPointOfSaleAudit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +56,7 @@ public class PointOfSaleManagementActivity extends AppCompatActivity {
             }
         });
 
-        btBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PointOfSaleManagementActivity.this, MainMenuActivity.class));
-            }
-        });
+
 
     }
 }

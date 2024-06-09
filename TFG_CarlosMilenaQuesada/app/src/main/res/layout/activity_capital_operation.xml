@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".views.activities.CapitalOperationActivity">
 
@@ -87,11 +88,5 @@
             android:layout_weight="1"
             android:text="Aplicar" />
 
-        <Button
-            android:id="@+id/btBack"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Volver" />
     </LinearLayout>
 </LinearLayout>

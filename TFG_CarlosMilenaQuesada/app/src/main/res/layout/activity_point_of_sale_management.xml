@@ -20,9 +20,4 @@
         android:layout_height="wrap_content"
         android:text="Arqueo Z" />
 
-    <Button
-        android:id="@+id/btBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver" />
 </LinearLayout>

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".views.activities.MainMenuActivity">
 
@@ -12,7 +13,8 @@
         android:id="@+id/tvGreetingUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="¡Hola, usuario!" />
+        android:text="¡Hola, usuario!"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/btNewSale"

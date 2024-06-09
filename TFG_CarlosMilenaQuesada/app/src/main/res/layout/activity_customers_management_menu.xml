@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".views.activities.customers.CustomersManagementMenuActivity">
 
@@ -20,9 +21,4 @@
         android:layout_height="wrap_content"
         android:text="Crear un nuevo cliente" />
 
-    <Button
-        android:id="@+id/btBackFromCustomersManagementMenuActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver" />
 </LinearLayout>

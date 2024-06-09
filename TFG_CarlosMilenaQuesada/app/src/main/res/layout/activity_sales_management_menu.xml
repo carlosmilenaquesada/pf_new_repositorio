@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".views.activities.SalesManagementMenuActivity">
 
@@ -13,11 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mostrar tickets en reserva" />
+
     <Button
         android:id="@+id/btShowAllTickets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mostrar todos los tickets" />
+
     <Button
         android:id="@+id/btBackFromSaleManagementMenuActivity"
         android:layout_width="match_parent"

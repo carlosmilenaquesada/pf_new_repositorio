@@ -35,8 +35,6 @@ public class CapitalOperationActivity extends AppCompatActivity {
 
     Button btApply;
 
-    Button btBack;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +59,6 @@ public class CapitalOperationActivity extends AppCompatActivity {
         etndOperationAmount = findViewById(R.id.etndOperationAmount);
         etDescription = findViewById(R.id.etDescription);
         btApply = findViewById(R.id.btApply);
-        btBack = findViewById(R.id.btBack);
 
         tvOperationType.setText(capitalOperationType);
         etndOperationAmount.setTextColor(amountSign.equals("-") ? Color.RED : Color.BLUE);
@@ -100,12 +97,7 @@ public class CapitalOperationActivity extends AppCompatActivity {
                 }
             }
         });
-        btBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
     }
 }

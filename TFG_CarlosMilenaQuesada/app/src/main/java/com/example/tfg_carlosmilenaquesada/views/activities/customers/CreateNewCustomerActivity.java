@@ -53,7 +53,6 @@ public class CreateNewCustomerActivity extends AppCompatActivity {
         etLegalZipCodeCreate = findViewById(R.id.etLegalZipCodeCreate);
         btApplyCustomerCreate = findViewById(R.id.btApplyCustomerCreate);
         btWipeFieldCustomerCreate = findViewById(R.id.btWipeFieldCustomerCreate);
-        btBackFromCreateNewCustomerActivity = findViewById(R.id.btBackFromCreateNewCustomerActivity);
 
         btApplyCustomerCreate.setOnClickListener(new View.OnClickListener() {
             @Override

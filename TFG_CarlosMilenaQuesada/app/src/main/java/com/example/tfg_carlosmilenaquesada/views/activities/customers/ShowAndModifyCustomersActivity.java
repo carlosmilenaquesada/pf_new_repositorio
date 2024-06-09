@@ -74,8 +74,6 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
         btCloseUpdateDropdownMenu = findViewById(R.id.btCloseUpdateDropdownMenu);
 
 
-        btBackFromAllCustomersActivity = findViewById(R.id.btBackFromAllCustomersActivity);
-
         new ItemTouchHelper(((CustomerAdapter) rvAllCustomers.getAdapter()).getSimpleCallback()).attachToRecyclerView(rvAllCustomers);
         Cursor cursor = SqliteConnector.getInstance(this).getReadableDatabase().rawQuery("SELECT * FROM " + SqliteConnector.TABLE_CUSTOMERS_TAXABLES, null);
         while (cursor.moveToNext()) {

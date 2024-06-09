@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <LinearLayout
@@ -88,6 +89,7 @@
             android:hint="Estado del ticket"
             android:textColorHint="#546E7A" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".views.activities.PaymentActivity">
 
@@ -56,6 +57,7 @@
             android:textSize="24sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,53 +81,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btCalculateChange"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Calcular cambio" />
 
         <Button
             android:id="@+id/btResetCashPaymentForm"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Borrar valores" />
 
         <Button
             android:id="@+id/btCompleteCashPayment"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Realizar cobro" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/darker_gray" />
-    <TextView
-        android:id="@+id/tvCardPaymentHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pago con tarjeta"
-        android:textAlignment="center" />
-
-    <Button
-        android:id="@+id/btInitializeCardPayment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Inicializar pago tarjeta" />
-
-    <Button
-        android:id="@+id/btBackFromPaymentActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver" />
 
 </LinearLayout>

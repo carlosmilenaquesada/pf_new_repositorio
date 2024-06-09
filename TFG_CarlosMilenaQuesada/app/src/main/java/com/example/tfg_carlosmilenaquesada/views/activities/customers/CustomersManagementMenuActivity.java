@@ -30,7 +30,6 @@ public class CustomersManagementMenuActivity extends AppCompatActivity {
         });
         btShowAndModifyCustomers = findViewById(R.id.btShowAndModifyCustomers);
         btCreateNewCustomer = findViewById(R.id.btCreateNewCustomer);
-        btBackFromCustomersManagementMenuActivity = findViewById(R.id.btBackFromCustomersManagementMenuActivity);
         btShowAndModifyCustomers.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".views.activities.SaleActivity">
 
@@ -43,6 +44,12 @@
         android:minHeight="48dp"
         android:textColorHint="#546E7A" />
 
+    <Button
+        android:id="@+id/btOpenScanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scannear artículo" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,8 +57,9 @@
 
         <EditText
             android:id="@+id/etndArticleQuantity"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:autofillHints=""
             android:hint="Introducir cantidad"
             android:inputType="number|numberDecimal|numberSigned"
@@ -61,8 +69,9 @@
 
         <EditText
             android:id="@+id/etArticleCode"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:autofillHints=""
             android:hint="Introducir código"
             android:inputType="text"
@@ -70,13 +79,6 @@
             android:text="COD000001"
             android:textColorHint="#546E7A" />
 
-
-        <Button
-            android:id="@+id/btOpenScanner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="Scanner" />
 
     </LinearLayout>
 
@@ -89,11 +91,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvArticlesOnTicket"
         android:layout_width="match_parent"
-        android:layout_height="316dp" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -101,13 +106,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Total" />
+            android:text="Total"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvTicketTotalAmount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -122,11 +129,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reservar" />
-    <Button
-        android:id="@+id/btBackFromSaleActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver" />
 
 
 </LinearLayout>

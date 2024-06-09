@@ -68,15 +68,14 @@ public class LoginActiviy extends AppCompatActivity {
             try {
                 String userId = etUserId.getText().toString();
                 String userPassword = etPassword.getText().toString();
-                String userPrivileges = new SqliteCursorBuilder(this).getUserPrivileges(userId, userPassword);
-                if (userPrivileges == null) {
+                boolean userExists = new SqliteCursorBuilder(this).getUserPrivileges(userId, userPassword);
+                if (!userExists) {
                     Toast.makeText(LoginActiviy.this, "Usuario No encontrado", Toast.LENGTH_LONG).show();
                     return;
                 }
                 Toast.makeText(LoginActiviy.this, "Usuario encontrado", Toast.LENGTH_LONG).show();
                 sharedpreferences.edit().putString(USER_ID, userId).apply();
                 sharedpreferences.edit().putString(USER_PASSWORD, userPassword).apply();
-                sharedpreferences.edit().putString(USER_PRIVILEGES, userPrivileges).apply();
                 startActivity(new Intent(LoginActiviy.this, MainMenuActivity.class));
             } catch (Exception ex) {
                 Toast.makeText(LoginActiviy.this, ex.toString(), Toast.LENGTH_LONG).show();
