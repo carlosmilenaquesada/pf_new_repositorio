@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2024 a las 15:23:49
+-- Tiempo de generación: 09-06-2024 a las 22:48:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -236,18 +236,6 @@ CREATE TABLE `tickets` (
   `payment_method_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `tickets`
---
-
-INSERT INTO `tickets` (`ticket_id`, `sale_date`, `customer_tax_id`, `ticket_status_id`, `payment_method_id`) VALUES
-('1716840970073', '2024-05-27', NULL, 'paid', 'PAYMENT003'),
-('1716840976402', '2024-05-27', NULL, 'paid', 'PAYMENT002'),
-('1716840998879', '2024-05-27', NULL, 'paid', 'PAYMENT003'),
-('1716841011308', '2024-05-27', NULL, 'paid', 'PAYMENT003'),
-('1716841023134', '2024-05-27', NULL, 'processing', 'PAYMENT001'),
-('1716841032925', '2024-05-27', NULL, 'processing', 'PAYMENT001');
-
 -- --------------------------------------------------------
 
 --
@@ -284,20 +272,15 @@ CREATE TABLE `tickets_status` (
 
 CREATE TABLE `users` (
   `user_id` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `privileges` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`user_id`, `password`, `privileges`) VALUES
-('anonimos', 'anonimos', 'basic'),
-('basic', 'basic', 'basic'),
-('carlos', 'carlos', 'admin'),
-('manager', 'manager', 'manager'),
-('super', 'super', 'super');
+INSERT INTO `users` (`user_id`, `password`) VALUES
+('super', 'super');
 
 -- --------------------------------------------------------
 
@@ -421,6 +404,19 @@ ALTER TABLE `articles_categories`
 --
 ALTER TABLE `barcodes`
   ADD CONSTRAINT `barcodes_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`);
+
+--
+-- Filtros para la tabla `tickets`
+--
+ALTER TABLE `tickets`
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`customer_tax_id`) REFERENCES `customers_taxables` (`customer_tax_id`);
+
+--
+-- Filtros para la tabla `tickets_lines`
+--
+ALTER TABLE `tickets_lines`
+  ADD CONSTRAINT `tickets_lines_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`),
+  ADD CONSTRAINT `tickets_lines_ibfk_2` FOREIGN KEY (`vat_id`) REFERENCES `vats` (`vat_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
