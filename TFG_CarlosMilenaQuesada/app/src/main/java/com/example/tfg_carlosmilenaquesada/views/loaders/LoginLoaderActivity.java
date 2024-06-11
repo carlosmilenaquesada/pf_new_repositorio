@@ -5,6 +5,7 @@ import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +18,7 @@ import com.example.tfg_carlosmilenaquesada.R;
 
 import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
 import com.example.tfg_carlosmilenaquesada.views.activities.LoginActiviy;
+import com.example.tfg_carlosmilenaquesada.views.activities.ServerSelectionActivity;
 
 public class LoginLoaderActivity extends AppCompatActivity {
     ProgressBar pbLoginLoader;
@@ -36,13 +38,27 @@ public class LoginLoaderActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
+                System.out.println("1");
                 JsonHttpGetterInstances.createInstanceJsonHttpGetterUsers(LoginLoaderActivity.this);
                 startActivity(new Intent(LoginLoaderActivity.this, LoginActiviy.class));
+
 
             }
         }.start();
 
     }
 
+    @Override
+    protected void onRestart() {
+        System.out.println("2");
+        super.onRestart();
+        startActivity(new Intent(LoginLoaderActivity.this, ServerSelectionActivity.class));
+    }
 
+    @Override
+    protected void onStop() {
+        System.out.println("3");
+        super.onStop();
+        pbLoginLoader.setVisibility(View.GONE);
+    }
 }

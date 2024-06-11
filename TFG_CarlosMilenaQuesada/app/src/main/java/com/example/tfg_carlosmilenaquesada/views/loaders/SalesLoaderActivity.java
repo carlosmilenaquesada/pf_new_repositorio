@@ -5,6 +5,7 @@ import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
+import com.example.tfg_carlosmilenaquesada.views.activities.MainMenuActivity;
 import com.example.tfg_carlosmilenaquesada.views.activities.SaleActivity;
 
 public class SalesLoaderActivity extends AppCompatActivity {
@@ -94,5 +96,16 @@ public class SalesLoaderActivity extends AppCompatActivity {
 
 
     }
+    protected void onRestart() {
+        System.out.println("2");
+        super.onRestart();
+        startActivity(new Intent(SalesLoaderActivity.this, MainMenuActivity.class));
+    }
 
+    @Override
+    protected void onStop() {
+        System.out.println("3");
+        super.onStop();
+        pbSalesLoader.setVisibility(View.GONE);
+    }
 }

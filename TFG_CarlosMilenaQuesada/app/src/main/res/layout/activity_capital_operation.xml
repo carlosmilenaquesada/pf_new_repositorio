@@ -19,13 +19,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Operación" />
+            android:text="Operación"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvOperationType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="2" />
 
     </LinearLayout>
 
@@ -39,13 +40,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Importe" />
+            android:text="Importe"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etndOperationAmount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:ems="10"
             android:hint="Introduce el importe"
             android:inputType="numberDecimal"
@@ -62,13 +64,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Descripción" />
+            android:text="Descripción"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:ems="10"
             android:hint="Introduce una descripción"
             android:inputType="text"
@@ -76,17 +79,15 @@
             android:singleLine="false" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btApply"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:text="Aplicar" />
 
-        <Button
-            android:id="@+id/btApply"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Aplicar" />
-
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCapitalOperations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

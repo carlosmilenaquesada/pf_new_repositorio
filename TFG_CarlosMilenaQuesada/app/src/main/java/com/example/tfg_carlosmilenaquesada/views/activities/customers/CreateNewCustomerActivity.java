@@ -31,7 +31,6 @@ public class CreateNewCustomerActivity extends AppCompatActivity {
     EditText etLegalZipCodeCreate;
     Button btApplyCustomerCreate;
     Button btWipeFieldCustomerCreate;
-    Button btBackFromCreateNewCustomerActivity;
 
 
     @Override
@@ -102,11 +101,6 @@ public class CreateNewCustomerActivity extends AppCompatActivity {
 
             }
         });
-        btBackFromCreateNewCustomerActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CreateNewCustomerActivity.this, CustomersManagementMenuActivity.class));
-            }
-        });
+
     }
 }

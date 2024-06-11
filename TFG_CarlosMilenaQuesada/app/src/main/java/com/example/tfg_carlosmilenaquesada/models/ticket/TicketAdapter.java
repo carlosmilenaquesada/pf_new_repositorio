@@ -39,6 +39,15 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
                 removeTicket(position);
                 ((TicketDetailInterface) context).wipeTicketDetails();
             }
+
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                if (!ticketList.get(viewHolder.getBindingAdapterPosition()).getTicket_status_id().equals("reserved")) {
+                    return makeMovementFlags(0, 0);
+                }
+
+                return super.getMovementFlags(recyclerView, viewHolder);
+            }
         };
     }
 
@@ -59,7 +68,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
         holder.tvItemTicketPaymentMethod.setText(ticket.getPayment_method_id());
         holder.itemView.setOnClickListener(v -> {
             ((TicketDetailInterface) context).showTicketDetails(ticket.getTicket_id());
-            if(context instanceof TicketRescueInterface){
+            if (context instanceof TicketRescueInterface) {
                 ((TicketRescueInterface) context).rescueTicket(ticket);
             }
         });
@@ -82,13 +91,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
         int deleteResultCount = SqliteConnector.getInstance(context).getReadableDatabase().delete(
                 SqliteConnector.TABLE_TICKETS,
                 "ticket_id=?",
+
                 new String[]{ticketList.get(position).getTicket_id()
                 }
         );
         if (deleteResultCount == 1) {
             ticketList.remove(position);
             notifyItemRemoved(position);
-        }else {
+        } else {
             Toast.makeText(context, "Error al borrar el ticket", Toast.LENGTH_LONG).show();
         }
     }

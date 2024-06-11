@@ -32,7 +32,7 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
     RecyclerView rvAllCustomers;
 
     LinearLayout llUpdateCustomerDropdownMenu;
-    Button btBackFromAllCustomersActivity;
+
 
     EditText etCustomerTaxIdUpdate;
     EditText etLegalCompanyNameUpdate;
@@ -79,12 +79,7 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
         while (cursor.moveToNext()) {
             ((CustomerAdapter) rvAllCustomers.getAdapter()).addCustomer(new Customer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)), rvAllCustomers.getAdapter().getItemCount());
         }
-        btBackFromAllCustomersActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ShowAndModifyCustomersActivity.this, CustomersManagementMenuActivity.class));
-            }
-        });
+
         btApplyCustomerUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -18,7 +18,6 @@ public class JsonHttpGetterInstances {
     private static JsonHttpGetter jsonHttpGetterVats;
 
     public static void createInstanceJsonHttpGetterUsers(Context context) {
-
         if (jsonHttpGetterUsers == null) {
             jsonHttpGetterUsers = new JsonHttpGetter(context, SqliteConnector.TABLE_USERS);
             jsonHttpGetterUsers.getJsonFromHttp();

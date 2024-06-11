@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
@@ -32,8 +33,9 @@ public class CapitalOperationActivity extends AppCompatActivity {
     TextView tvOperationType;
     EditText etndOperationAmount;
     EditText etDescription;
-
     Button btApply;
+
+    RecyclerView rvCapitalOperations;
 
 
     @Override
@@ -63,6 +65,10 @@ public class CapitalOperationActivity extends AppCompatActivity {
         tvOperationType.setText(capitalOperationType);
         etndOperationAmount.setTextColor(amountSign.equals("-") ? Color.RED : Color.BLUE);
 
+
+
+
+
         btApply.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -91,6 +97,9 @@ public class CapitalOperationActivity extends AppCompatActivity {
                         Toast.makeText(CapitalOperationActivity.this, "Fallo al realizar la operación", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    etndOperationAmount.setText("");
+                    etDescription.setText("");
+
                     Toast.makeText(CapitalOperationActivity.this, "Operación de " + capitalOperationType + " realizada correctamente", Toast.LENGTH_SHORT).show();
                 } catch (Exception E) {
                     Toast.makeText(CapitalOperationActivity.this, E.getMessage(), Toast.LENGTH_LONG).show();

@@ -173,7 +173,6 @@ public class SaleActivity extends AppCompatActivity {
 
 
                             while (cursor.moveToNext()) {
-
                                 customersTaxIds.add(cursor.getString(cursor.getColumnIndexOrThrow("customer_tax_id")));
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, customersTaxIds);
@@ -195,31 +194,15 @@ public class SaleActivity extends AppCompatActivity {
         });
 
         IntentIntegrator intentIntegrator = new IntentIntegrator(SaleActivity.this);
-        //Define el tipo de código de de barras que se pretenden scanear.
-        //En este caso, voy a elegir códigos de barras PRODUCT_CODE_TYPES(los que
-        // normalmente
-        // usan los productos comerciales UPC_A, UPC_E, EAN_8, EAN_13, RSS_14)
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.PRODUCT_CODE_TYPES);
-        //Promp en la pantalla de lector
         intentIntegrator.setPrompt("Lector - CDP");
-        //Cámara que va a usarse (delantera, trasera, etc)
-        //0 es trasera
         intentIntegrator.setCameraId(0);
-        //beep de sonido al escanear
         intentIntegrator.setBeepEnabled(true);
-        //
         intentIntegrator.setBarcodeImageEnabled(true);
-        //bloquea/desbloquea la orientación del teléfono (he tenido que agregar lo
-        // siguiente al manifest:)
-				/*  <activity
-					android:name="com.journeyapps.barcodescanner.CaptureActivity"
-					android:screenOrientation="fullSensor"
-					tools:replace="screenOrientation" />* */
         intentIntegrator.setOrientationLocked(false);
         btOpenScanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //inicializa el scaneo
                 intentIntegrator.initiateScan();
             }
         });

@@ -18,7 +18,6 @@ import com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTick
 public class SalesManagementMenuActivity extends AppCompatActivity {
     Button btShowReservedTickets;
     Button btShowAllTickets;
-    Button btBackFromSaleManagementMenuActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,6 @@ public class SalesManagementMenuActivity extends AppCompatActivity {
         });
         btShowReservedTickets = findViewById(R.id.btShowReservedTickets);
         btShowAllTickets = findViewById(R.id.btShowAllTickets);
-        btBackFromSaleManagementMenuActivity = findViewById(R.id.btBackFromSaleManagementMenuActivity);
         btShowReservedTickets.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -44,12 +42,7 @@ public class SalesManagementMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(SalesManagementMenuActivity.this, AllTicketsActivity.class));
             }
         });
-        btBackFromSaleManagementMenuActivity.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SalesManagementMenuActivity.this, MainMenuActivity.class));
-            }
-        });
+
 
     }
 }

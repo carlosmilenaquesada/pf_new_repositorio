@@ -101,6 +101,11 @@
           <theme>@style/Theme.TFG_CarlosMilenaQuesada</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_layout_capital_operation.xml">
+        <config>
+          <theme>@style/Theme.TFG_CarlosMilenaQuesada</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_layout_customer.xml">
         <config>
           <theme>@style/Theme.TFG_CarlosMilenaQuesada</theme>
@@ -157,6 +162,7 @@
       <list>
         <option value="layoutResourceFile" />
         <option value="Interface" />
+        <option value="layoutResourceFile_vertical" />
         <option value="Class" />
       </list>
     </option>

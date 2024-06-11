@@ -60,7 +60,7 @@ public class ServerSelectionActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                Toast.makeText(ServerSelectionActivity.this, "Conectando...", Toast.LENGTH_LONG).show();
+                Toast.makeText(ServerSelectionActivity.this, "Conectando...", Toast.LENGTH_SHORT).show();
                 sharedpreferences.edit().putString(SERVER_IP_ADDRESS, serverIpAddres).apply();
 
                 startActivity(new Intent(ServerSelectionActivity.this, LoginLoaderActivity.class));

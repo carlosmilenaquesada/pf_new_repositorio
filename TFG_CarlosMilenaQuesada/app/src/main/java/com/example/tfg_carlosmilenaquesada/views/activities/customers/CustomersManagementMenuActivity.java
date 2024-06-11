@@ -17,7 +17,7 @@ import com.example.tfg_carlosmilenaquesada.views.activities.MainMenuActivity;
 public class CustomersManagementMenuActivity extends AppCompatActivity {
     Button btShowAndModifyCustomers;
     Button btCreateNewCustomer;
-    Button btBackFromCustomersManagementMenuActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +42,6 @@ public class CustomersManagementMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(CustomersManagementMenuActivity.this, CreateNewCustomerActivity.class));
             }
         });
-        btBackFromCustomersManagementMenuActivity.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomersManagementMenuActivity.this, MainMenuActivity.class));
-            }
-        });
+
     }
 }

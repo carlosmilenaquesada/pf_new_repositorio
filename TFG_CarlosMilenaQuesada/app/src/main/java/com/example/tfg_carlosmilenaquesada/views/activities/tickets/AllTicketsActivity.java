@@ -47,6 +47,7 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
 
 
         new ItemTouchHelper(((TicketAdapter) rvAllTickets.getAdapter()).getSimpleCallback()).attachToRecyclerView(rvAllTickets);
+
         Cursor cursor = SqliteConnector.getInstance(this).getReadableDatabase().rawQuery(
                 "SELECT * FROM " + SqliteConnector.TABLE_TICKETS, null
         );
