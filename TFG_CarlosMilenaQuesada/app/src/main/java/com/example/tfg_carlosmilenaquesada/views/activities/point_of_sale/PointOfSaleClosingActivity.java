@@ -226,45 +226,22 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
 
             tlSalesByVat.addView(tableRow);
         }
+        if (isTodayAudit) {
+            btConfirmClosePointOfSale.setVisibility(View.GONE);
+        } else {
+            btConfirmClosePointOfSale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
+                    jsonHttpSetterTicketsLines.setHttpFromJson();
 
-        btConfirmClosePointOfSale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
-                jsonHttpSetterTicketsLines.setHttpFromJson();
+                    JsonHttpSetter jsonHttpSetterTickets = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
+                    jsonHttpSetterTickets.setHttpFromJson();
+                }
+            });
+        }
 
-                JsonHttpSetter jsonHttpSetterTickets = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
-                jsonHttpSetterTickets.setHttpFromJson();
-
-
-
-            }
-        });
 
     }
 
-     /*
-        CIERRE TOTAL------------------
-        -- TICKET DESDE / TICKET HASTA - OK - OK
-        -- FECHA DESDE / FECHA HASTA - OK - OK
-        -- VENTA TOTAL SIN IVA - OK - OK
-        -- VENTA TOTAL CON IVA - OK - OK
-        -- CAPITAL EFECTIVO DECLARADO - OK, viene de la pantalla anterior, del recuento de capital
-        -- DIFERENCIA DECLARACIÓN - OK - Ok
-
-        -- TOTAL VENTA EN TARJETA - OK
-            --SIN IVA / CON IVA
-
-        -- VENTA EN EFECTIVO - OK
-            --SIN IVA / CON IVA
-
-
-        -- PORCENTAJE E IMPORTE DE VENTA POR FAMILIAS (SIN IVA) - OK
-
-
-        -- PORCENTAJE E IMPORTE DE VENTAS POR IVA - OK
-            -- CON IVA INCLUIDO
-            -- SIN IVA INCLUIDO
-
-        */
 }

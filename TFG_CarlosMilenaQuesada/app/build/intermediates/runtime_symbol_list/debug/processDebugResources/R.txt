@@ -3245,7 +3245,6 @@ int id bt5eReduce 0x7f080081
 int id btApply 0x7f080082
 int id btApplyCustomerCreate 0x7f080083
 int id btApplyCustomerUpdate 0x7f080084
-int id btBackFromSaleManagementMenuActivity 0x7f080085
 int id btCalculateChange 0x7f080086
 int id btCapitalManagement 0x7f080087
 int id btCashIncome 0x7f080088
@@ -3377,6 +3376,7 @@ int id etArticleCode 0x7f080105
 int id etCash 0x7f080106
 int id etCustomerTaxIdCreate 0x7f080107
 int id etCustomerTaxIdUpdate 0x7f080108
+int id etDepositAmount 0x7f0802f4
 int id etDescription 0x7f080109
 int id etLegalCompanyAddressCreate 0x7f08010a
 int id etLegalCompanyAddressUpdate 0x7f08010b
@@ -3394,6 +3394,7 @@ int id etPassword 0x7f080116
 int id etServerDirection 0x7f080117
 int id etTotal 0x7f080118
 int id etUserId 0x7f080119
+int id etWithdrawalAmount 0x7f0802f5
 int id etndArticleQuantity 0x7f08011a
 int id etndOperationAmount 0x7f08011b
 int id exitUntilCollapsed 0x7f08011c
@@ -3608,6 +3609,7 @@ int id row_index_key 0x7f0801ec
 int id rvAllCustomers 0x7f0801ed
 int id rvAllTickets 0x7f0801ee
 int id rvArticlesOnTicket 0x7f0801ef
+int id rvCapitalOperations 0x7f0802f6
 int id rvTicketDetailLines 0x7f0801f0
 int id rvTicketsInReserve 0x7f0801f1
 int id save_non_transition_alpha 0x7f0801f2
@@ -3731,6 +3733,8 @@ int id transition_transform 0x7f080267
 int id triangle 0x7f080268
 int id tvCapitalDiffence 0x7f080269
 int id tvCapitalDiffenceTitle 0x7f08026a
+int id tvCapitalOperationDescription 0x7f0802f7
+int id tvCapitalOperationDescriptionTitle 0x7f0802fa
 int id tvCapitalOperationsTitle 0x7f08026b
 int id tvCashInDesk 0x7f08026c
 int id tvCashInDeskTitle 0x7f08026d
@@ -3750,6 +3754,7 @@ int id tvCountedTicketsFromTitle 0x7f08027a
 int id tvCountedTicketsTitle 0x7f08027b
 int id tvCustomerTaxIdTitleCreate 0x7f08027c
 int id tvCustomerTaxIdTitleUpdate 0x7f08027d
+int id tvDepositAmountTitle 0x7f0802fb
 int id tvDescriptionTitle 0x7f08027e
 int id tvFamilyNameTitle 0x7f08027f
 int id tvGreetingUser 0x7f080280
@@ -3832,6 +3837,7 @@ int id tvVatAmountByPaymentMethodTitle 0x7f0802cc
 int id tvVatAmountByVatTitle 0x7f0802cd
 int id tvVatDescriptionTitle 0x7f0802ce
 int id tvVatPercentTitle 0x7f0802cf
+int id tvWithdrawalAmountTitle 0x7f0802fc
 int id unchecked 0x7f0802d0
 int id uniform 0x7f0802d1
 int id unlabeled 0x7f0802d2
@@ -4017,6 +4023,7 @@ int layout design_navigation_menu 0x7f0b003b
 int layout design_navigation_menu_item 0x7f0b003c
 int layout design_text_input_end_icon 0x7f0b003d
 int layout design_text_input_start_icon 0x7f0b003e
+int layout item_layout_capital_operation 0x7f0b008a
 int layout item_layout_customer 0x7f0b003f
 int layout item_layout_ticket 0x7f0b0040
 int layout item_layout_ticket_line 0x7f0b0041

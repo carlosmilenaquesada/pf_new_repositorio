@@ -5,6 +5,7 @@ import static com.example.tfg_carlosmilenaquesada.views.activities.CapitalManage
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,12 +21,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 import com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
+import com.example.tfg_carlosmilenaquesada.models.capital_operation.CapitalOperationAdapter;
+import com.example.tfg_carlosmilenaquesada.models.capital_operation.CapitalOperationLine;
 import com.example.tfg_carlosmilenaquesada.models.desk.CapitalOperation;
+import com.example.tfg_carlosmilenaquesada.models.ticket.Ticket;
+import com.example.tfg_carlosmilenaquesada.models.ticket.TicketAdapter;
 
 
 public class CapitalOperationActivity extends AppCompatActivity {
@@ -62,11 +68,23 @@ public class CapitalOperationActivity extends AppCompatActivity {
         etDescription = findViewById(R.id.etDescription);
         btApply = findViewById(R.id.btApply);
 
+        rvCapitalOperations = findViewById(R.id.rvCapitalOperations);
+
+        rvCapitalOperations.setLayoutManager(new LinearLayoutManager(this));
+        rvCapitalOperations.setAdapter(new CapitalOperationAdapter(this));
+
+        Cursor cursor = SqliteConnector.getInstance(this).getReadableDatabase().rawQuery("SELECT * FROM " + SqliteConnector.TABLE_CAPITAL_OPERATIONS, null);
+
+        while (cursor.moveToNext()) {
+            ((CapitalOperationAdapter) rvCapitalOperations.getAdapter()).addCapitalOperation(
+                    new CapitalOperationLine(
+                            cursor.getString(cursor.getColumnIndexOrThrow("description")),
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("amount"))
+            ), rvCapitalOperations.getAdapter().getItemCount());
+        }
+
         tvOperationType.setText(capitalOperationType);
         etndOperationAmount.setTextColor(amountSign.equals("-") ? Color.RED : Color.BLUE);
-
-
-
 
 
         btApply.setOnClickListener(new View.OnClickListener() {
@@ -86,14 +104,12 @@ public class CapitalOperationActivity extends AppCompatActivity {
                     return;
                 }
 
-                CapitalOperation capitalOperation = new CapitalOperation(
-                        capitalOperationType, Float.parseFloat(amountSign + etndOperationAmount.getText().toString()), etDescription.getText().toString()
-                );
+                CapitalOperation capitalOperation = new CapitalOperation(capitalOperationType, Float.parseFloat(amountSign + etndOperationAmount.getText().toString()), etDescription.getText().toString());
 
                 ContentValues newContentValues = Tools.getContentValuesFromCapitalOperation(capitalOperation);
 
                 try {
-                    if(SqliteConnector.getInstance(CapitalOperationActivity.this).getReadableDatabase().insertOrThrow(SqliteConnector.TABLE_CAPITAL_OPERATIONS, null, newContentValues)==-1){
+                    if (SqliteConnector.getInstance(CapitalOperationActivity.this).getReadableDatabase().insertOrThrow(SqliteConnector.TABLE_CAPITAL_OPERATIONS, null, newContentValues) == -1) {
                         Toast.makeText(CapitalOperationActivity.this, "Fallo al realizar la operación", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -101,6 +117,9 @@ public class CapitalOperationActivity extends AppCompatActivity {
                     etDescription.setText("");
 
                     Toast.makeText(CapitalOperationActivity.this, "Operación de " + capitalOperationType + " realizada correctamente", Toast.LENGTH_SHORT).show();
+
+                    ((CapitalOperationAdapter) rvCapitalOperations.getAdapter()).addCapitalOperation(
+                            new CapitalOperationLine(capitalOperation.getDescription(), capitalOperation.getAmount()), rvCapitalOperations.getAdapter().getItemCount());
                 } catch (Exception E) {
                     Toast.makeText(CapitalOperationActivity.this, E.getMessage(), Toast.LENGTH_LONG).show();
                 }

@@ -3246,7 +3246,6 @@ id bt5eReduce
 id btApply
 id btApplyCustomerCreate
 id btApplyCustomerUpdate
-id btBackFromSaleManagementMenuActivity
 id btCalculateChange
 id btCapitalManagement
 id btCashIncome
@@ -3378,6 +3377,7 @@ id etArticleCode
 id etCash
 id etCustomerTaxIdCreate
 id etCustomerTaxIdUpdate
+id etDepositAmount
 id etDescription
 id etLegalCompanyAddressCreate
 id etLegalCompanyAddressUpdate
@@ -3395,6 +3395,7 @@ id etPassword
 id etServerDirection
 id etTotal
 id etUserId
+id etWithdrawalAmount
 id etndArticleQuantity
 id etndOperationAmount
 id exitUntilCollapsed
@@ -3609,6 +3610,7 @@ id row_index_key
 id rvAllCustomers
 id rvAllTickets
 id rvArticlesOnTicket
+id rvCapitalOperations
 id rvTicketDetailLines
 id rvTicketsInReserve
 id save_non_transition_alpha
@@ -3732,6 +3734,8 @@ id transition_transform
 id triangle
 id tvCapitalDiffence
 id tvCapitalDiffenceTitle
+id tvCapitalOperationDescription
+id tvCapitalOperationDescriptionTitle
 id tvCapitalOperationsTitle
 id tvCashInDesk
 id tvCashInDeskTitle
@@ -3751,6 +3755,7 @@ id tvCountedTicketsFromTitle
 id tvCountedTicketsTitle
 id tvCustomerTaxIdTitleCreate
 id tvCustomerTaxIdTitleUpdate
+id tvDepositAmountTitle
 id tvDescriptionTitle
 id tvFamilyNameTitle
 id tvGreetingUser
@@ -3833,6 +3838,7 @@ id tvVatAmountByPaymentMethodTitle
 id tvVatAmountByVatTitle
 id tvVatDescriptionTitle
 id tvVatPercentTitle
+id tvWithdrawalAmountTitle
 id unchecked
 id uniform
 id unlabeled
@@ -4018,6 +4024,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout item_layout_capital_operation
 layout item_layout_customer
 layout item_layout_ticket
 layout item_layout_ticket_line

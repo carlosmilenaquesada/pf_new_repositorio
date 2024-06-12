@@ -16,7 +16,7 @@ import com.example.tfg_carlosmilenaquesada.R;
 import java.util.ArrayList;
 
 public class CapitalOperationAdapter extends RecyclerView.Adapter<CapitalOperationAdapter.CapitalOperationItemViewHolder> {
-    private ArrayList<CapitalOperation> capitalOperationsList;
+    private ArrayList<CapitalOperationLine> capitalOperationsList;
     Context context;
 
 
@@ -35,7 +35,7 @@ public class CapitalOperationAdapter extends RecyclerView.Adapter<CapitalOperati
 
     @Override
     public void onBindViewHolder(@NonNull CapitalOperationItemViewHolder holder, int position) {
-        CapitalOperation capitalOperation = capitalOperationsList.get(position);
+        CapitalOperationLine capitalOperation = capitalOperationsList.get(position);
         holder.tvCapitalOperationDescription.setText(capitalOperation.getDescription());
 
         float capitalAmount = capitalOperation.getAmount();
@@ -57,7 +57,7 @@ public class CapitalOperationAdapter extends RecyclerView.Adapter<CapitalOperati
 
 
 
-    public ArrayList<CapitalOperation> getCapitalOperationsList() {
+    public ArrayList<CapitalOperationLine> getCapitalOperationsList() {
         return this.capitalOperationsList;
     }
 
@@ -66,7 +66,7 @@ public class CapitalOperationAdapter extends RecyclerView.Adapter<CapitalOperati
         notifyItemRemoved(position);
     }
 
-    public void addCapitalOperation(CapitalOperation capitalOperation, int position) {
+    public void addCapitalOperation(CapitalOperationLine capitalOperation, int position) {
         capitalOperationsList.add(capitalOperation);
         notifyItemInserted(position);
     }

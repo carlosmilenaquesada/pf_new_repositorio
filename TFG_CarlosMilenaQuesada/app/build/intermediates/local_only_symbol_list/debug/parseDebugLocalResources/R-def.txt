@@ -57,7 +57,6 @@ id bt5eReduce
 id btApply
 id btApplyCustomerCreate
 id btApplyCustomerUpdate
-id btBackFromSaleManagementMenuActivity
 id btCalculateChange
 id btCapitalManagement
 id btCashIncome
@@ -107,6 +106,7 @@ id etArticleCode
 id etCash
 id etCustomerTaxIdCreate
 id etCustomerTaxIdUpdate
+id etDepositAmount
 id etDescription
 id etLegalCompanyAddressCreate
 id etLegalCompanyAddressUpdate
@@ -124,6 +124,7 @@ id etPassword
 id etServerDirection
 id etTotal
 id etUserId
+id etWithdrawalAmount
 id etndArticleQuantity
 id etndOperationAmount
 id iv100e
@@ -149,6 +150,7 @@ id pbSalesLoader
 id rvAllCustomers
 id rvAllTickets
 id rvArticlesOnTicket
+id rvCapitalOperations
 id rvTicketDetailLines
 id rvTicketsInReserve
 id scrollView2
@@ -164,6 +166,8 @@ id tlSalesByVat
 id tlSalesRatioByFamily
 id tvCapitalDiffence
 id tvCapitalDiffenceTitle
+id tvCapitalOperationDescription
+id tvCapitalOperationDescriptionTitle
 id tvCapitalOperationsTitle
 id tvCashInDesk
 id tvCashInDeskTitle
@@ -183,6 +187,7 @@ id tvCountedTicketsFromTitle
 id tvCountedTicketsTitle
 id tvCustomerTaxIdTitleCreate
 id tvCustomerTaxIdTitleUpdate
+id tvDepositAmountTitle
 id tvDescriptionTitle
 id tvFamilyNameTitle
 id tvGreetingUser
@@ -265,6 +270,7 @@ id tvVatAmountByPaymentMethodTitle
 id tvVatAmountByVatTitle
 id tvVatDescriptionTitle
 id tvVatPercentTitle
+id tvWithdrawalAmountTitle
 layout activity_all_tickets
 layout activity_capital_management
 layout activity_capital_operation
@@ -284,6 +290,7 @@ layout activity_sales_management_menu
 layout activity_server_selection
 layout activity_show_and_modify_customers
 layout activiy_login
+layout item_layout_capital_operation
 layout item_layout_customer
 layout item_layout_ticket
 layout item_layout_ticket_line
