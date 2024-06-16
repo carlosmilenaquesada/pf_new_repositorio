@@ -6,7 +6,6 @@ color colorPrimary
 color colorPrimaryLight
 color gray
 color white
-drawable barcodescan
 drawable billete100e
 drawable billete10e
 drawable billete200e
@@ -14,8 +13,13 @@ drawable billete20e
 drawable billete500e
 drawable billete50e
 drawable billete5e
+drawable button_logout_background
+drawable button_primary_background
+drawable button_rounded_background
+drawable edittext_rounded_border
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable logo
 drawable moneda10c
 drawable moneda1c
 drawable moneda1e
@@ -24,6 +28,8 @@ drawable moneda2c
 drawable moneda2e
 drawable moneda50c
 drawable moneda5c
+drawable textview_rounded_background
+drawable usericon
 id actvCustomerId
 id bt100eIncrease
 id bt100eReduce
@@ -86,8 +92,8 @@ id btSalesManagement
 id btShowAllTickets
 id btShowAndModifyCustomers
 id btShowReservedTickets
-id btWipeFieldCustomerCreate
 id clDeclare
+id constraintLayout
 id et100eQuantity
 id et10cQuantity
 id et10eQuantity
@@ -128,6 +134,7 @@ id etUserId
 id etWithdrawalAmount
 id etndArticleQuantity
 id etndOperationAmount
+id imageView
 id iv100e
 id iv10c
 id iv10e
@@ -193,7 +200,9 @@ id tvDescriptionTitle
 id tvFamilyNameTitle
 id tvGreetingUser
 id tvItemArticleName
+id tvItemArticleNameTitle
 id tvItemArticleQuantity
+id tvItemArticleQuantityTitle
 id tvItemCustomerTaxId
 id tvItemCustomerTaxIdTitle
 id tvItemLegalCompanyAddress
@@ -207,7 +216,9 @@ id tvItemLegalLocationTitle
 id tvItemLegalZipCode
 id tvItemLegalZipCodeTitle
 id tvItemLineIsInOffer
+id tvItemLineIsInOfferTitle
 id tvItemLineTotalAmount
+id tvItemLineTotalAmountTitle
 id tvItemName
 id tvItemNameTitle
 id tvItemTicketId

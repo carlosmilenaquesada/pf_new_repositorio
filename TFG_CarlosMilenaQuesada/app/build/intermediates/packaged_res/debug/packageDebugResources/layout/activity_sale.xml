@@ -9,13 +9,15 @@
     android:layout_margin="10dp"
     android:backgroundTintMode="add"
     android:orientation="vertical"
-    app:layout_constraintCircleRadius="5dp"
     tools:context=".views.activities.SaleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="#FFEBEE"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/tvTicketIdInSaleTitle"
@@ -29,21 +31,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Id del ticket" />
+            android:hint="Id del ticket"
+            android:textAlignment="textEnd" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="#FCE4EC"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <Switch
             android:id="@+id/swGenerateInvoice"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Generar factura" />
+            android:text="Generar factura"
+            android:textSize="16sp" />
 
         <AutoCompleteTextView
             android:id="@+id/actvCustomerId"
@@ -57,30 +64,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="#F3E5F5"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <EditText
             android:id="@+id/etndArticleQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:autofillHints=""
             android:hint="Introducir cantidad"
             android:inputType="number|numberDecimal|numberSigned"
             android:minHeight="48dp"
             android:text="3"
+            android:textAlignment="textEnd"
             android:textColorHint="#546E7A" />
 
         <EditText
             android:id="@+id/etArticleCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:autofillHints=""
             android:hint="Introducir código"
             android:inputType="text"
             android:minHeight="48dp"
-            android:text="COD000001"
+            android:text="AAA030"
+            android:textAlignment="textEnd"
             android:textColorHint="#546E7A" />
 
         <Button
@@ -95,31 +107,92 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
 
         <Button
             android:id="@+id/btOpenScanner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#8F3636"
             android:text="Scanner"
+            android:textColor="#E3E3E3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00BCD4"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tvItemArticleQuantityTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:text="Cantidad"
+            android:textAlignment="textEnd"
+            android:textColorHint="#546E7A"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvItemArticleNameTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="5"
+            android:text="Nombre articulo"
+            android:textColorHint="#546E7A"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvItemLineIsInOfferTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1.5"
+            android:text="Oferta"
+            android:textColorHint="#546E7A"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvItemLineTotalAmountTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:text="Total"
+            android:textAlignment="textEnd"
+            android:textColorHint="#546E7A"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvArticlesOnTicket"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="#FFFDE7"
+        android:padding="5dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
+        android:background="#E8F5E9"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/tvTitleTicketTotalAmount"
@@ -134,21 +207,38 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textAlignment="textEnd"
             android:textSize="24sp" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btPayTicket"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pagar" />
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-    <Button
-        android:id="@+id/btReserveTicket"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reservar" />
+        <Button
+            android:id="@+id/btReserveTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reservar" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btPayTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pagar" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

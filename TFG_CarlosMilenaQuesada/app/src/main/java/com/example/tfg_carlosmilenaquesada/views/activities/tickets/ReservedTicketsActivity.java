@@ -97,6 +97,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
                             cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_family_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),

@@ -1,9 +1,16 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLE_FAMILIES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_BARCODES;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TAXABLES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_VATS;
+import static com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter.IS_CONNECTED;
+import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
 import static com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity.RESTORED_TICKET;
+
+import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
+import  com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
 
 
 import android.content.ContentValues;
@@ -12,6 +19,7 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -79,6 +87,17 @@ public class SaleActivity extends AppCompatActivity {
         Intent intent = getIntent();
         rvArticlesOnTicket = findViewById(R.id.rvArticlesOnTicket);
         actvCustomerId = findViewById(R.id.actvCustomerId);
+        actvCustomerId.setThreshold(1);
+        String query = "SELECT customer_tax_id FROM " + TABLE_CUSTOMERS_TAXABLES;
+        Cursor customerCursor = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery(query, null);
+        customersTaxIds = new ArrayList<>();
+        while (customerCursor.moveToNext()) {
+            customersTaxIds.add(customerCursor.getString(customerCursor.getColumnIndexOrThrow("customer_tax_id")));
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, customersTaxIds);
+        actvCustomerId.setAdapter(adapter);
+
+
         swGenerateInvoice = findViewById(R.id.swGenerateInvoice);
 
         if(!swGenerateInvoice.isChecked()){
@@ -121,6 +140,7 @@ public class SaleActivity extends AppCompatActivity {
                                 cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("article_family_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
@@ -195,9 +215,9 @@ public class SaleActivity extends AppCompatActivity {
 
                 String query = "SELECT A.*, V.vat_fraction " +
                         "FROM " + TABLE_ARTICLES + " A " +
-                        "JOIN " + TABLE_BARCODES + " B ON A.article_id = B.article_id AND B.barcode = '" + barcode + "' " +
+                        "JOIN " + TABLE_BARCODES + " B ON A.article_id = '" + barcode + "' " + "OR (A.article_id = B.article_id AND B.barcode = '" + barcode + "' )" +
                         "JOIN " + TABLE_VATS + " V ON A.vat_id = V.vat_id";
-                System.out.println(query);
+
                 Cursor cursor = SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().rawQuery(query, null);
 
 
@@ -208,9 +228,10 @@ public class SaleActivity extends AppCompatActivity {
                             ticket.getTicket_id(),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
+                            cursor.getString(cursor.getColumnIndexOrThrow("article_family_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
-                            cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity"))
+                            Float.parseFloat(etndArticleQuantity.getText().toString())
                     );
                     ticketLine.setSold_during_offer(
                             !cursor.isNull(cursor.getColumnIndexOrThrow("offer_start_date")) && !cursor.isNull(cursor.getColumnIndexOrThrow("offer_end_date")) && Tools.isArticleInOffer(
@@ -268,6 +289,9 @@ public class SaleActivity extends AppCompatActivity {
                 if (((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getItemCount() == 0) {
                     return;
                 }
+
+
+
                 //insertar las líneas de ticket
                 SqliteConnector.getInstance(SaleActivity.this).insertManyElementsToSqlite(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTicketLinesList(), SqliteConnector.TABLE_TICKET_LINES);
                 //Actualizo el ticket a su nuevo estado.
@@ -275,6 +299,7 @@ public class SaleActivity extends AppCompatActivity {
                 contentValues.put("customer_tax_id", actvCustomerId.isEnabled() && customersTaxIds.contains(actvCustomerId.getText().toString()) ? actvCustomerId.getText().toString() : null);
                 contentValues.put("payment_method_id", "undefined");
                 contentValues.put("ticket_status_id", "reserved");
+
                 SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().update(
                         SqliteConnector.TABLE_TICKETS,
                         contentValues,

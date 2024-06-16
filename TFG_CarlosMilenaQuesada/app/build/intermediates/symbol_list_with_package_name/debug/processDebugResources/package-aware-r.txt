@@ -2997,7 +2997,6 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
-drawable barcodescan
 drawable billete100e
 drawable billete10e
 drawable billete200e
@@ -3013,11 +3012,15 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable button_logout_background
+drawable button_primary_background
+drawable button_rounded_background
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable edittext_rounded_border
 drawable ic_arrow_back_black_24
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
@@ -3032,6 +3035,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable logo
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3112,8 +3116,10 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable test_level_drawable
+drawable textview_rounded_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable usericon
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3275,7 +3281,6 @@ id btSalesManagement
 id btShowAllTickets
 id btShowAndModifyCustomers
 id btShowReservedTickets
-id btWipeFieldCustomerCreate
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3304,6 +3309,7 @@ id collapseActionView
 id compress
 id confirm_button
 id constraint
+id constraintLayout
 id container
 id content
 id contentPanel
@@ -3439,6 +3445,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id immediateStop
 id included
 id indeterminate
@@ -3761,7 +3768,9 @@ id tvDescriptionTitle
 id tvFamilyNameTitle
 id tvGreetingUser
 id tvItemArticleName
+id tvItemArticleNameTitle
 id tvItemArticleQuantity
+id tvItemArticleQuantityTitle
 id tvItemCustomerTaxId
 id tvItemCustomerTaxIdTitle
 id tvItemLegalCompanyAddress
@@ -3775,7 +3784,9 @@ id tvItemLegalLocationTitle
 id tvItemLegalZipCode
 id tvItemLegalZipCodeTitle
 id tvItemLineIsInOffer
+id tvItemLineIsInOfferTitle
 id tvItemLineTotalAmount
+id tvItemLineTotalAmountTitle
 id tvItemName
 id tvItemNameTitle
 id tvItemTicketId

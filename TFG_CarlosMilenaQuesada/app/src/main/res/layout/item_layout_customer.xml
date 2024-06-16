@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +22,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Id fiscal cliente" />
+                android:text="Id fiscal cliente"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemCustomerTaxId"
@@ -42,7 +44,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Razón social" />
+                android:text="Razón social"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemLegalCompanyName"
@@ -63,7 +66,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Nombre" />
+                android:text="Nombre"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemName"
@@ -84,7 +88,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Dirección fiscal" />
+                android:text="Dirección fiscal"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemLegalCompanyAddress"
@@ -105,7 +110,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="País fiscal" />
+                android:text="País fiscal"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemLegalCountry"
@@ -128,7 +134,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Provincia fiscal" />
+                android:text="Provincia fiscal"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemLegalLocation"
@@ -150,7 +157,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Código postal fiscal" />
+                android:text="Código postal fiscal"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemLegalZipCode"

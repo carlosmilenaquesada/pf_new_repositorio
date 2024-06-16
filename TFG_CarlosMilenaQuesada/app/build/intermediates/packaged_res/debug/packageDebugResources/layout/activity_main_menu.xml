@@ -1,54 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:background="@android:color/white"
+    android:gravity="center"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".views.activities.MainMenuActivity">
 
-    <TextView
-        android:id="@+id/tvGreetingUser"
+    <LinearLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="¡Hola, usuario!"
-        android:textSize="24sp" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/btNewSale"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nueva venta" />
 
-    <Button
-        android:id="@+id/btCustomersManagement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gestión de clientes" />
+        <TextView
+            android:id="@+id/tvGreetingUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"
+            android:text="¡Hola, usuario!"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/btSalesManagement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gestión de ventas" />
+        <Button
+            android:id="@+id/btNewSale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_primary_background"
+            android:text="Nueva venta"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btCapitalManagement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gestión de capital" />
+        <Button
+            android:id="@+id/btCustomersManagement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_primary_background"
+            android:text="Gestión de clientes"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btPointOfSaleManagement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gestión de punto de venta" />
+        <Button
+            android:id="@+id/btSalesManagement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_primary_background"
+            android:text="Gestión de ventas"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btLogOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Desconectar" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btCapitalManagement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_primary_background"
+            android:text="Gestión de capital"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btPointOfSaleManagement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_primary_background"
+            android:text="Gestión de punto de venta"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btLogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_logout_background"
+            android:padding="10dp"
+            android:text="Desconectar"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

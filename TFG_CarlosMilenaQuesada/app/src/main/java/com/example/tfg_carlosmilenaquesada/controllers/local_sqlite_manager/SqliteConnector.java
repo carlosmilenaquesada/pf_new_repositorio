@@ -25,7 +25,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
 
-    private static final int DATABASE_VERSION = 63;
+    private static final int DATABASE_VERSION = 66;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_ARTICLE_FAMILIES = "article_families";
@@ -118,6 +118,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "ticket_line_id TEXT PRIMARY KEY NOT NULL," +
                 "ticket_id TEXT NOT NULL, " +
                 "article_id TEXT NOT NULL, " +
+                "article_name TEXT NOT NULL, " +
                 "article_family_id TEXT NOT NULL, " +
                 "vat_id TEXT NOT NULL, " +
                 "vat_fraction REAL NOT NULL, " +
@@ -178,7 +179,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public void insertFromJsonArrayToSqliteTable(JSONArray elements, String table) {
         for (int i = 0; i < elements.length(); i++) {
             try {
-                getReadableDatabase().replace(table, null, jsonObjectToContentValues(elements.getJSONObject(i)));
+                System.out.println(elements);
+                System.out.println(getReadableDatabase().replace(table, null, jsonObjectToContentValues(elements.getJSONObject(i))));
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }

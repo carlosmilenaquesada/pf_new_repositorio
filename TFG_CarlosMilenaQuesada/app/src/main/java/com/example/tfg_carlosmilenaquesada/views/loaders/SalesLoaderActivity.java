@@ -40,6 +40,11 @@ public class SalesLoaderActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (getSharedPreferences(SHARED_PREFS, MODE_PRIVATE).getBoolean(IS_CONNECTED, false)) {
+                    Thread threadCustomers = new Thread(() -> {
+                        JsonHttpGetterInstances.createInstanceJsonHttpGetterCustomers(SalesLoaderActivity.this);
+                    });
+                    threadCustomers.start();
+
                     Thread threadArticles = new Thread(() -> {
                         JsonHttpGetterInstances.createInstanceJsonHttpGetterArticles(SalesLoaderActivity.this);
                     });
@@ -70,6 +75,7 @@ public class SalesLoaderActivity extends AppCompatActivity {
                     threadVats.start();
 
                     try {
+                        threadCustomers.join();
                         threadArticles.join();
                         threadArticlesFamilies.join();
                         threadPaymentMethod.join();

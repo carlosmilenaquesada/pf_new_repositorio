@@ -1,12 +1,15 @@
 package com.example.tfg_carlosmilenaquesada.models.ticket_line;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class TicketLine implements Serializable {
     private String ticket_line_id;
     private String ticket_id;
     private String article_id;
     private String article_name;
+
+    private String article_family_id;
     private String vat_id;
     private float vat_fraction;
     private float article_quantity;
@@ -16,21 +19,23 @@ public class TicketLine implements Serializable {
     public TicketLine() {
     }
 
-    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String vat_id, float vat_fraction, float article_quantity) {
+    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String article_family_id, String vat_id, float vat_fraction, float article_quantity) {
         this.ticket_line_id = ticket_line_id;
         this.ticket_id = ticket_id;
         this.article_id = article_id;
         this.article_name = article_name;
+        this.article_family_id = article_family_id;
         this.vat_id = vat_id;
         this.vat_fraction = vat_fraction;
         this.article_quantity = article_quantity;
     }
 
-    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name,  String vat_id, float vat_fraction, float article_quantity, float applicated_sale_base_price, boolean sold_during_offer) {
+    public TicketLine(String ticket_line_id, String ticket_id, String article_id, String article_name, String article_family_id, String vat_id, float vat_fraction, float article_quantity, float applicated_sale_base_price, boolean sold_during_offer) {
         this.ticket_line_id = ticket_line_id;
         this.ticket_id = ticket_id;
         this.article_id = article_id;
         this.article_name = article_name;
+        this.article_family_id = article_family_id;
         this.vat_id = vat_id;
         this.vat_fraction = vat_fraction;
         this.article_quantity = article_quantity;
@@ -109,5 +114,42 @@ public class TicketLine implements Serializable {
 
     public void setSold_during_offer(boolean sold_during_offer) {
         this.sold_during_offer = sold_during_offer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TicketLine that = (TicketLine) o;
+        return Objects.equals(article_id, that.article_id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(article_id);
+    }
+
+    public String getArticle_family_id() {
+        return article_family_id;
+    }
+
+    public void setArticle_family_id(String article_family_id) {
+        this.article_family_id = article_family_id;
+    }
+
+    @Override
+    public String toString() {
+        return "TicketLine{" +
+                "ticket_line_id='" + ticket_line_id + '\'' +
+                ", ticket_id='" + ticket_id + '\'' +
+                ", article_id='" + article_id + '\'' +
+                ", article_name='" + article_name + '\'' +
+                ", article_family_id='" + article_family_id + '\'' +
+                ", vat_id='" + vat_id + '\'' +
+                ", vat_fraction=" + vat_fraction +
+                ", article_quantity=" + article_quantity +
+                ", applicated_sale_base_price=" + applicated_sale_base_price +
+                ", sold_during_offer=" + sold_during_offer +
+                '}';
     }
 }

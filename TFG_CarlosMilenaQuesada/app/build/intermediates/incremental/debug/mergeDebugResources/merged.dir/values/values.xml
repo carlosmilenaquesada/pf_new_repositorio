@@ -2577,7 +2577,7 @@
     <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
   </style>
     <style name="Base.Theme.MaterialComponents.Light.DialogWhenLarge" parent="Theme.MaterialComponents.Light"/>
-    <style name="Base.Theme.TFG_CarlosMilenaQuesada" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.TFG_CarlosMilenaQuesada" parent="Theme.AppCompat.Light.NoActionBar">
         
         
     </style>

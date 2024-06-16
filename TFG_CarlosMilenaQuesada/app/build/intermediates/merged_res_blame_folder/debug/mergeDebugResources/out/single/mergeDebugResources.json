@@ -24,12 +24,20 @@
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_capital_operation.xml"
     },
     {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_logo.png.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/logo.png"
+    },
+    {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_point_of_sale_closing.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_point_of_sale_closing.xml"
     },
     {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_reserved_tickets.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_reserved_tickets.xml"
+    },
+    {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_button_primary_background.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/button_primary_background.xml"
     },
     {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_moneda10c.png.flat",
@@ -44,6 +52,10 @@
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_textview_rounded_background.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/textview_rounded_background.xml"
+    },
+    {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_main_menu.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_main_menu.xml"
     },
@@ -56,16 +68,16 @@
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/item_layout_capital_operation.xml"
     },
     {
-        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_barcodescan.png.flat",
-        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/barcodescan.png"
-    },
-    {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_money_counting.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_money_counting.xml"
+    },
+    {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_edittext_rounded_border.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/edittext_rounded_border.xml"
     },
     {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_server_selection.xml.flat",
@@ -116,6 +128,10 @@
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete100e.png"
     },
     {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_button_rounded_background.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/button_rounded_background.xml"
+    },
+    {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activiy_login.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activiy_login.xml"
     },
@@ -164,6 +180,10 @@
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/billete50e.png"
     },
     {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_button_logout_background.xml.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/button_logout_background.xml"
+    },
+    {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/layout_activity_show_and_modify_customers.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/layout/activity_show_and_modify_customers.xml"
     },
@@ -202,6 +222,10 @@
     {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/drawable_usericon.png.flat",
+        "source": "com.example.tfg_carlosmilenaquesada.app-main-36:/drawable/usericon.png"
     },
     {
         "merged": "com.example.tfg_carlosmilenaquesada.app-debug-34:/mipmap-hdpi_ic_launcher_round.webp.flat",

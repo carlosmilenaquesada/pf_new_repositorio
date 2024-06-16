@@ -30,7 +30,6 @@ public class CreateNewCustomerActivity extends AppCompatActivity {
     EditText etLegalLocationCreate;
     EditText etLegalZipCodeCreate;
     Button btApplyCustomerCreate;
-    Button btWipeFieldCustomerCreate;
 
 
     @Override
@@ -51,7 +50,6 @@ public class CreateNewCustomerActivity extends AppCompatActivity {
         etLegalLocationCreate = findViewById(R.id.etLegalLocationCreate);
         etLegalZipCodeCreate = findViewById(R.id.etLegalZipCodeCreate);
         btApplyCustomerCreate = findViewById(R.id.btApplyCustomerCreate);
-        btWipeFieldCustomerCreate = findViewById(R.id.btWipeFieldCustomerCreate);
 
         btApplyCustomerCreate.setOnClickListener(new View.OnClickListener() {
             @Override
