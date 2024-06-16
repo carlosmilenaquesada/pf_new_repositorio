@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
+    android:backgroundTintMode="add"
     android:orientation="vertical"
+    app:layout_constraintCircleRadius="5dp"
     tools:context=".views.activities.SaleActivity">
 
     <LinearLayout
@@ -30,25 +33,26 @@
 
     </LinearLayout>
 
-    <Spinner
-        android:id="@+id/spCustomersTypes"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp" />
+        android:orientation="horizontal">
 
-    <AutoCompleteTextView
-        android:id="@+id/actvCustomerId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Introduce NIF/CIF del cliente"
-        android:minHeight="48dp"
-        android:textColorHint="#546E7A" />
+        <Switch
+            android:id="@+id/swGenerateInvoice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Generar factura" />
 
-    <Button
-        android:id="@+id/btOpenScanner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Scannear artículo" />
+        <AutoCompleteTextView
+            android:id="@+id/actvCustomerId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Introduce NIF/CIF del cliente"
+            android:minHeight="48dp"
+            android:textColorHint="#546E7A" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,19 +83,35 @@
             android:text="COD000001"
             android:textColorHint="#546E7A" />
 
+        <Button
+            android:id="@+id/btPutArticle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insertar" />
+
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btPutArticle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insertar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btOpenScanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scanner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvArticlesOnTicket"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <LinearLayout

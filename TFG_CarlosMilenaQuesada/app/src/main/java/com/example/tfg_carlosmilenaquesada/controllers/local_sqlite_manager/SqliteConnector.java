@@ -1,12 +1,9 @@
 package com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager;
 
 
-import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
-import static com.example.tfg_carlosmilenaquesada.views.activities.ServerSelectionActivity.SERVER_IP_ADDRESS;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -28,24 +25,22 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
 
-    private static final int DATABASE_VERSION = 60;
+    private static final int DATABASE_VERSION = 63;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
-    public static final String TABLE_ARTICLES_CATEGORIES = "articles_categories";
-    public static final String TABLE_ARTICLES_FAMILIES = "articles_families";
+    public static final String TABLE_ARTICLE_FAMILIES = "article_families";
     public static final String TABLE_BARCODES = "barcodes";
     public static final String TABLE_CAPITAL_OPERATIONS = "capital_operations";
-    public static final String TABLE_CUSTOMERS_TYPES = "customers_types";
     public static final String TABLE_CUSTOMERS_TAXABLES = "customers_taxables";
     public static final String TABLE_PAYMENT_METHODS = "payment_methods";
 
     public static final String TABLE_TICKETS = "tickets";
-    public static final String TABLE_TICKETS_LINES = "tickets_lines";
+    public static final String TABLE_TICKET_LINES = "ticket_lines";
     public static final String TABLE_USERS = "users";
     public static final String TABLE_VATS = "vats";
 
     public static final String TABLE_TICKETS_ADD_QUERY = "SELECT ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id FROM " + TABLE_TICKETS;
-    public static final String TABLE_TICKETS_LINES_ADD_QUERY = "SELECT ticket_line_id, ticket_id, article_id, article_quantity, applicated_sale_base_price, vat_id, sold_during_offer FROM " + TABLE_TICKETS_LINES;
+    public static final String TABLE_TICKETS_LINES_ADD_QUERY = "SELECT ticket_line_id, ticket_id, article_id, article_quantity, applicated_sale_base_price, vat_id, sold_during_offer FROM " + TABLE_TICKET_LINES;
 
 
     private SqliteConnector(@Nullable Context context) {
@@ -66,7 +61,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_ARTICLES + "(" +
                 "article_id TEXT PRIMARY KEY NOT NULL, " +
                 "article_name TEXT NOT NULL, " +
-                "article_category_id TEXT NOT NULL, " +
+                "article_family_id TEXT NOT NULL, " +
                 "unit_sale_base_price REAL NOT NULL," +
                 "vat_id TEXT NOT NULL, " +
                 "offer_start_date TEXT," +
@@ -74,13 +69,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "offer_unit_sale_base_price REAL" +
                 ")");
 
-        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_CATEGORIES + "(" +
-                "article_category_id TEXT NOT NULL, " +
-                "article_family_id TEXT NOT NULL, " +
-                "category_name TEXT NOT NULL " +
-                ")");
-
-        db.execSQL("CREATE TABLE " + TABLE_ARTICLES_FAMILIES + "(" +
+        db.execSQL("CREATE TABLE " + TABLE_ARTICLE_FAMILIES + "(" +
                 "article_family_id  TEXT NOT NULL, " +
                 "family_name TEXT NOT NULL " +
                 ")");
@@ -97,6 +86,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "amount REAL NOT NULL," +
                 "description TEXT NOT NULL " +
                 ")");
+
         db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TAXABLES + "(" +
                 "customer_tax_id TEXT PRIMARY KEY NOT NULL," +
                 "legal_company_name TEXT NOT NULL, " +
@@ -106,10 +96,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "legal_location TEXT NOT NULL, " +
                 "legal_zip_code TEXT NOT NULL " +
                 ")");
-        db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TYPES + "(" +
-                "customer_type_id TEXT PRIMARY KEY NOT NULL," +
-                "description TEXT NOT NULL " +
-                ")");
+
+
 
         db.execSQL("CREATE TABLE " + TABLE_PAYMENT_METHODS + "(" +
                 "payment_method_id TEXT PRIMARY KEY NOT NULL, " +
@@ -126,16 +114,13 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 "payment_method_name TEXT NOT NULL" +
                 ")");
 
-        db.execSQL("CREATE TABLE " + TABLE_TICKETS_LINES + "(" +
+        db.execSQL("CREATE TABLE " + TABLE_TICKET_LINES + "(" +
                 "ticket_line_id TEXT PRIMARY KEY NOT NULL," +
                 "ticket_id TEXT NOT NULL, " +
                 "article_id TEXT NOT NULL, " +
-                "article_name TEXT NOT NULL, " +
-                "article_category_id TEXT NOT NULL, " +
-                "family_name TEXT NOT NULL, " +
+                "article_family_id TEXT NOT NULL, " +
                 "vat_id TEXT NOT NULL, " +
                 "vat_fraction REAL NOT NULL, " +
-                "vat_description TEXT NOT NULL, " +
                 "article_quantity REAL NOT NULL, " +
                 "applicated_sale_base_price REAL NOT NULL, " +
                 "sold_during_offer INTEGER NOT NULL " +
@@ -160,13 +145,11 @@ public class SqliteConnector extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BARCODES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CAPITAL_OPERATIONS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES_CATEGORIES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLES_FAMILIES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTICLE_FAMILIES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS_TAXABLES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS_TYPES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT_METHODS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKETS_LINES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKET_LINES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VATS);
 

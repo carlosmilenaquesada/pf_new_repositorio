@@ -49,14 +49,12 @@ public class CustomersLoaderActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        System.out.println("2");
         super.onRestart();
         startActivity(new Intent(CustomersLoaderActivity.this, MainMenuActivity.class));
     }
 
     @Override
     protected void onStop() {
-        System.out.println("3");
         super.onStop();
         pbCustomersLoader.setVisibility(View.GONE);
     }

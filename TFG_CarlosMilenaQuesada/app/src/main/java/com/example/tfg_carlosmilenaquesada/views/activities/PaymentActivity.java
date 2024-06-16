@@ -92,7 +92,7 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(PaymentActivity.this, "Pago en efectivo realizado correctamente", Toast.LENGTH_LONG).show();
                 //Inserto las líneas de ticket en la base de datos de SQLITE
-                SqliteConnector.getInstance(PaymentActivity.this).insertManyElementsToSqlite(ticketLinesList, SqliteConnector.TABLE_TICKETS_LINES);//modificar campos adecuados
+                SqliteConnector.getInstance(PaymentActivity.this).insertManyElementsToSqlite(ticketLinesList, SqliteConnector.TABLE_TICKET_LINES);//modificar campos adecuados
                 //Actualizo el ticket a su nuevo estado.
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("customer_tax_id", customerTaxId);

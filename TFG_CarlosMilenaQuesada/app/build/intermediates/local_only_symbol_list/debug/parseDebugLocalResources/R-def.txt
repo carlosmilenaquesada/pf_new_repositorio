@@ -6,6 +6,7 @@ color colorPrimary
 color colorPrimaryLight
 color gray
 color white
+drawable barcodescan
 drawable billete100e
 drawable billete10e
 drawable billete200e
@@ -155,7 +156,7 @@ id rvTicketDetailLines
 id rvTicketsInReserve
 id scrollView2
 id scrollView3
-id spCustomersTypes
+id swGenerateInvoice
 id textView
 id textView2
 id textView3
@@ -192,13 +193,7 @@ id tvDescriptionTitle
 id tvFamilyNameTitle
 id tvGreetingUser
 id tvItemArticleName
-id tvItemArticleNameTitle
 id tvItemArticleQuantity
-id tvItemArticleQuantityTitle
-id tvItemArticleUnitPrice
-id tvItemArticleUnitPriceTitle
-id tvItemArticleUnitPriceWithVat
-id tvItemArticleUnitPriceWithVatTitle
 id tvItemCustomerTaxId
 id tvItemCustomerTaxIdTitle
 id tvItemLegalCompanyAddress
@@ -212,9 +207,7 @@ id tvItemLegalLocationTitle
 id tvItemLegalZipCode
 id tvItemLegalZipCodeTitle
 id tvItemLineIsInOffer
-id tvItemLineIsInOfferTitle
 id tvItemLineTotalAmount
-id tvItemLineTotalAmountTitle
 id tvItemName
 id tvItemNameTitle
 id tvItemTicketId

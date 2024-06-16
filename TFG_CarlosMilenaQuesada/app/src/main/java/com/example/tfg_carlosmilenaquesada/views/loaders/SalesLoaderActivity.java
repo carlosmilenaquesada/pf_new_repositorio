@@ -45,11 +45,6 @@ public class SalesLoaderActivity extends AppCompatActivity {
                     });
                     threadArticles.start();
 
-                    Thread threadArticlesCategories = new Thread(() -> {
-                        JsonHttpGetterInstances.createInstanceJsonHttpGetterArticlesCategories(SalesLoaderActivity.this);
-                    });
-                    threadArticlesCategories.start();
-
                     Thread threadArticlesFamilies = new Thread(() -> {
                         JsonHttpGetterInstances.createInstanceJsonHttpGetterArticlesFamilies(SalesLoaderActivity.this);
                     });
@@ -67,10 +62,7 @@ public class SalesLoaderActivity extends AppCompatActivity {
                     });
                     threadBarcodes.start();
 
-                    Thread threadCustomersTypes = new Thread(() -> {
-                        JsonHttpGetterInstances.createInstanceJsonHttpGetterCustomersTypes(SalesLoaderActivity.this);
-                    });
-                    threadCustomersTypes.start();
+
 
                     Thread threadVats = new Thread(() -> {
                         JsonHttpGetterInstances.createInstanceJsonHttpGetterVats(SalesLoaderActivity.this);
@@ -79,11 +71,9 @@ public class SalesLoaderActivity extends AppCompatActivity {
 
                     try {
                         threadArticles.join();
-                        threadArticlesCategories.join();
                         threadArticlesFamilies.join();
                         threadPaymentMethod.join();
                         threadBarcodes.join();
-                        threadCustomersTypes.join();
                         threadVats.join();
 
                     } catch (InterruptedException e) {
@@ -97,14 +87,12 @@ public class SalesLoaderActivity extends AppCompatActivity {
 
     }
     protected void onRestart() {
-        System.out.println("2");
         super.onRestart();
         startActivity(new Intent(SalesLoaderActivity.this, MainMenuActivity.class));
     }
 
     @Override
     protected void onStop() {
-        System.out.println("3");
         super.onStop();
         pbSalesLoader.setVisibility(View.GONE);
     }

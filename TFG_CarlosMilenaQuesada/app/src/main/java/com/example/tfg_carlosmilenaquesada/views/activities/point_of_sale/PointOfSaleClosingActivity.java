@@ -232,7 +232,7 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             btConfirmClosePointOfSale.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
+                    JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKET_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
                     jsonHttpSetterTicketsLines.setHttpFromJson();
 
                     JsonHttpSetter jsonHttpSetterTickets = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);

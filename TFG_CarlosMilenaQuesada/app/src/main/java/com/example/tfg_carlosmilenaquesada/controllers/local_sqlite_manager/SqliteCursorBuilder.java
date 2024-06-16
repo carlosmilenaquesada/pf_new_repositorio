@@ -3,7 +3,7 @@ package com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CAPITAL_OPERATIONS;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS;
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_LINES;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKET_LINES;
 
 
 import android.content.Context;
@@ -66,7 +66,7 @@ public class SqliteCursorBuilder {
         String query = "SELECT " +
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) as 'total_sales_base', " +
                 "SUM((TL.article_quantity * TL.applicated_sale_base_price) * TL.vat_fraction) as 'total_vat' " +
-                "FROM " + TABLE_TICKETS_LINES + " TL";
+                "FROM " + TABLE_TICKET_LINES + " TL";
 
         if (onlyToday) {
             query += " JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
@@ -84,7 +84,7 @@ public class SqliteCursorBuilder {
     public ArrayList<ArticlesFamilyRatio> getArticlesFamilyRatios(boolean onlyToday) {
         ArrayList<ArticlesFamilyRatio> articlesFamilyRatios = new ArrayList<>();
         float totalSoldBase = 0.0f;
-        Cursor cursorTotal = this.sqliteConnector.getReadableDatabase().rawQuery("SELECT SUM(article_quantity * applicated_sale_base_price) AS 'total_sold_base' FROM " + TABLE_TICKETS_LINES, null);
+        Cursor cursorTotal = this.sqliteConnector.getReadableDatabase().rawQuery("SELECT SUM(article_quantity * applicated_sale_base_price) AS 'total_sold_base' FROM " + TABLE_TICKET_LINES, null);
         if (cursorTotal.moveToNext()) {
             totalSoldBase = cursorTotal.getFloat(cursorTotal.getColumnIndexOrThrow("total_sold_base"));
         }
@@ -94,7 +94,7 @@ public class SqliteCursorBuilder {
                 "TL.family_name, " +
                 "SUM(TL.article_quantity) AS 'units_sold_by_family', " +
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) AS 'total_sold_base_by_family' " +
-                "FROM " + TABLE_TICKETS_LINES + " TL ";
+                "FROM " + TABLE_TICKET_LINES + " TL ";
         if (onlyToday) {
             query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
         }
@@ -123,7 +123,7 @@ public class SqliteCursorBuilder {
                 "TL.vat_fraction, " +
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) AS 'total_sale_base_amount_from_vat', " +
                 "SUM((TL.article_quantity * TL.applicated_sale_base_price) * TL.vat_fraction) 'total_vat_amount_from_vat' " +
-                "FROM " + TABLE_TICKETS_LINES + " TL ";
+                "FROM " + TABLE_TICKET_LINES + " TL ";
         if (onlyToday) {
             query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
         }
@@ -153,6 +153,8 @@ public class SqliteCursorBuilder {
         return exists;
     }
 
+
+
     public float getTotalCashAmount(boolean onlyToday) {
         float totalCashAmount = 0f;
         String query = "SELECT SUM(amount) AS 'total_cash_amount' FROM " + TABLE_CAPITAL_OPERATIONS;
@@ -173,7 +175,7 @@ public class SqliteCursorBuilder {
                 "T.payment_method_name, " +
                 "SUM(TL.applicated_sale_base_price * TL.article_quantity) AS 'sale_base_amount', " +
                 "SUM((TL.applicated_sale_base_price * TL.article_quantity) * (TL.vat_fraction)) AS 'vat_amount' " +
-                "FROM " + TABLE_TICKETS_LINES + " TL JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id ";
+                "FROM " + TABLE_TICKET_LINES + " TL JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id ";
         if (onlyToday) {
             query += " AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
         }

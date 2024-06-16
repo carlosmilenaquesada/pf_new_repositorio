@@ -56,7 +56,6 @@ public class JsonHttpGetter {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("errro");
                 if (table.equals("users")) {
                     Toast.makeText(context, "Servidor no encontrado. Se usará la información previamente cargada", Toast.LENGTH_SHORT).show();
                 }

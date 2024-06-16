@@ -41,22 +41,10 @@ public class JsonHttpGetterInstances {
         }
     }
 
-    public static void createInstanceJsonHttpGetterArticlesCategories(Context context) {
-        if (jsonHttpGetterArticlesCategories == null) {
-            jsonHttpGetterArticlesCategories = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLES_CATEGORIES);
-            jsonHttpGetterArticlesCategories.getJsonFromHttp();
-            try {
-                jsonHttpGetterArticlesCategories.getLatch().await();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-    }
 
     public static void createInstanceJsonHttpGetterArticlesFamilies(Context context) {
         if (jsonHttpGetterArticlesFamilies == null) {
-            jsonHttpGetterArticlesFamilies = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLES_FAMILIES);
+            jsonHttpGetterArticlesFamilies = new JsonHttpGetter(context, SqliteConnector.TABLE_ARTICLE_FAMILIES);
             jsonHttpGetterArticlesFamilies.getJsonFromHttp();
             try {
                 jsonHttpGetterArticlesFamilies.getLatch().await();
@@ -91,18 +79,6 @@ public class JsonHttpGetterInstances {
             }
         }
 
-    }
-
-    public static void createInstanceJsonHttpGetterCustomersTypes(Context context) {
-        if (jsonHttpGetterCustomersTypes == null) {
-            jsonHttpGetterCustomersTypes = new JsonHttpGetter(context, SqliteConnector.TABLE_CUSTOMERS_TYPES);
-            jsonHttpGetterCustomersTypes.getJsonFromHttp();
-            try {
-                jsonHttpGetterCustomersTypes.getLatch().await();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     public static void createInstanceJsonHttpGetterPaymentMethods(Context context) {

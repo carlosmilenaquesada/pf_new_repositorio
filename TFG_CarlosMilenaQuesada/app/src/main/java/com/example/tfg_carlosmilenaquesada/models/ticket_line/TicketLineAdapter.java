@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tfg_carlosmilenaquesada.R;
+import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 
 import java.util.ArrayList;
 
@@ -51,12 +52,11 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
     @Override
     public void onBindViewHolder(@NonNull TicketLineItemViewHolder holder, int position) {
         TicketLine ticketLine = ticketLineItemsList.get(position);
-        holder.tvItemArticleName.setText(ticketLine.getArticle_name());
-        holder.tvItemArticleUnitPrice.setText(String.valueOf(ticketLine.getapplicated_sale_base_price()));
-        holder.tvItemArticleUnitPriceWithVat.setText(String.valueOf((ticketLine.getapplicated_sale_base_price() * (1 + ticketLine.getVat_fraction()))));
         holder.tvItemArticleQuantity.setText(String.valueOf(ticketLine.getArticle_quantity()));
-        holder.tvItemLineTotalAmount.setText(String.valueOf((ticketLine.getapplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity()));
-        holder.tvItemLineIsInOffer.setText(String.valueOf(ticketLine.issold_during_offer()));
+        holder.tvItemArticleName.setText(ticketLine.getArticle_name());
+        holder.tvItemLineIsInOffer.setText(ticketLine.isSold_during_offer() ? "Sí": "No");
+        holder.tvItemLineIsInOffer.setText(ticketLine.isSold_during_offer() ? "Sí": "No");
+        holder.tvItemLineTotalAmount.setText(String.valueOf((ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity()));
         holder.itemView.setOnClickListener(v -> {
         });
     }
@@ -92,23 +92,19 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
 
 
     public static class TicketLineItemViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvItemArticleName;
-        public TextView tvItemArticleUnitPrice;
-        public TextView tvItemArticleUnitPriceWithVat;
         public TextView tvItemArticleQuantity;
-        public TextView tvItemLineTotalAmount;
+        public TextView tvItemArticleName;
         public TextView tvItemLineIsInOffer;
+        public TextView tvItemLineTotalAmount;
 
 
 
         public TicketLineItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvItemArticleName = itemView.findViewById(R.id.tvItemArticleName);
-            tvItemArticleUnitPrice = itemView.findViewById(R.id.tvItemArticleUnitPrice);
-            tvItemArticleUnitPriceWithVat = itemView.findViewById(R.id.tvItemArticleUnitPriceWithVat);
             tvItemArticleQuantity = itemView.findViewById(R.id.tvItemArticleQuantity);
-            tvItemLineTotalAmount = itemView.findViewById(R.id.tvItemLineTotalAmount);
+            tvItemArticleName = itemView.findViewById(R.id.tvItemArticleName);
             tvItemLineIsInOffer = itemView.findViewById(R.id.tvItemLineIsInOffer);
+            tvItemLineTotalAmount = itemView.findViewById(R.id.tvItemLineTotalAmount);
         }
     }
 

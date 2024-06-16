@@ -38,7 +38,6 @@ public class LoginLoaderActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                System.out.println("1");
                 JsonHttpGetterInstances.createInstanceJsonHttpGetterUsers(LoginLoaderActivity.this);
                 startActivity(new Intent(LoginLoaderActivity.this, LoginActiviy.class));
 
@@ -50,14 +49,12 @@ public class LoginLoaderActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-        System.out.println("2");
         super.onRestart();
         startActivity(new Intent(LoginLoaderActivity.this, ServerSelectionActivity.class));
     }
 
     @Override
     protected void onStop() {
-        System.out.println("3");
         super.onStop();
         pbLoginLoader.setVisibility(View.GONE);
     }

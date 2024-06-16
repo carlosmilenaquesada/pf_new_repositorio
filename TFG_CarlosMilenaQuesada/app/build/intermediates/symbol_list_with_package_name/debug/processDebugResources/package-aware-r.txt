@@ -2997,6 +2997,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable barcodescan
 drawable billete100e
 drawable billete10e
 drawable billete200e
@@ -3653,7 +3654,6 @@ id snackbar_text
 id snap
 id snapMargins
 id south
-id spCustomersTypes
 id spacer
 id special_effects_controller_view_tag
 id spline
@@ -3678,6 +3678,7 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id swGenerateInvoice
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3760,13 +3761,7 @@ id tvDescriptionTitle
 id tvFamilyNameTitle
 id tvGreetingUser
 id tvItemArticleName
-id tvItemArticleNameTitle
 id tvItemArticleQuantity
-id tvItemArticleQuantityTitle
-id tvItemArticleUnitPrice
-id tvItemArticleUnitPriceTitle
-id tvItemArticleUnitPriceWithVat
-id tvItemArticleUnitPriceWithVatTitle
 id tvItemCustomerTaxId
 id tvItemCustomerTaxIdTitle
 id tvItemLegalCompanyAddress
@@ -3780,9 +3775,7 @@ id tvItemLegalLocationTitle
 id tvItemLegalZipCode
 id tvItemLegalZipCodeTitle
 id tvItemLineIsInOffer
-id tvItemLineIsInOfferTitle
 id tvItemLineTotalAmount
-id tvItemLineTotalAmountTitle
 id tvItemName
 id tvItemNameTitle
 id tvItemTicketId

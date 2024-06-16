@@ -88,7 +88,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
     public void showTicketDetails(String ticketId) {
         ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).notifyItemRangeRemoved(0, ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).getItemCount());
         ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).getTicketLinesList().clear();
-        String query = "SELECT * FROM " + SqliteConnector.TABLE_TICKETS_LINES + " WHERE ticket_id = ?";
+        String query = "SELECT * FROM " + SqliteConnector.TABLE_TICKET_LINES + " WHERE ticket_id = ?";
         Cursor cursor = SqliteConnector.getInstance(ReservedTicketsActivity.this).getReadableDatabase().rawQuery(query, new String[]{ticketId});
         while (cursor.moveToNext()) {
             ((TicketLineAdapter) rvTicketDetailLines.getAdapter()).addTicketLine(
@@ -97,11 +97,8 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
                             cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
-                            cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
-                            cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
-                            cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("applicated_sale_base_price")),
                             cursor.getInt(cursor.getColumnIndexOrThrow("sold_during_offer")) != 0

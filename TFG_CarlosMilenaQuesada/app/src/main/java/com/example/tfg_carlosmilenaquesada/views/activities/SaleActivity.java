@@ -1,14 +1,8 @@
 package com.example.tfg_carlosmilenaquesada.views.activities;
 
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES;
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES_CATEGORIES;
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES_FAMILIES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_BARCODES;
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TAXABLES;
-import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CUSTOMERS_TYPES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_VATS;
-import static com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter.IS_CONNECTED;
-import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
 import static com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity.RESTORED_TICKET;
 
 
@@ -18,20 +12,18 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CursorAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -41,8 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
-import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetter;
-import com.example.tfg_carlosmilenaquesada.controllers.remote_database_getters.JsonHttpGetterInstances;
 import com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
 import com.example.tfg_carlosmilenaquesada.models.ticket.Ticket;
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLine;
@@ -58,8 +48,11 @@ public class SaleActivity extends AppCompatActivity {
     public static final String TICKET_LINES_LIST = "com.example.tfg_carlosmilenaquesada.views.activities.saleactivity.ticket_lines_list";
     public static final String CUSTOMER_TAX_ID = "com.example.tfg_carlosmilenaquesada.views.activities.saleactivity.customer_tax_id";
     TextView tvTicketIdInSale;
-    Spinner spCustomersTypes;
+
+    Switch swGenerateInvoice;
     AutoCompleteTextView actvCustomerId;
+
+
     EditText etndArticleQuantity;
     EditText etArticleCode;
     Button btOpenScanner;
@@ -68,7 +61,6 @@ public class SaleActivity extends AppCompatActivity {
     TextView tvTicketTotalAmount;
     Button btPayTicket;
     Button btReserveTicket;
-    Button btBackFromSaleActivity;
     private Ticket ticket;
     ArrayList<String> customersTaxIds;
     int indexOfCurrentTicketLine;
@@ -86,6 +78,24 @@ public class SaleActivity extends AppCompatActivity {
         });
         Intent intent = getIntent();
         rvArticlesOnTicket = findViewById(R.id.rvArticlesOnTicket);
+        actvCustomerId = findViewById(R.id.actvCustomerId);
+        swGenerateInvoice = findViewById(R.id.swGenerateInvoice);
+
+        if(!swGenerateInvoice.isChecked()){
+            actvCustomerId.setVisibility(View.INVISIBLE);
+        }
+
+
+        swGenerateInvoice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    actvCustomerId.setVisibility(View.VISIBLE);
+                } else {
+                    actvCustomerId.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
         rvArticlesOnTicket.setLayoutManager(new LinearLayoutManager(this));
         rvArticlesOnTicket.setAdapter(new TicketLineAdapter());
 
@@ -102,7 +112,7 @@ public class SaleActivity extends AppCompatActivity {
                     "ticket_id = ?",
                     new String[]{ticket.getTicket_id()}
             );
-            String selectTicketLinesQuery = "SELECT * FROM " + SqliteConnector.TABLE_TICKETS_LINES + " WHERE ticket_id = ?";
+            String selectTicketLinesQuery = "SELECT * FROM " + SqliteConnector.TABLE_TICKET_LINES + " WHERE ticket_id = ?";
             Cursor cursor = SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().rawQuery(selectTicketLinesQuery, new String[]{ticket.getTicket_id()});
             while (cursor.moveToNext()) {
                 ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(
@@ -111,11 +121,8 @@ public class SaleActivity extends AppCompatActivity {
                                 cursor.getString(cursor.getColumnIndexOrThrow("ticket_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
-                                cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
-                                cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
-                                cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity")),
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("applicated_sale_base_price")),
                                 cursor.getInt(cursor.getColumnIndexOrThrow("sold_during_offer")) != 0
@@ -132,7 +139,6 @@ public class SaleActivity extends AppCompatActivity {
         tvTicketIdInSale.setText(ticket.getTicket_id());
         customersTaxIds = new ArrayList<>();
         tvTicketTotalAmount = findViewById(R.id.tvTicketTotalAmount);
-        spCustomersTypes = findViewById(R.id.spCustomersTypes);
         actvCustomerId = findViewById(R.id.actvCustomerId);
         btOpenScanner = findViewById(R.id.btOpenScanner);
         etndArticleQuantity = findViewById(R.id.etndArticleQuantity);
@@ -149,49 +155,7 @@ public class SaleActivity extends AppCompatActivity {
         }
 
 
-        Cursor cursorCustomersTypes = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery("SELECT description as _id FROM " + TABLE_CUSTOMERS_TYPES, null);
-        String[] fromColumns = {"_id"};
-        int[] toViews = {android.R.id.text1};
-        CursorAdapter cursorAdapterCustomersTypes = new SimpleCursorAdapter(SaleActivity.this, android.R.layout.simple_spinner_item, cursorCustomersTypes, fromColumns, toViews, 0);
-        spCustomersTypes.setAdapter(cursorAdapterCustomersTypes);
-        spCustomersTypes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!((Cursor) spCustomersTypes.getAdapter().getItem(position)).getString(0).equals("Cliente fiscal")) {
-                    actvCustomerId.setVisibility(View.GONE);
-                    actvCustomerId.setEnabled(false);
-                } else {
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            if (getSharedPreferences(SHARED_PREFS, MODE_PRIVATE).getBoolean(IS_CONNECTED, false)) {
-                                JsonHttpGetterInstances.createInstanceJsonHttpGetterCustomers(SaleActivity.this);
-                            }
-                            String query = "SELECT customer_tax_id FROM " + TABLE_CUSTOMERS_TAXABLES;
 
-                            Cursor cursor = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery(query, null);
-
-
-                            while (cursor.moveToNext()) {
-                                customersTaxIds.add(cursor.getString(cursor.getColumnIndexOrThrow("customer_tax_id")));
-                            }
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, customersTaxIds);
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    actvCustomerId.setAdapter(adapter);
-                                    actvCustomerId.setVisibility(View.VISIBLE);
-                                    actvCustomerId.setEnabled(true);
-                                }
-                            });
-                        }
-                    }.start();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
         IntentIntegrator intentIntegrator = new IntentIntegrator(SaleActivity.this);
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.PRODUCT_CODE_TYPES);
@@ -229,30 +193,26 @@ public class SaleActivity extends AppCompatActivity {
                 String barcode = String.valueOf(etArticleCode.getText());
 
 
-                String query = "SELECT A.*, AF.family_name, V.vat_fraction, V.vat_description " +
+                String query = "SELECT A.*, V.vat_fraction " +
                         "FROM " + TABLE_ARTICLES + " A " +
                         "JOIN " + TABLE_BARCODES + " B ON A.article_id = B.article_id AND B.barcode = '" + barcode + "' " +
-                        "JOIN " + TABLE_VATS + " V ON A.vat_id = V.vat_id " +
-                        "JOIN " + TABLE_ARTICLES_CATEGORIES + " AC ON AC.article_category_id = A.article_category_id " +
-                        "JOIN " + TABLE_ARTICLES_FAMILIES + " AF ON AF.article_family_id = AC.article_family_id";
-
+                        "JOIN " + TABLE_VATS + " V ON A.vat_id = V.vat_id";
+                System.out.println(query);
                 Cursor cursor = SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().rawQuery(query, null);
 
 
                 if (cursor.moveToNext()) {
+
                     TicketLine ticketLine = new TicketLine(
                             ticket.getTicket_id() + "LIN" + (rvArticlesOnTicket.getAdapter().getItemCount() + 1),
                             ticket.getTicket_id(),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_id")),
                             cursor.getString(cursor.getColumnIndexOrThrow("article_name")),
-                            cursor.getString(cursor.getColumnIndexOrThrow("article_category_id")),
-                            cursor.getString(cursor.getColumnIndexOrThrow("family_name")),
                             cursor.getString(cursor.getColumnIndexOrThrow("vat_id")),
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
-                            cursor.getString(cursor.getColumnIndexOrThrow("vat_description")),
-                            Float.parseFloat(String.valueOf(etndArticleQuantity.getText()))
+                            cursor.getFloat(cursor.getColumnIndexOrThrow("article_quantity"))
                     );
-                    ticketLine.setsold_during_offer(
+                    ticketLine.setSold_during_offer(
                             !cursor.isNull(cursor.getColumnIndexOrThrow("offer_start_date")) && !cursor.isNull(cursor.getColumnIndexOrThrow("offer_end_date")) && Tools.isArticleInOffer(
                                     Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_start_date"))),
                                     Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_end_date")))
@@ -260,10 +220,10 @@ public class SaleActivity extends AppCompatActivity {
                     );
 
 
-                    if (ticketLine.issold_during_offer()) {
-                        ticketLine.setapplicated_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
+                    if (ticketLine.isSold_during_offer()) {
+                        ticketLine.setApplicated_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("offer_unit_sale_base_price")));
                     } else {
-                        ticketLine.setapplicated_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
+                        ticketLine.setApplicated_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
                     }
 
 
@@ -276,7 +236,7 @@ public class SaleActivity extends AppCompatActivity {
                         ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, indexOfCurrentTicketLine);
                     }
 
-                    float totalLineAmount = (ticketLine.getapplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
+                    float totalLineAmount = (ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
                     float totalAmount = Float.parseFloat(String.valueOf(tvTicketTotalAmount.getText())) + totalLineAmount;
                     tvTicketTotalAmount.setText(String.valueOf(totalAmount));
                 } else {
@@ -309,7 +269,7 @@ public class SaleActivity extends AppCompatActivity {
                     return;
                 }
                 //insertar las líneas de ticket
-                SqliteConnector.getInstance(SaleActivity.this).insertManyElementsToSqlite(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTicketLinesList(), SqliteConnector.TABLE_TICKETS_LINES);
+                SqliteConnector.getInstance(SaleActivity.this).insertManyElementsToSqlite(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTicketLinesList(), SqliteConnector.TABLE_TICKET_LINES);
                 //Actualizo el ticket a su nuevo estado.
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("customer_tax_id", actvCustomerId.isEnabled() && customersTaxIds.contains(actvCustomerId.getText().toString()) ? actvCustomerId.getText().toString() : null);
