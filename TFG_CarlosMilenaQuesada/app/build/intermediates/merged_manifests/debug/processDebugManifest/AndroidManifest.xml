@@ -52,44 +52,56 @@
         android:usesCleartextTraffic="true" >
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.MoneyCountingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleClosingActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleManagementActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalOperationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.CapitalManagementActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.loaders.CustomersLoaderActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.CreateNewCustomerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.ShowAndModifyCustomersActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.customers.CustomersManagementMenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.tickets.AllTicketsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.SalesManagementMenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.PaymentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:clearTaskOnLaunch="true"
@@ -99,22 +111,28 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.loaders.SalesLoaderActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.LoginActiviy"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.MainMenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.SaleActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.loaders.LoginLoaderActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.tfg_carlosmilenaquesada.views.activities.ServerSelectionActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

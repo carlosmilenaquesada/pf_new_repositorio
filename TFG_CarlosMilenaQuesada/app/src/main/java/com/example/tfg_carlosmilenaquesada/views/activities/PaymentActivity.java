@@ -91,6 +91,9 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(PaymentActivity.this, "Pago en efectivo realizado correctamente", Toast.LENGTH_LONG).show();
+
+                System.out.println(ticketLinesList);
+
                 //Inserto las líneas de ticket en la base de datos de SQLITE
                 SqliteConnector.getInstance(PaymentActivity.this).insertManyElementsToSqlite(ticketLinesList, SqliteConnector.TABLE_TICKET_LINES);//modificar campos adecuados
                 //Actualizo el ticket a su nuevo estado.
@@ -106,6 +109,7 @@ public class PaymentActivity extends AppCompatActivity {
                         "ticket_id = ?",
                         new String[]{ticketLinesList.get(0).getTicket_id()}
                 );
+
                 startActivity(new Intent(PaymentActivity.this, MainMenuActivity.class));
             }
         });

@@ -78,12 +78,17 @@ public class JsonHttpSetter {
             e.printStackTrace();
         }
 
+        try {
+            System.out.println(jsonObject.get(table));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST, url, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
                             SqliteConnector.getInstance(context).getReadableDatabase().execSQL("DELETE FROM " + table);
                             Toast.makeText(context, "Cierre completado con éxito", Toast.LENGTH_LONG).show();
@@ -95,7 +100,8 @@ public class JsonHttpSetter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "Error inesperado al realizar el proceso de cierre", Toast.LENGTH_LONG).show();
+                        System.out.println(error);
+                        Toast.makeText(context, "Error inesperado al realizar el proceso de cierre "+ table + ": codigo " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
 
                     }
                 }

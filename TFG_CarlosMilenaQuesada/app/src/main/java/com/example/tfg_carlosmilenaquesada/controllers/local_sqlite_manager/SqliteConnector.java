@@ -25,7 +25,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
 
-    private static final int DATABASE_VERSION = 66;
+    private static final int DATABASE_VERSION = 67;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_ARTICLE_FAMILIES = "article_families";
@@ -40,7 +40,9 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public static final String TABLE_VATS = "vats";
 
     public static final String TABLE_TICKETS_ADD_QUERY = "SELECT ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id FROM " + TABLE_TICKETS;
-    public static final String TABLE_TICKETS_LINES_ADD_QUERY = "SELECT ticket_line_id, ticket_id, article_id, article_quantity, applicated_sale_base_price, vat_id, sold_during_offer FROM " + TABLE_TICKET_LINES;
+
+
+    public static final String TABLE_TICKETS_LINES_ADD_QUERY = "SELECT ticket_line_id, ticket_id, article_id, article_family_id, article_quantity, applicated_sale_base_price, vat_id, vat_fraction, sold_during_offer FROM " + TABLE_TICKET_LINES;
 
 
     private SqliteConnector(@Nullable Context context) {
@@ -161,6 +163,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
         try {
             String listString = new Gson().toJson(elements);
             JSONArray jsonArray = new JSONArray(listString);
+
             insertFromJsonArrayToSqliteTable(jsonArray, tableName);
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -179,7 +182,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public void insertFromJsonArrayToSqliteTable(JSONArray elements, String table) {
         for (int i = 0; i < elements.length(); i++) {
             try {
-                System.out.println(elements);
+                System.out.println("este es "  + elements.getJSONObject(i));
                 System.out.println(getReadableDatabase().replace(table, null, jsonObjectToContentValues(elements.getJSONObject(i))));
             } catch (JSONException e) {
                 throw new RuntimeException(e);

@@ -18,6 +18,7 @@
 
         <activity
             android:name=".views.activities.point_of_sale.MoneyCountingActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.point_of_sale.PointOfSaleClosingActivity"
@@ -25,36 +26,47 @@
             android:exported="false" />
         <activity
             android:name=".views.activities.point_of_sale.PointOfSaleManagementActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.CapitalOperationActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.CapitalManagementActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.loaders.CustomersLoaderActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.customers.CreateNewCustomerActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.customers.ShowAndModifyCustomersActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.customers.CustomersManagementMenuActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.tickets.ReservedTicketsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.tickets.AllTicketsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.SalesManagementMenuActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.PaymentActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
@@ -62,21 +74,27 @@
             tools:replace="screenOrientation" />
         <activity
             android:name=".views.loaders.SalesLoaderActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.LoginActiviy"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.MainMenuActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.SaleActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.loaders.LoginLoaderActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".views.activities.ServerSelectionActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

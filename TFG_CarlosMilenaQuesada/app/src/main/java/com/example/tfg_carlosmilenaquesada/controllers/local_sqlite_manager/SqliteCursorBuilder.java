@@ -1,9 +1,11 @@
 package com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager;
 
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLES;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_ARTICLE_FAMILIES;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_CAPITAL_OPERATIONS;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS;
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKET_LINES;
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_VATS;
 
 
 import android.content.Context;
@@ -18,6 +20,7 @@ import com.example.tfg_carlosmilenaquesada.models.desk.FirstAndLast;
 import com.example.tfg_carlosmilenaquesada.models.desk.PaymentMethodRatio;
 import com.example.tfg_carlosmilenaquesada.models.desk.VatRatio;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -91,14 +94,17 @@ public class SqliteCursorBuilder {
         cursorTotal.close();
 
         String query = "SELECT " +
-                "TL.family_name, " +
+                "TF.family_name, " +
                 "SUM(TL.article_quantity) AS 'units_sold_by_family', " +
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) AS 'total_sold_base_by_family' " +
-                "FROM " + TABLE_TICKET_LINES + " TL ";
+                "FROM " + TABLE_TICKET_LINES + " TL JOIN " + TABLE_ARTICLE_FAMILIES + " TF ON TF.article_family_id = TL.article_family_id";
         if (onlyToday) {
-            query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
+            query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
         }
-        query += "GROUP BY TL.family_name";
+        query += " GROUP BY TF.family_name";
+
+        System.out.println(query);
+
         Cursor cursorFamily = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
 
         while (cursorFamily.moveToNext()) {
@@ -119,15 +125,15 @@ public class SqliteCursorBuilder {
     public ArrayList<VatRatio> getVatsRatios(boolean onlyToday) {
         ArrayList<VatRatio> vatRatios = new ArrayList<>();
         String query = "SELECT " +
-                "TL.vat_description, " +
+                "TV.vat_description, " +
                 "TL.vat_fraction, " +
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) AS 'total_sale_base_amount_from_vat', " +
                 "SUM((TL.article_quantity * TL.applicated_sale_base_price) * TL.vat_fraction) 'total_vat_amount_from_vat' " +
-                "FROM " + TABLE_TICKET_LINES + " TL ";
+                "FROM " + TABLE_TICKET_LINES + " TL JOIN " + TABLE_VATS + " TV ON TV.vat_id = TL.vat_id";
         if (onlyToday) {
-            query += "JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
+            query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
         }
-        query += "GROUP BY TL.vat_description";
+        query += " GROUP BY TV.vat_description";
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         while (cursor.moveToNext()) {
             float totalAmount = cursor.getFloat(cursor.getColumnIndexOrThrow("total_sale_base_amount_from_vat")) + cursor.getFloat(cursor.getColumnIndexOrThrow("total_vat_amount_from_vat"));
@@ -160,6 +166,20 @@ public class SqliteCursorBuilder {
         String query = "SELECT SUM(amount) AS 'total_cash_amount' FROM " + TABLE_CAPITAL_OPERATIONS;
         if (onlyToday) {
             query += " WHERE substr(operation_date, 1, 10) = '" + LocalDate.now().toString() + "'";
+        }
+        Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
+        if (cursor.moveToNext()) {
+            totalCashAmount = cursor.getFloat(0);
+        }
+        cursor.close();
+        return totalCashAmount;
+    }
+
+    public float getTotalCashFromSalesAmount(boolean onlyToday) {
+        float totalCashAmount = 0f;
+        String query = "SELECT SUM(article_quantity * applicated_sale_base_price * (1+vat_id)) AS 'total_cash_sales_amount' FROM " + TABLE_TICKET_LINES +" TL";
+        if (onlyToday) {
+            query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {

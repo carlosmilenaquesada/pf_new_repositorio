@@ -213,7 +213,7 @@ public class SaleActivity extends AppCompatActivity {
                 String barcode = String.valueOf(etArticleCode.getText());
 
 
-                String query = "SELECT A.*, V.vat_fraction " +
+                String query = "SELECT A.*, V.vat_fraction as 'vat_fraction' " +
                         "FROM " + TABLE_ARTICLES + " A " +
                         "JOIN " + TABLE_BARCODES + " B ON A.article_id = '" + barcode + "' " + "OR (A.article_id = B.article_id AND B.barcode = '" + barcode + "' )" +
                         "JOIN " + TABLE_VATS + " V ON A.vat_id = V.vat_id";
@@ -233,6 +233,7 @@ public class SaleActivity extends AppCompatActivity {
                             cursor.getFloat(cursor.getColumnIndexOrThrow("vat_fraction")),
                             Float.parseFloat(etndArticleQuantity.getText().toString())
                     );
+
                     ticketLine.setSold_during_offer(
                             !cursor.isNull(cursor.getColumnIndexOrThrow("offer_start_date")) && !cursor.isNull(cursor.getColumnIndexOrThrow("offer_end_date")) && Tools.isArticleInOffer(
                                     Tools.stringToLocalDateTime(cursor.getString(cursor.getColumnIndexOrThrow("offer_start_date"))),

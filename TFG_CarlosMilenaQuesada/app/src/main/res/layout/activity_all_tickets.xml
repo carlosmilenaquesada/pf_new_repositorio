@@ -5,29 +5,37 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="16dp"
     android:orientation="vertical"
-    tools:context=".views.activities.tickets.AllTicketsActivity">
+    tools:context=".views.activities.tickets.AllTicketsActivity"
+    android:padding="16dp"
+    android:background="?android:attr/windowBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="16dp"
+        android:layout_marginBottom="8dp">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Tickets generados" />
+            android:text="Tickets generados"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAllTickets"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ADD8E6" />
+            android:background="?android:attr/windowBackground" />
     </LinearLayout>
 
     <LinearLayout
@@ -35,20 +43,26 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="16dp"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Líneas de tickets" />
+            android:text="Líneas de tickets"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTicketDetailLines"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#03A9F4" />
+            android:background="?android:attr/windowBackground" />
     </LinearLayout>
 
 </LinearLayout>

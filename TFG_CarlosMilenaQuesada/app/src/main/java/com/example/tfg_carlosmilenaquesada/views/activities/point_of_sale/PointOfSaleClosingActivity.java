@@ -64,6 +64,8 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
 
     private Float moneyCounting;
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,9 +127,11 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
 
 
         float operations = sqliteCursorBuilder.getTotalCashAmount(isTodayAudit);
+        float salesAmount = sqliteCursorBuilder.getTotalCashFromSalesAmount(isTodayAudit);;
+
         tvCashInDesk.setText(String.valueOf(moneyCounting));
         tvOperations.setText(String.valueOf(operations));
-        tvCapitalDiffence.setText(String.valueOf(moneyCounting - operations));
+        tvCapitalDiffence.setText(String.valueOf(moneyCounting - (operations + salesAmount)));
 
         ArrayList<PaymentMethodRatio> paymentMethodsRatios = sqliteCursorBuilder.getPaymentMethodsRatios(isTodayAudit);
         for (int i = 0; i < paymentMethodsRatios.size(); i++) {
@@ -232,11 +236,13 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             btConfirmClosePointOfSale.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    JsonHttpSetter jsonHttpSetterTickets = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
+                    jsonHttpSetterTickets.setHttpFromJson();
+
                     JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKET_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
                     jsonHttpSetterTicketsLines.setHttpFromJson();
 
-                    JsonHttpSetter jsonHttpSetterTickets = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
-                    jsonHttpSetterTickets.setHttpFromJson();
+
                 }
             });
         }
