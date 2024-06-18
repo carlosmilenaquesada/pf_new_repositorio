@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-06-2024 a las 21:46:11
+-- Tiempo de generación: 18-06-2024 a las 10:13:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -253,6 +253,15 @@ CREATE TABLE `payment_methods` (
   `payment_method_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `payment_methods`
+--
+
+INSERT INTO `payment_methods` (`payment_method_id`, `payment_method_name`) VALUES
+('PAY001', 'cash'),
+('PAY002', 'card'),
+('PAY003', 'bank_transfer');
+
 -- --------------------------------------------------------
 
 --
@@ -296,6 +305,15 @@ CREATE TABLE `ticket_status` (
   `status_description` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `ticket_status`
+--
+
+INSERT INTO `ticket_status` (`ticket_status_id`, `status_description`) VALUES
+('STA001', 'paid'),
+('STA002', 'canceled'),
+('STA003', 'reserved');
+
 -- --------------------------------------------------------
 
 --
@@ -312,6 +330,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `password`) VALUES
+('admin', 'admin'),
+('employee001', 'employee001'),
 ('super', 'super');
 
 -- --------------------------------------------------------
