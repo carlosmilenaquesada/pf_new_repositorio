@@ -41,6 +41,7 @@ import com.example.tfg_carlosmilenaquesada.models.ticket.Ticket;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PointOfSaleClosingActivity extends AppCompatActivity {
 
@@ -121,17 +122,17 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
         tvCountedDateTo.setText(firstAndLastTicketDate.getLast());
 
         BaseAndVat baseAndVat = sqliteCursorBuilder.getBaseAndVatFromTotal(isTodayAudit);
-        tvTotalSaleBase.setText(String.valueOf(baseAndVat.getBase()));
-        tvTotalVat.setText(String.valueOf(baseAndVat.getVat()));
-        tvTotalSaleAmount.setText(String.valueOf(baseAndVat.getBase() + baseAndVat.getVat()));
+        tvTotalSaleBase.setText(String.format(Locale.getDefault(), "%.2f",baseAndVat.getBase()));
+        tvTotalVat.setText(String.format(Locale.getDefault(), "%.2f",baseAndVat.getVat()));
+        tvTotalSaleAmount.setText(String.format(Locale.getDefault(), "%.2f",baseAndVat.getBase() + baseAndVat.getVat()));
 
 
         float operations = sqliteCursorBuilder.getTotalCashAmount(isTodayAudit);
         float salesAmount = sqliteCursorBuilder.getTotalCashFromSalesAmount(isTodayAudit);;
 
-        tvCashInDesk.setText(String.valueOf(moneyCounting));
-        tvOperations.setText(String.valueOf(operations));
-        tvCapitalDiffence.setText(String.valueOf(moneyCounting - (operations + salesAmount)));
+        tvCashInDesk.setText(String.format(Locale.getDefault(), "%.2f",moneyCounting));
+        tvOperations.setText(String.format(Locale.getDefault(), "%.2f",operations));
+        tvCapitalDiffence.setText(String.format(Locale.getDefault(), "%.2f",moneyCounting - (operations + salesAmount)));
 
         ArrayList<PaymentMethodRatio> paymentMethodsRatios = sqliteCursorBuilder.getPaymentMethodsRatios(isTodayAudit);
         for (int i = 0; i < paymentMethodsRatios.size(); i++) {
@@ -142,9 +143,9 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             TextView textViewColThree = new TextView(this);
             TextView textViewColFour = new TextView(this);
             textViewColOne.setText(paymentMethodsRatios.get(i).getPayment_method_name());
-            textViewColTwo.setText(String.valueOf(paymentMethodsRatios.get(i).getSale_base_amount()));
-            textViewColThree.setText(String.valueOf(paymentMethodsRatios.get(i).getVat_amount()));
-            textViewColFour.setText(String.valueOf(paymentMethodsRatios.get(i).getTotal_amount()));
+            textViewColTwo.setText(String.format(Locale.getDefault(), "%.2f",paymentMethodsRatios.get(i).getSale_base_amount()));
+            textViewColThree.setText(String.format(Locale.getDefault(), "%.2f",paymentMethodsRatios.get(i).getVat_amount()));
+            textViewColFour.setText(String.format(Locale.getDefault(), "%.2f",paymentMethodsRatios.get(i).getTotal_amount()));
             tableRow.addView(textViewColOne);
             ((LinearLayout.LayoutParams) textViewColOne.getLayoutParams()).weight = 1;
 
@@ -170,10 +171,12 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             TextView textViewColThree = new TextView(this);
             TextView textViewColFour = new TextView(this);
 
+            
+            
             textViewColOne.setText(articlesFamilyRatios.get(i).getFamily_name());
-            textViewColTwo.setText(String.valueOf(articlesFamilyRatios.get(i).getFamily_unit_quantity()));
-            textViewColThree.setText(String.valueOf(articlesFamilyRatios.get(i).getFamily_sales_base()));
-            textViewColFour.setText(String.valueOf(articlesFamilyRatios.get(i).getFamily_ratio()));
+            textViewColTwo.setText(String.format(Locale.getDefault(), "%.2f",articlesFamilyRatios.get(i).getFamily_unit_quantity()));
+            textViewColThree.setText(String.format(Locale.getDefault(), "%.2f",articlesFamilyRatios.get(i).getFamily_sales_base()));
+            textViewColFour.setText(String.format(Locale.getDefault(), "%.2f",articlesFamilyRatios.get(i).getFamily_ratio()));
 
             tableRow.addView(textViewColOne);
             ((LinearLayout.LayoutParams) textViewColOne.getLayoutParams()).weight = 1;
@@ -202,10 +205,10 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             TextView textViewColFive = new TextView(this);
 
             textViewColOne.setText(vatRatios.get(i).getVat_description());
-            textViewColTwo.setText(String.valueOf(vatRatios.get(i).getVat_percent()));
-            textViewColThree.setText(String.valueOf(vatRatios.get(i).getSale_base_amount()));
-            textViewColFour.setText(String.valueOf(vatRatios.get(i).getVat_amount()));
-            textViewColFive.setText(String.valueOf(vatRatios.get(i).getTotal_amount()));
+            textViewColTwo.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getVat_percent()));
+            textViewColThree.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getSale_base_amount()));
+            textViewColFour.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getVat_amount()));
+            textViewColFive.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getTotal_amount()));
 
             tableRow.addView(textViewColOne);
             ((LinearLayout.LayoutParams) textViewColOne.getLayoutParams()).weight = 1;

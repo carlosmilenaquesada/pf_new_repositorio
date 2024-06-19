@@ -14,6 +14,7 @@ import com.example.tfg_carlosmilenaquesada.R;
 
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CapitalOperationAdapter extends RecyclerView.Adapter<CapitalOperationAdapter.CapitalOperationItemViewHolder> {
     private ArrayList<CapitalOperationLine> capitalOperationsList;
@@ -39,10 +40,11 @@ public class CapitalOperationAdapter extends RecyclerView.Adapter<CapitalOperati
         holder.tvCapitalOperationDescription.setText(capitalOperation.getDescription());
 
         float capitalAmount = capitalOperation.getAmount();
+        String truncateAmount = String.format(Locale.getDefault(), "%.2f", capitalAmount);
         if(capitalAmount > 0){
-            holder.etDepositAmount.setText(String.valueOf(capitalAmount));
+            holder.etDepositAmount.setText(truncateAmount);
         }else{
-            holder.etWithdrawalAmount.setText(String.valueOf(capitalAmount));
+            holder.etWithdrawalAmount.setText(truncateAmount);
         }
 
     }

@@ -94,7 +94,7 @@ public class SqliteCursorBuilder {
         cursorTotal.close();
 
         String query = "SELECT " +
-                "TF.family_name, " +
+                "TF.family_name AS 'family_name', " +
                 "SUM(TL.article_quantity) AS 'units_sold_by_family', " +
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) AS 'total_sold_base_by_family' " +
                 "FROM " + TABLE_TICKET_LINES + " TL JOIN " + TABLE_ARTICLE_FAMILIES + " TF ON TF.article_family_id = TL.article_family_id";
@@ -109,6 +109,10 @@ public class SqliteCursorBuilder {
 
         while (cursorFamily.moveToNext()) {
             float ratio = (cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("total_sold_base_by_family")) * 100) / totalSoldBase;
+            System.out.println(cursorFamily.getString(cursorFamily.getColumnIndexOrThrow("family_name")));
+            System.out.println(cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("units_sold_by_family")));
+            System.out.println(cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("total_sold_base_by_family")));
+            System.out.println(ratio);
             articlesFamilyRatios.add(
                     new ArticlesFamilyRatio(
                             cursorFamily.getString(cursorFamily.getColumnIndexOrThrow("family_name")),
@@ -116,7 +120,10 @@ public class SqliteCursorBuilder {
                             cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("total_sold_base_by_family")),
                             ratio
                     )
+
+
             );
+
         }
         cursorFamily.close();
         return articlesFamilyRatios;

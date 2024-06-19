@@ -15,6 +15,7 @@ import com.example.tfg_carlosmilenaquesada.R;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.TicketLineItemViewHolder> {
 
@@ -35,7 +36,7 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getBindingAdapterPosition();
                 removeTicketLineItem(position);
-                ((TicketLinesInterface)context).recalculateTicketAmount();
+                ((TicketLinesInterface) context).recalculateTicketAmount();
             }
         };
 
@@ -56,9 +57,9 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
         TicketLine ticketLine = ticketLineItemsList.get(position);
         holder.tvItemArticleQuantity.setText(String.valueOf(ticketLine.getArticle_quantity()));
         holder.tvItemArticleName.setText(ticketLine.getArticle_name());
-        holder.tvItemLineIsInOffer.setText(ticketLine.isSold_during_offer() ? "Sí": "No");
-        holder.tvItemLineIsInOffer.setText(ticketLine.isSold_during_offer() ? "Sí": "No");
-        holder.tvItemLineTotalAmount.setText(String.valueOf((ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity()));
+        holder.tvItemLineIsInOffer.setText(ticketLine.isSold_during_offer() ? "Sí" : "No");
+        String amount = String.format(Locale.getDefault(), "%.2f", ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction()) * ticketLine.getArticle_quantity());
+        holder.tvItemLineTotalAmount.setText(amount);
         holder.itemView.setOnClickListener(v -> {
         });
     }
@@ -87,20 +88,19 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
         notifyItemInserted(position);
     }
 
-    public void replaceTicketLine(int oldTicketLinePosition, TicketLine newTicketLine){
+    public void replaceTicketLine(int oldTicketLinePosition, TicketLine newTicketLine) {
         ticketLineItemsList.set(oldTicketLinePosition, newTicketLine);
         notifyItemChanged(oldTicketLinePosition);
     }
 
-    public float getTotalFromTicketLinesAmount(){
+    public float getTotalFromTicketLinesAmount() {
         float totalAmount = 0.0f;
-        for(TicketLine ticketLine: ticketLineItemsList){
-            totalAmount += (ticketLine.getArticle_quantity()*(ticketLine.getApplicated_sale_base_price() *(1+ticketLine.getVat_fraction())));
+        for (TicketLine ticketLine : ticketLineItemsList) {
+            totalAmount += (ticketLine.getArticle_quantity() * (ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())));
         }
         return totalAmount;
 
     }
-
 
 
     public static class TicketLineItemViewHolder extends RecyclerView.ViewHolder {
@@ -108,7 +108,6 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
         public TextView tvItemArticleName;
         public TextView tvItemLineIsInOffer;
         public TextView tvItemLineTotalAmount;
-
 
 
         public TicketLineItemViewHolder(@NonNull View itemView) {

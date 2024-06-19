@@ -51,6 +51,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SaleActivity extends AppCompatActivity implements TicketLinesInterface {
     public static final String TICKET_AMOUNT = "com.example.tfg_carlosmilenaquesada.views.activities.saleactivity.ticket_amount";
@@ -258,7 +259,8 @@ public class SaleActivity extends AppCompatActivity implements TicketLinesInterf
                         indexOfCurrentTicketLine = rvArticlesOnTicket.getAdapter().getItemCount();
                         ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, indexOfCurrentTicketLine);
                     }
-                    tvTicketTotalAmount.setText(String.valueOf(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTotalFromTicketLinesAmount()));
+                    String amount = String.format(Locale.getDefault(), "%.2f", ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTotalFromTicketLinesAmount());
+                    tvTicketTotalAmount.setText(amount);
                 } else {
                     Toast.makeText(SaleActivity.this, "El código proporcionado no pertenece a ningún artículo", Toast.LENGTH_LONG).show();
                 }

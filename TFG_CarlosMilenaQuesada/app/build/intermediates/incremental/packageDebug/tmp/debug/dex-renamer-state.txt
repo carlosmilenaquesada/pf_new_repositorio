@@ -1,4 +1,4 @@
-#Wed Jun 19 12:35:09 CEST 2024
+#Wed Jun 19 16:01:33 CEST 2024
 base.0=C\:\\Users\\Carlos\\Desktop\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\Carlos\\Desktop\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\Carlos\\Desktop\\pf_new_repositorio\\TFG_CarlosMilenaQuesada\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex

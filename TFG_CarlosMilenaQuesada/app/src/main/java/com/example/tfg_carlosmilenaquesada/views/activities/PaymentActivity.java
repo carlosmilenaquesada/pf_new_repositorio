@@ -24,6 +24,7 @@ import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.Sqli
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLine;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class PaymentActivity extends AppCompatActivity {
@@ -62,6 +63,8 @@ public class PaymentActivity extends AppCompatActivity {
 
 
         resetCashPaymentForm(ticketAmount);
+
+
         btCalculateChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,8 +76,10 @@ public class PaymentActivity extends AppCompatActivity {
                     etCash.setError("El importe entregado no puede ser menor que el importe total");
                     return;
                 }
-                Float change = Float.parseFloat(etCash.getText().toString()) - Float.parseFloat(tvTotal.getText().toString());
-                tvChange.setText(change.toString());
+
+                float change = Float.parseFloat(etCash.getText().toString()) - Float.parseFloat(tvTotal.getText().toString());
+                String truncateChange = String.format(Locale.getDefault(), "%.2f", change);
+                tvChange.setText(truncateChange);
                 btCalculateChange.setEnabled(false);
                 btCompleteCashPayment.setEnabled(true);
                 tvChange.setEnabled(false);
@@ -92,7 +97,6 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(PaymentActivity.this, "Pago en efectivo realizado correctamente", Toast.LENGTH_LONG).show();
 
-                System.out.println(ticketLinesList);
 
                 //Inserto las líneas de ticket en la base de datos de SQLITE
                 SqliteConnector.getInstance(PaymentActivity.this).insertManyElementsToSqlite(ticketLinesList, SqliteConnector.TABLE_TICKET_LINES);//modificar campos adecuados
@@ -115,14 +119,11 @@ public class PaymentActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
     }
 
     private void resetCashPaymentForm(Float ticketAmount) {
-        tvTotal.setText(ticketAmount.toString());
+        String truncateAmount = String.format(Locale.getDefault(), "%.2f", ticketAmount);
+        tvTotal.setText(truncateAmount);
         etCash.setText("");
         tvChange.setText("");
         tvChange.setEnabled(true);
