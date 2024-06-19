@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.tfg_carlosmilenaquesada.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MoneyCountingActivity extends AppCompatActivity {
 
@@ -53,6 +54,7 @@ public class MoneyCountingActivity extends AppCompatActivity {
         btRecalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                recount = 0.0f;
                 for (EditText editText : editTextsList) {
                     if(editText.getText().toString().isEmpty()){
                         continue;
@@ -60,7 +62,7 @@ public class MoneyCountingActivity extends AppCompatActivity {
                     ViewGroup viewGroup = (ViewGroup) editText.getParent().getParent();
                     recount += Integer.parseInt(viewGroup.getChildAt(0).getTag().toString()) * Integer.parseInt(editText.getText().toString());
                 }
-                etTotal.setText(String.valueOf(recount/100f));
+                etTotal.setText(String.format(Locale.getDefault(), "%.2f",recount/100.0f));
             }
         });
 

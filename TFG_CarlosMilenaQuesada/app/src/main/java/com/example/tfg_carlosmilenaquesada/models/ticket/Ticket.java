@@ -4,6 +4,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.tfg_carlosmilenaquesada.controllers.tools.Tools;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -22,7 +24,7 @@ public class Ticket implements Serializable {
     public Ticket() {
         long currentTimeInMillis = System.currentTimeMillis();
         this.ticket_id = String.valueOf(currentTimeInMillis);
-        this.sale_date = LocalDateTime.ofInstant(Instant.ofEpochMilli(currentTimeInMillis), ZoneId.systemDefault()).toString();
+        this.sale_date = Tools.localDateTimeToString(LocalDateTime.ofInstant(Instant.ofEpochMilli(currentTimeInMillis), ZoneId.systemDefault()));
         this.ticket_status_id = "processing";
         this.payment_method_id = "PAYMENT001";
         this.payment_method_name = "undefined";

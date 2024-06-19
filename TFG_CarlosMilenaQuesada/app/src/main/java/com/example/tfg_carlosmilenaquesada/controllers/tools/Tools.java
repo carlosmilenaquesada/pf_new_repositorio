@@ -10,9 +10,12 @@ import androidx.annotation.RequiresApi;
 import com.example.tfg_carlosmilenaquesada.models.desk.CapitalOperation;
 import com.example.tfg_carlosmilenaquesada.models.customer.Customer;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Date;
+import java.util.Locale;
 
 public class Tools {
     public static final String SHARED_PREFS = "com.example.tfg_carlosmilenaquesada.views.activities.loginactiviy.shared_prefs";
@@ -37,6 +40,13 @@ public class Tools {
         newContentValues.put("amount", capitalOperation.getAmount());
         newContentValues.put("description", capitalOperation.getDescription());
         return newContentValues;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String localDateTimeToString(LocalDateTime localDateTime) {
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss");
+        return formatter.format(date);
     }
 
 

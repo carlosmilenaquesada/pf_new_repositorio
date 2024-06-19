@@ -47,7 +47,6 @@ public class JsonHttpGetter {
                     @Override
                     public void onResponse(JSONArray response) {
                         SqliteConnector.getInstance(context).insertFromJsonArrayToSqliteTable(response, table);
-
                         if (table.equals("users")) {
                             editor.putBoolean(IS_CONNECTED, true).apply();
                         }

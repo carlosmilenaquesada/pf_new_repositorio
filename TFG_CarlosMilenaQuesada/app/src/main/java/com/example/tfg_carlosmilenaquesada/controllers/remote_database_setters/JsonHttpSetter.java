@@ -78,11 +78,7 @@ public class JsonHttpSetter {
             e.printStackTrace();
         }
 
-        try {
-            System.out.println(jsonObject.get(table));
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST, url, jsonObject,
@@ -100,7 +96,6 @@ public class JsonHttpSetter {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println(error);
                         Toast.makeText(context, "Error inesperado al realizar el proceso de cierre "+ table + ": codigo " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
 
                     }

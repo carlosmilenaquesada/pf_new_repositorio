@@ -103,16 +103,13 @@ public class SqliteCursorBuilder {
         }
         query += " GROUP BY TF.family_name";
 
-        System.out.println(query);
+
 
         Cursor cursorFamily = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
 
         while (cursorFamily.moveToNext()) {
             float ratio = (cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("total_sold_base_by_family")) * 100) / totalSoldBase;
-            System.out.println(cursorFamily.getString(cursorFamily.getColumnIndexOrThrow("family_name")));
-            System.out.println(cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("units_sold_by_family")));
-            System.out.println(cursorFamily.getFloat(cursorFamily.getColumnIndexOrThrow("total_sold_base_by_family")));
-            System.out.println(ratio);
+
             articlesFamilyRatios.add(
                     new ArticlesFamilyRatio(
                             cursorFamily.getString(cursorFamily.getColumnIndexOrThrow("family_name")),

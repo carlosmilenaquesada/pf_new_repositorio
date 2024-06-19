@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,7 +87,7 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
                 Customer updatedCustomer = new Customer(
                         etCustomerTaxIdUpdate.getText().toString(),
                         etLegalCompanyNameUpdate.getText().toString(),
-                        etNameUpdate.getText().toString().isEmpty() ? null : etNameUpdate.getText().toString(),
+                        etNameUpdate.getText().toString(),
                         etLegalCompanyAddressUpdate.getText().toString(),
                         etLegalCountryUpdate.getText().toString(),
                         etLegalLocationUpdate.getText().toString(),
@@ -103,8 +104,13 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
 
                 if (SqliteConnector.getInstance(ShowAndModifyCustomersActivity.this).getReadableDatabase().update(SqliteConnector.TABLE_CUSTOMERS_TAXABLES, newContentValues, "customer_tax_id=?", new String[]{oldCustomer.getCustomer_tax_id()}) == 1) {
                     ArrayList<Customer> customersList = ((CustomerAdapter) rvAllCustomers.getAdapter()).getCustomerList();
+                    System.out.println(oldCustomer);
                     customersList.set(customersList.indexOf(oldCustomer), updatedCustomer);
                     rvAllCustomers.getAdapter().notifyItemChanged(customersList.indexOf(updatedCustomer));
+                    if (llUpdateCustomerDropdownMenu.getVisibility() != View.GONE) {
+                        llUpdateCustomerDropdownMenu.setVisibility(View.GONE);
+                    }
+                    Toast.makeText(ShowAndModifyCustomersActivity.this, "Cliente modificado correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

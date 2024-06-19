@@ -1,7 +1,6 @@
 package com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager;
 
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -92,13 +91,12 @@ public class SqliteConnector extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS_TAXABLES + "(" +
                 "customer_tax_id TEXT PRIMARY KEY NOT NULL," +
                 "legal_company_name TEXT NOT NULL, " +
-                "name TEXT, " +
+                "name TEXT NOT NULL, " +
                 "legal_company_address TEXT NOT NULL, " +
                 "legal_country TEXT NOT NULL, " +
                 "legal_location TEXT NOT NULL, " +
                 "legal_zip_code TEXT NOT NULL " +
                 ")");
-
 
 
         db.execSQL("CREATE TABLE " + TABLE_PAYMENT_METHODS + "(" +
@@ -182,8 +180,8 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public void insertFromJsonArrayToSqliteTable(JSONArray elements, String table) {
         for (int i = 0; i < elements.length(); i++) {
             try {
-                System.out.println("este es "  + elements.getJSONObject(i));
-                System.out.println(getReadableDatabase().replace(table, null, jsonObjectToContentValues(elements.getJSONObject(i))));
+
+                getReadableDatabase().replace(table, null, jsonObjectToContentValues(elements.getJSONObject(i)));
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }

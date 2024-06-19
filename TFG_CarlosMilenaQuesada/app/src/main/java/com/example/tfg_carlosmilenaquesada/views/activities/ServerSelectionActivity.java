@@ -43,7 +43,6 @@ public class ServerSelectionActivity extends AppCompatActivity {
         btConfirmServer = findViewById(R.id.btConfirmServer);
 
         btConfirmServer.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 String serverIpAddres = etServerDirection.getText().toString();
