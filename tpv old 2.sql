@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2024 a las 01:47:14
+-- Tiempo de generación: 18-06-2024 a las 10:13:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -258,9 +258,9 @@ CREATE TABLE `payment_methods` (
 --
 
 INSERT INTO `payment_methods` (`payment_method_id`, `payment_method_name`) VALUES
-('PAY001', 'undefined'),
-('PAY002', 'cash'),
-('PAY003', 'card');
+('PAY001', 'cash'),
+('PAY002', 'card'),
+('PAY003', 'bank_transfer');
 
 -- --------------------------------------------------------
 
@@ -275,18 +275,6 @@ CREATE TABLE `tickets` (
   `ticket_status_id` varchar(50) NOT NULL,
   `payment_method_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `tickets`
---
-
-INSERT INTO `tickets` (`ticket_id`, `sale_date`, `customer_tax_id`, `ticket_status_id`, `payment_method_id`) VALUES
-('1718833756863', '2024-06-19', NULL, 'STA001', 'PAY002'),
-('1718834444109', '2024-06-20', NULL, 'STA004', 'PAY001'),
-('1718834682118', '2024-06-20', NULL, 'STA004', 'PAY001'),
-('1718835065837', '2024-06-20', NULL, 'STA004', 'PAY001'),
-('1718835111131', '2024-06-20', NULL, 'STA004', 'PAY001'),
-('1718835415109', '2024-06-20', NULL, 'STA001', 'PAY002');
 
 -- --------------------------------------------------------
 
@@ -306,14 +294,6 @@ CREATE TABLE `ticket_lines` (
   `sold_during_offer` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `ticket_lines`
---
-
-INSERT INTO `ticket_lines` (`ticket_line_id`, `ticket_id`, `article_id`, `article_family_id`, `article_quantity`, `applicated_sale_base_price`, `vat_id`, `vat_fraction`, `sold_during_offer`) VALUES
-('1718833756863LIN1', '1718833756863', 'AAA030', 'AF004', 3.000000, 1.200000, 'IVA002', 0.100000, '0'),
-('1718835415109LIN1', '1718835415109', 'AAA030', 'AF004', 3.000000, 1.200000, 'IVA002', 0.100000, '0');
-
 -- --------------------------------------------------------
 
 --
@@ -332,8 +312,7 @@ CREATE TABLE `ticket_status` (
 INSERT INTO `ticket_status` (`ticket_status_id`, `status_description`) VALUES
 ('STA001', 'paid'),
 ('STA002', 'canceled'),
-('STA003', 'reserved'),
-('STA004', 'processing');
+('STA003', 'reserved');
 
 -- --------------------------------------------------------
 
