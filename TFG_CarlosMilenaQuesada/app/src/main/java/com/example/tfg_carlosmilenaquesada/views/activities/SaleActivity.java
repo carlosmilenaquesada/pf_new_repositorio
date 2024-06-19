@@ -46,12 +46,13 @@ import com.example.tfg_carlosmilenaquesada.models.ticket.Ticket;
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLine;
 import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLineAdapter;
 
+import com.example.tfg_carlosmilenaquesada.models.ticket_line.TicketLinesInterface;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
-public class SaleActivity extends AppCompatActivity {
+public class SaleActivity extends AppCompatActivity implements TicketLinesInterface {
     public static final String TICKET_AMOUNT = "com.example.tfg_carlosmilenaquesada.views.activities.saleactivity.ticket_amount";
     public static final String TICKET_LINES_LIST = "com.example.tfg_carlosmilenaquesada.views.activities.saleactivity.ticket_lines_list";
     public static final String CUSTOMER_TAX_ID = "com.example.tfg_carlosmilenaquesada.views.activities.saleactivity.customer_tax_id";
@@ -116,7 +117,7 @@ public class SaleActivity extends AppCompatActivity {
             }
         });
         rvArticlesOnTicket.setLayoutManager(new LinearLayoutManager(this));
-        rvArticlesOnTicket.setAdapter(new TicketLineAdapter());
+        rvArticlesOnTicket.setAdapter(new TicketLineAdapter(this));
 
         if ((ticket = (Ticket) intent.getSerializableExtra(RESTORED_TICKET)) == null) {
             ticket = new Ticket();
@@ -257,10 +258,7 @@ public class SaleActivity extends AppCompatActivity {
                         indexOfCurrentTicketLine = rvArticlesOnTicket.getAdapter().getItemCount();
                         ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, indexOfCurrentTicketLine);
                     }
-
-                    float totalLineAmount = (ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction())) * ticketLine.getArticle_quantity();
-                    float totalAmount = Float.parseFloat(String.valueOf(tvTicketTotalAmount.getText())) + totalLineAmount;
-                    tvTicketTotalAmount.setText(String.valueOf(totalAmount));
+                    tvTicketTotalAmount.setText(String.valueOf(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTotalFromTicketLinesAmount()));
                 } else {
                     Toast.makeText(SaleActivity.this, "El código proporcionado no pertenece a ningún artículo", Toast.LENGTH_LONG).show();
                 }
@@ -290,9 +288,6 @@ public class SaleActivity extends AppCompatActivity {
                 if (((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getItemCount() == 0) {
                     return;
                 }
-
-
-
                 //insertar las líneas de ticket
                 SqliteConnector.getInstance(SaleActivity.this).insertManyElementsToSqlite(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTicketLinesList(), SqliteConnector.TABLE_TICKET_LINES);
                 //Actualizo el ticket a su nuevo estado.
@@ -328,4 +323,8 @@ public class SaleActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void recalculateTicketAmount() {
+        tvTicketTotalAmount.setText(String.valueOf(((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTotalFromTicketLinesAmount()));
+    }
 }

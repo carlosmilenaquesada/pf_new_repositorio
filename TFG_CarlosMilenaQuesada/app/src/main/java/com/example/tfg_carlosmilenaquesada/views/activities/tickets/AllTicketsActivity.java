@@ -43,7 +43,7 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
         rvAllTickets.setLayoutManager(new LinearLayoutManager(this));
         rvAllTickets.setAdapter(new TicketAdapter(this));
         rvTicketDetailLines.setLayoutManager(new LinearLayoutManager(this));
-        rvTicketDetailLines.setAdapter(new TicketLineAdapter());
+        rvTicketDetailLines.setAdapter(new TicketLineAdapter(this));
 
 
         new ItemTouchHelper(((TicketAdapter) rvAllTickets.getAdapter()).getSimpleCallback()).attachToRecyclerView(rvAllTickets);

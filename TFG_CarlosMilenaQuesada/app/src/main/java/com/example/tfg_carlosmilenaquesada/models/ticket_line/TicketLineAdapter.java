@@ -1,5 +1,6 @@
 package com.example.tfg_carlosmilenaquesada.models.ticket_line;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
 
     private SimpleCallback simpleCallback;
 
-    public TicketLineAdapter() {
+    public TicketLineAdapter(Context context) {
         this.ticketLineItemsList = new ArrayList<>();
         simpleCallback = new SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
@@ -34,6 +35,7 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getBindingAdapterPosition();
                 removeTicketLineItem(position);
+                ((TicketLinesInterface)context).recalculateTicketAmount();
             }
         };
 
@@ -89,6 +91,16 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
         ticketLineItemsList.set(oldTicketLinePosition, newTicketLine);
         notifyItemChanged(oldTicketLinePosition);
     }
+
+    public float getTotalFromTicketLinesAmount(){
+        float totalAmount = 0.0f;
+        for(TicketLine ticketLine: ticketLineItemsList){
+            totalAmount += (ticketLine.getArticle_quantity()*(ticketLine.getApplicated_sale_base_price() *(1+ticketLine.getVat_fraction())));
+        }
+        return totalAmount;
+
+    }
+
 
 
     public static class TicketLineItemViewHolder extends RecyclerView.ViewHolder {

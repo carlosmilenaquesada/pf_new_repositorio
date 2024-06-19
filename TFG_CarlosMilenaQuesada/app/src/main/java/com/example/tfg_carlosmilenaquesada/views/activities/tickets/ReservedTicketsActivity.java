@@ -49,7 +49,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
         rvTicketsInReserve.setLayoutManager(new LinearLayoutManager(this));
         rvTicketsInReserve.setAdapter(new TicketAdapter(this));
         rvTicketDetailLines.setLayoutManager(new LinearLayoutManager(this));
-        rvTicketDetailLines.setAdapter(new TicketLineAdapter());
+        rvTicketDetailLines.setAdapter(new TicketLineAdapter(this));
 
         new ItemTouchHelper(((TicketAdapter) rvTicketsInReserve.getAdapter()).getSimpleCallback()).attachToRecyclerView(rvTicketsInReserve);
         Cursor cursor = SqliteConnector.getInstance(this).getReadableDatabase().rawQuery(
