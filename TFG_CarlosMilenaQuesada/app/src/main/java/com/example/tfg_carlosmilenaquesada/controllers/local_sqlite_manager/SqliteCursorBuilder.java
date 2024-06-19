@@ -70,14 +70,13 @@ public class SqliteCursorBuilder {
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) as 'total_sales_base', " +
                 "SUM((TL.article_quantity * TL.applicated_sale_base_price) * TL.vat_fraction) as 'total_vat' " +
                 "FROM " + TABLE_TICKET_LINES + " TL";
-
         if (onlyToday) {
             query += " JOIN " + TABLE_TICKETS + " T ON TL.ticket_id = T.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         Cursor cursor = this.sqliteConnector.getReadableDatabase().rawQuery(query, null);
         if (cursor.moveToNext()) {
-            baseAndVatFromTotal.setBase(cursor.getFloat(0));
-            baseAndVatFromTotal.setVat(cursor.getFloat(1));
+            baseAndVatFromTotal.setBase(cursor.getFloat(cursor.getColumnIndexOrThrow("total_sales_base")));
+            baseAndVatFromTotal.setVat(cursor.getFloat(cursor.getColumnIndexOrThrow("total_vat")));
         }
         cursor.close();
         return baseAndVatFromTotal;
@@ -99,9 +98,11 @@ public class SqliteCursorBuilder {
                 "SUM(TL.article_quantity * TL.applicated_sale_base_price) AS 'total_sold_base_by_family' " +
                 "FROM " + TABLE_TICKET_LINES + " TL JOIN " + TABLE_ARTICLE_FAMILIES + " TF ON TF.article_family_id = TL.article_family_id";
         if (onlyToday) {
-            query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "' ";
+            query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
         query += " GROUP BY TF.family_name";
+
+
 
 
 
@@ -181,7 +182,7 @@ public class SqliteCursorBuilder {
 
     public float getTotalCashFromSalesAmount(boolean onlyToday) {
         float totalCashAmount = 0f;
-        String query = "SELECT SUM(article_quantity * applicated_sale_base_price * (1+vat_id)) AS 'total_cash_sales_amount' FROM " + TABLE_TICKET_LINES +" TL";
+        String query = "SELECT SUM(TL.article_quantity * (TL.applicated_sale_base_price * (TL.vat_fraction + 1))) AS 'total_cash_sales_amount' FROM " + TABLE_TICKET_LINES +" TL";
         if (onlyToday) {
             query += " JOIN " + TABLE_TICKETS + " T ON T.ticket_id = TL.ticket_id AND substr(T.sale_date, 1, 10) = '" + LocalDate.now().toString() + "'";
         }
@@ -217,6 +218,7 @@ public class SqliteCursorBuilder {
                     )
             );
         }
+        cursor.close();
         return paymentMethodRatios;
     }
 

@@ -69,7 +69,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
                     rvTicketsInReserve.getAdapter().getItemCount()
             );
         }
-
+        cursor.close();
         btRestoreTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +107,7 @@ public class ReservedTicketsActivity extends AppCompatActivity implements Ticket
                     rvTicketDetailLines.getAdapter().getItemCount()
             );
         }
+        cursor.close();
     }
 
     @Override

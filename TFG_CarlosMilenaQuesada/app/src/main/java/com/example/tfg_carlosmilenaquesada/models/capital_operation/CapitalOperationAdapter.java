@@ -40,7 +40,7 @@ public class CapitalOperationAdapter extends RecyclerView.Adapter<CapitalOperati
         holder.tvCapitalOperationDescription.setText(capitalOperation.getDescription());
 
         float capitalAmount = capitalOperation.getAmount();
-        String truncateAmount = String.format(Locale.getDefault(), "%.2f", capitalAmount);
+        String truncateAmount = String.format(Locale.US, "%.2f", capitalAmount);
         if(capitalAmount > 0){
             holder.etDepositAmount.setText(truncateAmount);
         }else{

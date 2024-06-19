@@ -25,8 +25,8 @@ public class Ticket implements Serializable {
         long currentTimeInMillis = System.currentTimeMillis();
         this.ticket_id = String.valueOf(currentTimeInMillis);
         this.sale_date = Tools.localDateTimeToString(LocalDateTime.ofInstant(Instant.ofEpochMilli(currentTimeInMillis), ZoneId.systemDefault()));
-        this.ticket_status_id = "processing";
-        this.payment_method_id = "PAYMENT001";
+        this.ticket_status_id = "STA004";
+        this.payment_method_id = "PAY001";
         this.payment_method_name = "undefined";
     }
 

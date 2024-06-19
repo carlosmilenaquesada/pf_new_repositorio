@@ -23,10 +23,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tfg_carlosmilenaquesada.R;
-import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
+
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteCursorBuilder;
 
-import java.sql.SQLOutput;
+
 
 
 public class LoginActiviy extends AppCompatActivity {

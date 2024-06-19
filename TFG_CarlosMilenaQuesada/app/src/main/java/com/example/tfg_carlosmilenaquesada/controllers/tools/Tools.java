@@ -1,7 +1,6 @@
 package com.example.tfg_carlosmilenaquesada.controllers.tools;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.os.Build;
 
 
@@ -45,7 +44,7 @@ public class Tools {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String localDateTimeToString(LocalDateTime localDateTime) {
         Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return formatter.format(date);
     }
 

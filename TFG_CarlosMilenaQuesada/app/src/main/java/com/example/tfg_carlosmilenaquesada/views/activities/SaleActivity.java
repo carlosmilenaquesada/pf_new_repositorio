@@ -91,11 +91,12 @@ public class SaleActivity extends AppCompatActivity implements TicketLinesInterf
         actvCustomerId = findViewById(R.id.actvCustomerId);
         actvCustomerId.setThreshold(1);
         String query = "SELECT customer_tax_id FROM " + TABLE_CUSTOMERS_TAXABLES;
-        Cursor customerCursor = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery(query, null);
+        Cursor cursorCustomer = SqliteConnector.getInstance(getApplication()).getReadableDatabase().rawQuery(query, null);
         customersTaxIds = new ArrayList<>();
-        while (customerCursor.moveToNext()) {
-            customersTaxIds.add(customerCursor.getString(customerCursor.getColumnIndexOrThrow("customer_tax_id")));
+        while (cursorCustomer.moveToNext()) {
+            customersTaxIds.add(cursorCustomer.getString(cursorCustomer.getColumnIndexOrThrow("customer_tax_id")));
         }
+        cursorCustomer.close();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, customersTaxIds);
         actvCustomerId.setAdapter(adapter);
 
@@ -124,8 +125,8 @@ public class SaleActivity extends AppCompatActivity implements TicketLinesInterf
             ticket = new Ticket();
         } else {
             ContentValues contentValues = new ContentValues();
-            contentValues.put("ticket_status_id", "processing");
-            contentValues.put("payment_method_id", "PAYMENT001");
+            contentValues.put("ticket_status_id", "STA004");
+            contentValues.put("payment_method_id", "PAY001");
             contentValues.put("payment_method_name", "undefined");
             SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().update(
                     SqliteConnector.TABLE_TICKETS,
@@ -152,6 +153,7 @@ public class SaleActivity extends AppCompatActivity implements TicketLinesInterf
                         rvArticlesOnTicket.getAdapter().getItemCount()
                 );
             }
+            cursor.close();
 
         }
 
@@ -249,6 +251,7 @@ public class SaleActivity extends AppCompatActivity implements TicketLinesInterf
                     } else {
                         ticketLine.setApplicated_sale_base_price(cursor.getFloat(cursor.getColumnIndexOrThrow("unit_sale_base_price")));
                     }
+                    cursor.close();
 
 
                     if ((indexOfCurrentTicketLine = ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTicketLinesList().indexOf(ticketLine)) != -1) {
@@ -259,7 +262,7 @@ public class SaleActivity extends AppCompatActivity implements TicketLinesInterf
                         indexOfCurrentTicketLine = rvArticlesOnTicket.getAdapter().getItemCount();
                         ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).addTicketLine(ticketLine, indexOfCurrentTicketLine);
                     }
-                    String amount = String.format(Locale.getDefault(), "%.2f", ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTotalFromTicketLinesAmount());
+                    String amount = String.format(Locale.US, "%.2f", ((TicketLineAdapter) rvArticlesOnTicket.getAdapter()).getTotalFromTicketLinesAmount());
                     tvTicketTotalAmount.setText(amount);
                 } else {
                     Toast.makeText(SaleActivity.this, "El código proporcionado no pertenece a ningún artículo", Toast.LENGTH_LONG).show();
@@ -295,8 +298,8 @@ public class SaleActivity extends AppCompatActivity implements TicketLinesInterf
                 //Actualizo el ticket a su nuevo estado.
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("customer_tax_id", actvCustomerId.isEnabled() && customersTaxIds.contains(actvCustomerId.getText().toString()) ? actvCustomerId.getText().toString() : null);
-                contentValues.put("payment_method_id", "undefined");
-                contentValues.put("ticket_status_id", "reserved");
+                contentValues.put("payment_method_id", "PAY001");
+                contentValues.put("ticket_status_id", "STA003");
 
                 SqliteConnector.getInstance(SaleActivity.this).getReadableDatabase().update(
                         SqliteConnector.TABLE_TICKETS,

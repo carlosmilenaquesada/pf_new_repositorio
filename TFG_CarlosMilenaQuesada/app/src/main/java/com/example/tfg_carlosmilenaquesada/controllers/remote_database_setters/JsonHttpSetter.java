@@ -1,5 +1,6 @@
 package com.example.tfg_carlosmilenaquesada.controllers.remote_database_setters;
 
+import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_LINES_ADD_QUERY;
 import static com.example.tfg_carlosmilenaquesada.controllers.tools.Tools.SHARED_PREFS;
 import static com.example.tfg_carlosmilenaquesada.views.activities.ServerSelectionActivity.SERVER_IP_ADDRESS;
 
@@ -11,10 +12,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector;
+import com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleClosingActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,8 +69,7 @@ public class JsonHttpSetter {
             throw new RuntimeException(e);
         }
 
-        String url = "http://" + context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getString(SERVER_IP_ADDRESS, null) + ":3000/add/" + table;
-        RequestQueue queue = Volley.newRequestQueue(context);
+
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -79,7 +79,8 @@ public class JsonHttpSetter {
         }
 
 
-
+        String url = "http://" + context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).getString(SERVER_IP_ADDRESS, null) + ":3000/add/" + table;
+        RequestQueue queue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST, url, jsonObject,
                 new Response.Listener<JSONObject>() {
@@ -87,6 +88,9 @@ public class JsonHttpSetter {
                     public void onResponse(JSONObject response) {
                         try {
                             SqliteConnector.getInstance(context).getReadableDatabase().execSQL("DELETE FROM " + table);
+                            JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(context, SqliteConnector.TABLE_TICKET_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
+                            jsonHttpSetterTicketsLines.setHttpFromJson();
+                            SqliteConnector.getInstance(context).getReadableDatabase().execSQL("DELETE FROM " + SqliteConnector.TABLE_CAPITAL_OPERATIONS);
                             Toast.makeText(context, "Cierre completado con éxito", Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                             Toast.makeText(context, "Error inesperado al realizar el proceso de cierre", Toast.LENGTH_LONG).show();
@@ -97,6 +101,7 @@ public class JsonHttpSetter {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(context, "Error inesperado al realizar el proceso de cierre "+ table + ": codigo " + error.networkResponse.statusCode, Toast.LENGTH_LONG).show();
+
 
                     }
                 }

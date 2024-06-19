@@ -131,7 +131,7 @@ app.post('/add/tickets', (req, res) => {
     }
 
 
-    const query = 'INSERT INTO tickets (ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id) VALUES ?';
+    const query = 'INSERT INTO tickets(ticket_id, sale_date, customer_tax_id, ticket_status_id,payment_method_id) VALUES ?';
     const values = _tickets.map(ticket => [
         ticket.ticket_id,
         ticket.sale_date,
@@ -143,7 +143,7 @@ app.post('/add/tickets', (req, res) => {
     connection.query(query, [values], (err, result) => {
         if (err) {
             console.error('Error al insertar datos en la base de datos:', err);
-            return res.status(500).send({ error: true, message: 'Error al insertar datos en la base de datos', details: err.message });
+            return res.status(405).send({ error: true, message: 'Error al insertar datos en la base de datos', details: err.message });
         }
         res.send({ error: false, data: result, message: 'Nuevos tickets agregados correctamente' });
     });
@@ -161,17 +161,14 @@ app.post('/add/ticket_lines', (req, res) => {
         return res.status(402).send({ error: true, message: 'No se proporcionaron líneas de tickets para insertar' });
     }
 
-    const query = 'INSERT INTO ticket_lines (ticket_line_id, ticket_id, article_id, 	article_family_id, article_quantity, applicated_sale_base_price, vat_id, vat_fraction, sold_during_offer) VALUES ?';
-
-
-
+    const query = 'INSERT INTO ticket_lines (ticket_line_id,ticket_id,article_id,article_family_id,article_quantity,applicated_sale_base_price,vat_id,vat_fraction,sold_during_offer) VALUES ?';
 
     const values = _ticketLines.map(ticket_line => [
-        ticket_line.ticket_line_id,
+        ticket_line.ticket_line_id ,
         ticket_line.ticket_id,
         ticket_line.article_id,
         ticket_line.article_family_id,
-        ticket_line.article_quantity,
+        ticket_line.article_quantity ,
         ticket_line.applicated_sale_base_price,
         ticket_line.vat_id,
         ticket_line.vat_fraction,

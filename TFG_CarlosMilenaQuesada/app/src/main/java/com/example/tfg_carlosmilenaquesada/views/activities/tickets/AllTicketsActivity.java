@@ -64,6 +64,7 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
                     rvAllTickets.getAdapter().getItemCount()
             );
         }
+        cursor.close();
 
 
     }
@@ -95,6 +96,7 @@ public class AllTicketsActivity extends AppCompatActivity implements TicketDetai
                     rvTicketDetailLines.getAdapter().getItemCount()
             );
         }
+        cursor.close();
     }
 
     @Override

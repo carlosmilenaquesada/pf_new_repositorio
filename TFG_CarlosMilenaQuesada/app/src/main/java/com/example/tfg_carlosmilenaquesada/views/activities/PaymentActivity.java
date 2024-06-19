@@ -78,7 +78,7 @@ public class PaymentActivity extends AppCompatActivity {
                 }
 
                 float change = Float.parseFloat(etCash.getText().toString()) - Float.parseFloat(tvTotal.getText().toString());
-                String truncateChange = String.format(Locale.getDefault(), "%.2f", change);
+                String truncateChange = String.format(Locale.US, "%.2f", change);
                 tvChange.setText(truncateChange);
                 btCalculateChange.setEnabled(false);
                 btCompleteCashPayment.setEnabled(true);
@@ -103,8 +103,8 @@ public class PaymentActivity extends AppCompatActivity {
                 //Actualizo el ticket a su nuevo estado.
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("customer_tax_id", customerTaxId);
-                contentValues.put("ticket_status_id", "paid");
-                contentValues.put("payment_method_id", "PAYMENT002");
+                contentValues.put("ticket_status_id", "STA001");
+                contentValues.put("payment_method_id", "PAY002");
                 contentValues.put("payment_method_name", "cash");
 
                 SqliteConnector.getInstance(PaymentActivity.this).getReadableDatabase().update(
@@ -122,7 +122,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void resetCashPaymentForm(Float ticketAmount) {
-        String truncateAmount = String.format(Locale.getDefault(), "%.2f", ticketAmount);
+        String truncateAmount = String.format(Locale.US, "%.2f", ticketAmount);
         tvTotal.setText(truncateAmount);
         etCash.setText("");
         tvChange.setText("");

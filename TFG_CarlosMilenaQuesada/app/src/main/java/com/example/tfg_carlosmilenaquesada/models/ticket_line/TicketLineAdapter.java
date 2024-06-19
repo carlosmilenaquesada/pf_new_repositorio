@@ -58,7 +58,7 @@ public class TicketLineAdapter extends RecyclerView.Adapter<TicketLineAdapter.Ti
         holder.tvItemArticleQuantity.setText(String.valueOf(ticketLine.getArticle_quantity()));
         holder.tvItemArticleName.setText(ticketLine.getArticle_name());
         holder.tvItemLineIsInOffer.setText(ticketLine.isSold_during_offer() ? "Sí" : "No");
-        String amount = String.format(Locale.getDefault(), "%.2f", ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction()) * ticketLine.getArticle_quantity());
+        String amount = String.format(Locale.US, "%.2f", ticketLine.getApplicated_sale_base_price() * (1 + ticketLine.getVat_fraction()) * ticketLine.getArticle_quantity());
         holder.tvItemLineTotalAmount.setText(amount);
         holder.itemView.setOnClickListener(v -> {
         });

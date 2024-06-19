@@ -82,6 +82,7 @@ public class CapitalOperationActivity extends AppCompatActivity {
                             cursor.getFloat(cursor.getColumnIndexOrThrow("amount"))
             ), rvCapitalOperations.getAdapter().getItemCount());
         }
+        cursor.close();
 
         tvOperationType.setText(capitalOperationType);
         etndOperationAmount.setTextColor(amountSign.equals("-") ? Color.RED : Color.BLUE);

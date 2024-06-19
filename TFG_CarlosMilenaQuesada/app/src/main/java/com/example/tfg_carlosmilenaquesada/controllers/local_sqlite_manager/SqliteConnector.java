@@ -24,7 +24,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
     //sin necesidad de especificar ni longuitud ni precisión.
     private static SqliteConnector sqliteConnector;
 
-    private static final int DATABASE_VERSION = 67;
+    private static final int DATABASE_VERSION = 72;
     private static final String DATABASE_NAME = "tpv.db";
     public static final String TABLE_ARTICLES = "articles";
     public static final String TABLE_ARTICLE_FAMILIES = "article_families";
@@ -38,10 +38,10 @@ public class SqliteConnector extends SQLiteOpenHelper {
     public static final String TABLE_USERS = "users";
     public static final String TABLE_VATS = "vats";
 
-    public static final String TABLE_TICKETS_ADD_QUERY = "SELECT ticket_id, sale_date, customer_tax_id, ticket_status_id, payment_method_id FROM " + TABLE_TICKETS;
+    public static final String TABLE_TICKETS_ADD_QUERY = "SELECT * FROM " + TABLE_TICKETS;
 
 
-    public static final String TABLE_TICKETS_LINES_ADD_QUERY = "SELECT ticket_line_id, ticket_id, article_id, article_family_id, article_quantity, applicated_sale_base_price, vat_id, vat_fraction, sold_during_offer FROM " + TABLE_TICKET_LINES;
+    public static final String TABLE_TICKETS_LINES_ADD_QUERY = "SELECT * FROM " + TABLE_TICKET_LINES;
 
 
     private SqliteConnector(@Nullable Context context) {
@@ -71,7 +71,7 @@ public class SqliteConnector extends SQLiteOpenHelper {
                 ")");
 
         db.execSQL("CREATE TABLE " + TABLE_ARTICLE_FAMILIES + "(" +
-                "article_family_id  TEXT NOT NULL, " +
+                "article_family_id TEXT PRIMARY KEY NOT NULL, " +
                 "family_name TEXT NOT NULL " +
                 ")");
 

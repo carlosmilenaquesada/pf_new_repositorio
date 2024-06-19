@@ -1,7 +1,7 @@
 package com.example.tfg_carlosmilenaquesada.views.activities.customers;
 
 import android.content.ContentValues;
-import android.content.Intent;
+
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -80,6 +80,8 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
         while (cursor.moveToNext()) {
             ((CustomerAdapter) rvAllCustomers.getAdapter()).addCustomer(new Customer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)), rvAllCustomers.getAdapter().getItemCount());
         }
+        cursor.close();
+
 
         btApplyCustomerUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +106,7 @@ public class ShowAndModifyCustomersActivity extends AppCompatActivity implements
 
                 if (SqliteConnector.getInstance(ShowAndModifyCustomersActivity.this).getReadableDatabase().update(SqliteConnector.TABLE_CUSTOMERS_TAXABLES, newContentValues, "customer_tax_id=?", new String[]{oldCustomer.getCustomer_tax_id()}) == 1) {
                     ArrayList<Customer> customersList = ((CustomerAdapter) rvAllCustomers.getAdapter()).getCustomerList();
-                    System.out.println(oldCustomer);
+
                     customersList.set(customersList.indexOf(oldCustomer), updatedCustomer);
                     rvAllCustomers.getAdapter().notifyItemChanged(customersList.indexOf(updatedCustomer));
                     if (llUpdateCustomerDropdownMenu.getVisibility() != View.GONE) {

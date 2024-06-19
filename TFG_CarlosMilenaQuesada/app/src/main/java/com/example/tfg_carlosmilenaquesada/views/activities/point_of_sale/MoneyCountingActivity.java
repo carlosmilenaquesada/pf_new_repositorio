@@ -62,7 +62,7 @@ public class MoneyCountingActivity extends AppCompatActivity {
                     ViewGroup viewGroup = (ViewGroup) editText.getParent().getParent();
                     recount += Integer.parseInt(viewGroup.getChildAt(0).getTag().toString()) * Integer.parseInt(editText.getText().toString());
                 }
-                etTotal.setText(String.format(Locale.getDefault(), "%.2f",recount/100.0f));
+                etTotal.setText(String.format(Locale.US, "%.2f",recount/100.0f));
             }
         });
 

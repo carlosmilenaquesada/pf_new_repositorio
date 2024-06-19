@@ -4,7 +4,6 @@ import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manag
 import static com.example.tfg_carlosmilenaquesada.controllers.local_sqlite_manager.SqliteConnector.TABLE_TICKETS_LINES_ADD_QUERY;
 import static com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.MoneyCountingActivity.MONEY_COUNTING;
 import static com.example.tfg_carlosmilenaquesada.views.activities.point_of_sale.PointOfSaleManagementActivity.IS_TODAY_AUDIT;
-import static com.example.tfg_carlosmilenaquesada.views.activities.tickets.ReservedTicketsActivity.RESTORED_TICKET;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -122,17 +121,18 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
         tvCountedDateTo.setText(firstAndLastTicketDate.getLast());
 
         BaseAndVat baseAndVat = sqliteCursorBuilder.getBaseAndVatFromTotal(isTodayAudit);
-        tvTotalSaleBase.setText(String.format(Locale.getDefault(), "%.2f",baseAndVat.getBase()));
-        tvTotalVat.setText(String.format(Locale.getDefault(), "%.2f",baseAndVat.getVat()));
-        tvTotalSaleAmount.setText(String.format(Locale.getDefault(), "%.2f",baseAndVat.getBase() + baseAndVat.getVat()));
+
+        tvTotalSaleBase.setText(String.format(Locale.US, "%.2f",baseAndVat.getBase()));
+        tvTotalVat.setText(String.format(Locale.US, "%.2f",baseAndVat.getVat()));
+        tvTotalSaleAmount.setText(String.format(Locale.US, "%.2f",baseAndVat.getBase() + baseAndVat.getVat()));
 
 
         float operations = sqliteCursorBuilder.getTotalCashAmount(isTodayAudit);
         float salesAmount = sqliteCursorBuilder.getTotalCashFromSalesAmount(isTodayAudit);;
 
-        tvCashInDesk.setText(String.format(Locale.getDefault(), "%.2f",moneyCounting));
-        tvOperations.setText(String.format(Locale.getDefault(), "%.2f",operations));
-        tvCapitalDiffence.setText(String.format(Locale.getDefault(), "%.2f",moneyCounting - (operations + salesAmount)));
+        tvCashInDesk.setText(String.format(Locale.US, "%.2f",moneyCounting));
+        tvOperations.setText(String.format(Locale.US, "%.2f",operations));
+        tvCapitalDiffence.setText(String.format(Locale.US, "%.2f",moneyCounting - (operations + salesAmount)));
 
         ArrayList<PaymentMethodRatio> paymentMethodsRatios = sqliteCursorBuilder.getPaymentMethodsRatios(isTodayAudit);
         for (int i = 0; i < paymentMethodsRatios.size(); i++) {
@@ -143,9 +143,9 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             TextView textViewColThree = new TextView(this);
             TextView textViewColFour = new TextView(this);
             textViewColOne.setText(paymentMethodsRatios.get(i).getPayment_method_name());
-            textViewColTwo.setText(String.format(Locale.getDefault(), "%.2f",paymentMethodsRatios.get(i).getSale_base_amount()));
-            textViewColThree.setText(String.format(Locale.getDefault(), "%.2f",paymentMethodsRatios.get(i).getVat_amount()));
-            textViewColFour.setText(String.format(Locale.getDefault(), "%.2f",paymentMethodsRatios.get(i).getTotal_amount()));
+            textViewColTwo.setText(String.format(Locale.US, "%.2f",paymentMethodsRatios.get(i).getSale_base_amount()));
+            textViewColThree.setText(String.format(Locale.US, "%.2f",paymentMethodsRatios.get(i).getVat_amount()));
+            textViewColFour.setText(String.format(Locale.US, "%.2f",paymentMethodsRatios.get(i).getTotal_amount()));
             tableRow.addView(textViewColOne);
             ((LinearLayout.LayoutParams) textViewColOne.getLayoutParams()).weight = 1;
 
@@ -174,9 +174,9 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             
             
             textViewColOne.setText(articlesFamilyRatios.get(i).getFamily_name());
-            textViewColTwo.setText(String.format(Locale.getDefault(), "%.2f",articlesFamilyRatios.get(i).getFamily_unit_quantity()));
-            textViewColThree.setText(String.format(Locale.getDefault(), "%.2f",articlesFamilyRatios.get(i).getFamily_sales_base()));
-            textViewColFour.setText(String.format(Locale.getDefault(), "%.2f",articlesFamilyRatios.get(i).getFamily_ratio()));
+            textViewColTwo.setText(String.format(Locale.US, "%.2f",articlesFamilyRatios.get(i).getFamily_unit_quantity()));
+            textViewColThree.setText(String.format(Locale.US, "%.2f",articlesFamilyRatios.get(i).getFamily_sales_base()));
+            textViewColFour.setText(String.format(Locale.US, "%.2f",articlesFamilyRatios.get(i).getFamily_ratio()));
 
             tableRow.addView(textViewColOne);
             ((LinearLayout.LayoutParams) textViewColOne.getLayoutParams()).weight = 1;
@@ -205,10 +205,10 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             TextView textViewColFive = new TextView(this);
 
             textViewColOne.setText(vatRatios.get(i).getVat_description());
-            textViewColTwo.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getVat_percent()));
-            textViewColThree.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getSale_base_amount()));
-            textViewColFour.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getVat_amount()));
-            textViewColFive.setText(String.format(Locale.getDefault(), "%.2f",vatRatios.get(i).getTotal_amount()));
+            textViewColTwo.setText(String.format(Locale.US, "%.2f",vatRatios.get(i).getVat_percent()));
+            textViewColThree.setText(String.format(Locale.US, "%.2f",vatRatios.get(i).getSale_base_amount()));
+            textViewColFour.setText(String.format(Locale.US, "%.2f",vatRatios.get(i).getVat_amount()));
+            textViewColFive.setText(String.format(Locale.US, "%.2f",vatRatios.get(i).getTotal_amount()));
 
             tableRow.addView(textViewColOne);
             ((LinearLayout.LayoutParams) textViewColOne.getLayoutParams()).weight = 1;
@@ -239,11 +239,13 @@ public class PointOfSaleClosingActivity extends AppCompatActivity {
             btConfirmClosePointOfSale.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     JsonHttpSetter jsonHttpSetterTickets = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKETS, TABLE_TICKETS_ADD_QUERY);
                     jsonHttpSetterTickets.setHttpFromJson();
 
-                    JsonHttpSetter jsonHttpSetterTicketsLines = new JsonHttpSetter(PointOfSaleClosingActivity.this, SqliteConnector.TABLE_TICKET_LINES, TABLE_TICKETS_LINES_ADD_QUERY);
-                    jsonHttpSetterTicketsLines.setHttpFromJson();
+
+
+
 
 
                 }
